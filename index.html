@@ -186,7 +186,10 @@
 
 				Reveal.addEventListener( 'slidechanged', function( event ) {
 					var head=$("#nav-"+event.indexh).html().split("<br>")[0]
-					$("#nav-"+event.indexh).html(head+"<br>"+vslidedots(event))
+					$("a[id*='nav-']").each(function() {
+						var text = $(this).html().split("<br>")[0];
+						$(this).html(text+"<br>"+vslidedots(event,$(this).attr("id").split("-")[1]));
+					})
 				});
 
 				Reveal.addEventListener( 'ready', function( event ) {
