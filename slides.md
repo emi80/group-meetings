@@ -146,6 +146,7 @@ User has to keep metadata and file information:
 ------
 
 # Idxtools
+<a href="https://github.com/emi80/idxtools"><h3><i class="fa fa-github-square"> github.com/emi80/idxtools</i></h3></a>
 
 
 ## Index files
@@ -458,19 +459,83 @@ $ idxtools show
 ------
 
 # JIP
+<a href="//pyjip.readthedocs.org"><h3><i class="fa fa-external-link-square"> pyjip.readthedocs.org</i></h3></a>
 
+
+## JIP
+<!-- .element: style="margin-bottom: 0.6em;"-->
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> A pipeline system that helps to manage large numbers of jobs on a compute cluster</div>
+<!-- .element: style="margin-bottom: 2em;"-->
+
+- dependency support
+- automatic expansions
+- simplified management of jobs and resources
+
+
+## Cluster configuration
+<!-- .element: style="margin-bottom: 1em;"-->
+```json
+{
+    "cluster": "jip.cluster.SGE",
+    "sge" : {
+        "threads_pe": "smp",
+        "time_limit": "h_rt"
+    },
+    "profiles": {
+        "default": {
+            "queue": "short,long,rg-el6",
+            "time": "3h"
+        },
+
+        "long": {
+            "queue": "long,rg-el6",
+            "time": "24h",
+            "mem": "64G"
+        },
+        "short": {
+            "queue": "short",
+            "time": "6h",
+            "mem": "16G"
+        }
+    }
+}
+
+```
+
+
+## Run or submit commands
+<!-- .element: style="margin-bottom: 1em;"-->
+
+The `jip bash` command:
+
+```bash
+# run `hostname` locally
+$ jip bash -c hostname
+
+# submit
+$ jip bash -s -c hostname
+```
+<!-- .element: style="margin-bottom: 3em;"-->
+
+Check jobs with `jip jobs`:
+
+```bash
+# check the status of the job
+$ jip jobs
+```
 ------
 
 # Nextflow
-
+<a href="//www.nextflow.io"><h3><i class="fa fa-external-link-square"> www.nextflow.io</i></h3></a>
 ------
 
 # Grape 2
+<a href="//grape-pipeline.readthedocs.org"><h3><i class="fa fa-external-link-square"> grape-pipeline.readthedocs.org</i></h3></a>
 
 <!-- ------
 
 # Modules
-<div class="panel panel-default"><font color="#31708f">Software environement managment</font></div>
+<div class="panel panel-default blue">Software environement managment</font></div>
 
 <!-- ------
 
