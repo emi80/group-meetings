@@ -1,0 +1,14 @@
+{
+  "colsep": "\t", 
+  "fileinfo": [
+    "path", 
+    "size", 
+    "md5", 
+    "type",
+    "view"
+  ], 
+  "id": "labExpId", 
+  "kw_sep": " ", 
+  "sep": "=", 
+  "trail": ";"
+}

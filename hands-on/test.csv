@@ -1,0 +1,6 @@
+path,labExpId,quality,sex,type,view
+./data/test1_1.fastq.gz,test1,33,female,fastq,FqRd1
+./data/test1_2.fastq.gz,test1,33,female,fastq,FqRd2
+./data/test2_1.fastq.gz,test2,64,male,fastq,FqRd1
+./data/test2_2.fastq.gz,test2,64,male,fastq,FqRd2
+./data/test2.bam,test2,64,male,bam,Alignments

@@ -1,0 +1,5 @@
+./data/test1_1.fastq.gz	labExpId=test1; type=fastq; view=FqRd1; quality=33; sex=female;
+./data/test1_2.fastq.gz	labExpId=test1; type=fastq; view=FqRd2; quality=33; sex=female;
+./data/test2_1.fastq.gz	labExpId=test2; type=fastq; view=FqRd1; quality=64; sex=male;
+./data/test2_2.fastq.gz	labExpId=test2; type=fastq; view=FqRd2; quality=64; sex=male;
+./data/test2.bam	labExpId=test2; type=bam; view=Alignments; quality=64; sex=male;
