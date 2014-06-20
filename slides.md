@@ -2,7 +2,7 @@
 
 
 ## Blueprint pipeline
-<div class="panel panel-default"><font color="#31708f">&#8658;</font> RNAseq pipeline written in Bash</div>
+<div class="panel panel-default"><font color="#31708f"><i class="fa fa-arrow-circle-right"></i></font> RNAseq pipeline written in Bash</div>
 <!-- .element: style="margin-bottom: 2em;"-->
 
 - mapping (GEMtools)
@@ -81,7 +81,7 @@ Run specific steps:
 <!-- .element: style="color: #a94442; margin-bottom: 1em;"-->
 
 - pipeline steps are executed sequencially
-- one cluster node per run is used <font color="#a94442">&#8605; weak parallelization</font>
+- one cluster node per run is used <font color="#a94442"><i class="fa fa-arrow-right"></i> weak parallelization</font>
 - bad resource management - not all steps use the same amount of cpus/memory
 
 
@@ -143,7 +143,7 @@ User has to keep metadata and file information:
 ## Index files
 <!-- .element: style="margin-bottom: 1em;"-->
 
-<div class="panel panel-default"><font color="#31708f">&#8658;</font> plain text database files to store metadata information for files and their content</div>
+<div class="panel panel-default"><font color="#31708f"><i class="fa fa-arrow-circle-right"></i></font> plain text database files to store metadata information for files and their content</div>
 
 
 ## Format
@@ -167,6 +167,12 @@ with `attribute_list` as a semicolon separated list of `key=value` strings:
 ------
 
 # Grape 2
+
+<!-- ------
+
+# Modules
+<div class="panel panel-default"><font color="#31708f">Software environement managment</font></div>
+
 <!-- ------
 
 # SOLiD pipeline -->
