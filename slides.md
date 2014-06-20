@@ -146,7 +146,7 @@ User has to keep metadata and file information:
 ------
 
 # Idxtools
-<a href="https://github.com/emi80/idxtools"><h3><i class="fa fa-github-square"> github.com/emi80/idxtools</i></h3></a>
+<a href="//github.com/emi80/idxtools"><h3><i class="fa fa-github-square"> github.com/emi80/idxtools</i></h3></a>
 
 
 ## Index files
