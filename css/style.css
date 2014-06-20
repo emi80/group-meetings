@@ -99,3 +99,22 @@ div .panel-default {
   font-weight: bold;
   text-align: center;
   vertical-align: middle; }
+
+  /*********************************************
+ * IMAGES
+ *********************************************/
+.reveal section img {
+  margin: 15px 0px;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  -webkit-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+  -ms-transition: all .2s linear;
+  -o-transition: all .2s linear;
+  transition: all .2s linear; }
+
+.reveal a:hover img {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #13daec;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
