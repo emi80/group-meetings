@@ -3,7 +3,7 @@
 
 ## Blueprint pipeline
 <!-- .element: style="margin-bottom: 1em;"-->
-<div class="panel panel-default"><font color="#31708f"><i class="fa fa-arrow-circle-right"></i></font> RNAseq pipeline written in Bash</div>
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> RNAseq pipeline written in Bash</div>
 <!-- .element: style="margin-bottom: 2em;"-->
 
 - mapping (GEMtools)
@@ -14,7 +14,7 @@
 
 
 ## Bash
-<!-- .element: style="color: #3c763d;"-->
+<!-- .element: class="green"-->
 
 ```bash
 #!/bin/bash
@@ -26,7 +26,7 @@
 
 
 ## SGE options
-<!-- .element: style="color: #3c763d; margin-bottom: 1em;"-->
+<!-- .element: class="green" style="margin-bottom: 1em;"-->
 
 ```bash
 # Force bash shell
@@ -49,7 +49,7 @@ Queue, memory and time **must** be specified when submitting the job.
 
 
 ## Modular execution
-<!-- .element: style="color: #3c763d; margin-bottom: 0.6em;"-->
+<!-- .element: class="green" style="margin-bottom: 0.6em;"-->
 
 ```
 # getting pipeline steps to be executed
@@ -85,15 +85,15 @@ blueprint.pipeline.sh ... -- contig flux
 
 
 ## Monolitic pipeline
-<!-- .element: style="color: #a94442; margin-bottom: 1em;"-->
+<!-- .element: class="red" style="margin-bottom: 1em;"-->
 
 - pipeline steps are executed sequencially
-- one cluster node per run is used <font color="#a94442"><i class="fa fa-arrow-right"></i> weak parallelization</font>
+- one cluster node per run is used <span class="red"> <i class="fa fa-arrow-right"></i> weak parallelization</span>
 - bad resource management - not all steps use the same amount of cpus/memory
 
 
 ## Batch execution
-<!-- .element: style="color: #a94442; margin-bottom: 1em;"-->
+<!-- .element: class="red" style="margin-bottom: 1em;"-->
 
 Some extra code required:
 <!-- .element: style="text-align: left; margin-left: 1.5em"-->
@@ -134,7 +134,7 @@ done
 
 
 ## Data management
-<!-- .element: style="color: #a94442; margin-bottom: 1em;"-->
+<!-- .element: class="red" style="margin-bottom: 1em;"-->
 
 User has to keep metadata and file information:
 <!-- .element: style="margin-bottom: 1em;"-->
@@ -148,14 +148,9 @@ User has to keep metadata and file information:
 # Idxtools
 
 
-## Idxtools
-<!-- .element: style="margin-bottom: 1em;"-->
-<div class="panel panel-default"><font color="#31708f"><i class="fa fa-arrow-circle-right"></i></font> Python API and commandline tool to **create**, **modify** and **query** Index Files</div>
-
-
 ## Index files
 <!-- .element: style="margin-bottom: 1em;"-->
-<div class="panel panel-default"><font color="#31708f"><i class="fa fa-arrow-circle-right"></i></font> Plain text database files to store metadata information for files and their content</div>
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Plain text database files to store metadata information for files and their content</div>
 
 
 ## Format
@@ -173,9 +168,33 @@ with `attribute_list` as a semicolon separated list of `key=value` strings:
 ```
 
 
+## Idxtools
+<!-- .element: style="margin-bottom: 1em;"-->
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Python API and commandline tool to **create**, **query** and **modify** index files</div>
+
+
+## Model
+<!-- .element: style="margin-bottom: 1em;"-->
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i><span class="blue"> Dataset</span> is the main data object</div>
+<!-- .element: style="margin-bottom: 1em;"-->
+
+Metadata:
+<!-- .element: style="margin-top: 1em; text-align: left; margin-left: 1.5em;"-->
+```markdown
+.   id=test1; quality=33; sex=female;
+```
+
+Files:
+<!-- .element: style="margin-top: 1em; text-align: left; margin-left: 1.5em;"-->
+```markdown
+/data/test1_1.fastq.gz id=test1; quality=33; sex=female; type=fastq; view=FqRd1;
+/data/test1.bam id=test1; quality=33; sex=female; type=bam; view=Alignments;
+```
+
+
 ## Format.json
 <!-- .element: style="margin-bottom: 1em;"-->
-<div class="panel panel-default"><font color="#31708f"><i class="fa fa-arrow-circle-right"></i></font> Specifies the syntax and vocabulary of an index file</div>
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Specifies the syntax and vocabulary of an index file</div>
 <!-- .element: style="margin-bottom: 1em;"-->
 
 ```json
@@ -268,19 +287,21 @@ Useful when importing from csv/tsv:
 
 ## Specifying index and format files
 <!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><font color="#31708f"><i class="fa fa-arrow-circle-right"></i></font> Index and format files can be specified as <span class="blue">command line options</span> or as <span class="blue">environment variables</span></div>
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Index and format files can be specified as <span class="blue">command line options</span> or as <span class="blue">environment variables</span></div>
 <!-- .element: style="margin-bottom: 1.4em;"-->
 
 ```bash
 # command line
-idxtools -i index.txt -f format.json [command]
+$ idxtools -i index.txt -f format.json [command]
 
 # environment variables
-export IDX_FILE=index.txt
-export IDX_FORMAT=format.json
+export IDX_FILE=/path/to/index.txt
+export IDX_FORMAT=/path/to/format.json
 
-idxtools show
+$ idxtools show
 ```
+<div class="panel panel-default">Using absolute paths to make the index available from any folder</div>
+<!-- .element: style="margin-top: 1em;"-->
 
 
 ## Importing TSV/CSV
@@ -290,27 +311,27 @@ A CSV file, `test.csv`:
 
 ```markdown
 path,labExpId,quality,sex,type,view
-./data/test1_1.fastq.gz,test1,33,female,fastq,FqRd1
-./data/test1_2.fastq.gz,test1,33,female,fastq,FqRd2
-./data/test2_1.fastq.gz,test2,64,male,fastq,FqRd1
-./data/test2_2.fastq.gz,test2,64,male,fastq,FqRd2
-./data/test2.bam,test2,64,male,bam,Alignments
+/data/test1_1.fastq.gz,test1,33,female,fastq,FqRd1
+/data/test1_2.fastq.gz,test1,33,female,fastq,FqRd2
+/data/test2_1.fastq.gz,test2,64,male,fastq,FqRd1
+/data/test2_2.fastq.gz,test2,64,male,fastq,FqRd2
+/data/test2.bam,test2,64,male,bam,Alignments
 ```
 
-&nbsp;
 <!-- .element: style="margin-top: 1em; text-align: left; margin-left:1.5em;"-->
-
 ```bash
 # import csv and show
-$ idxtools -i test.csv -f format.json show
-./data/test1_1.fastq.gz labExpId=test1; type=fastq; view=FqRd1; quality=33; sex=female;
-./data/test1_2.fastq.gz labExpId=test1; type=fastq; view=FqRd2; quality=33; sex=female;
-./data/test2_1.fastq.gz labExpId=test2; type=fastq; view=FqRd1; quality=64; sex=male;
-./data/test2_2.fastq.gz labExpId=test2; type=fastq; view=FqRd2; quality=64; sex=male;
-./data/test2.bam    labExpId=test2; type=bam; view=Alignments; quality=64; sex=male;
+$ export IDX_FORMAT=$PWD/format.json
+$ idxtools -i test.csv show
+/data/test1_1.fastq.gz labExpId=test1; type=fastq; view=FqRd1; quality=33; sex=female;
+/data/test1_2.fastq.gz labExpId=test1; type=fastq; view=FqRd2; quality=33; sex=female;
+/data/test2_1.fastq.gz labExpId=test2; type=fastq; view=FqRd1; quality=64; sex=male;
+/data/test2_2.fastq.gz labExpId=test2; type=fastq; view=FqRd2; quality=64; sex=male;
+/data/test2.bam    labExpId=test2; type=bam; view=Alignments; quality=64; sex=male;
 
 # import csv and save to file
 $ idxtools -i test.csv -f format.json show -o index.txt
+$ export IDX_FILE=$PWD/index.txt
 ```
 
 
@@ -320,15 +341,16 @@ $ idxtools -i test.csv -f format.json show -o index.txt
 ```bash
 # query by attributes
 $ idxtools show id=test2
-./data/test2_1.fastq.gz labExpId=test2; type=fastq; view=FqRd1; quality=64; sex=male;
-./data/test2_2.fastq.gz labExpId=test2; type=fastq; view=FqRd2; quality=64; sex=male;
-./data/test2.bam    labExpId=test2; type=bam; view=Alignments; quality=64; sex=male;
+/data/test2_1.fastq.gz labExpId=test2; type=fastq; view=FqRd1; quality=64; sex=male;
+/data/test2_2.fastq.gz labExpId=test2; type=fastq; view=FqRd2; quality=64; sex=male;
+/data/test2.bam    labExpId=test2; type=bam; view=Alignments; quality=64; sex=male;
 
-$ idxtools show type=fastq
+$ idxtools show view=FqRd1
 ./data/test1_1.fastq.gz labExpId=test1; type=fastq; view=FqRd1; quality=33; sex=female;
-./data/test1_2.fastq.gz labExpId=test1; type=fastq; view=FqRd2; quality=33; sex=female;
 ./data/test2_1.fastq.gz labExpId=test2; type=fastq; view=FqRd1; quality=64; sex=male;
-./data/test2_2.fastq.gz labExpId=test2; type=fastq; view=FqRd2; quality=64; sex=male;
+
+$ idxtools show type=bam
+./data/test2.bam    labExpId=test2; type=bam; view=Alignments; quality=64; sex=male;
 ```
 
 
@@ -339,39 +361,45 @@ $ idxtools show type=fastq
 # queries use regular expressions
 # query by id starting with t
 $ idxtools show id=t # equivalent to: idxtools show id="^t"
-./data/test1_1.fastq.gz labExpId=test1; type=fastq; view=FqRd1; quality=33; sex=female;
-./data/test1_2.fastq.gz labExpId=test1; type=fastq; view=FqRd2; quality=33; sex=female;
-./data/test2_1.fastq.gz labExpId=test2; type=fastq; view=FqRd1; quality=64; sex=male;
-./data/test2_2.fastq.gz labExpId=test2; type=fastq; view=FqRd2; quality=64; sex=male;
-./data/test2.bam    labExpId=test2; type=bam; view=Alignments; quality=64; sex=male;
+/data/test1_1.fastq.gz labExpId=test1; type=fastq; view=FqRd1; quality=33; sex=female;
+/data/test1_2.fastq.gz labExpId=test1; type=fastq; view=FqRd2; quality=33; sex=female;
+/data/test2_1.fastq.gz labExpId=test2; type=fastq; view=FqRd1; quality=64; sex=male;
+/data/test2_2.fastq.gz labExpId=test2; type=fastq; view=FqRd2; quality=64; sex=male;
+/data/test2.bam    labExpId=test2; type=bam; view=Alignments; quality=64; sex=male;
 
 # exact queries
 $ idxtools show id=t --exact
 
 # operations on numeric attributes
 $ idxtools show quality=">40"
-./data/test2_1.fastq.gz labExpId=test2; type=fastq; view=FqRd1; quality=64; sex=male;
-./data/test2_2.fastq.gz labExpId=test2; type=fastq; view=FqRd2; quality=64; sex=male;
-./data/test2.bam    labExpId=test2; type=bam; view=Alignments; quality=64; sex=male;
+/data/test2_1.fastq.gz labExpId=test2; type=fastq; view=FqRd1; quality=64; sex=male;
+/data/test2_2.fastq.gz labExpId=test2; type=fastq; view=FqRd2; quality=64; sex=male;
+/data/test2.bam    labExpId=test2; type=bam; view=Alignments; quality=64; sex=male;
 $ idxtools show quality="<40"
-./data/test1_1.fastq.gz labExpId=test1; type=fastq; view=FqRd1; quality=33; sex=female;
-./data/test1_2.fastq.gz labExpId=test1; type=fastq; view=FqRd2; quality=33; sex=female;
+/data/test1_1.fastq.gz labExpId=test1; type=fastq; view=FqRd1; quality=33; sex=female;
+/data/test1_2.fastq.gz labExpId=test1; type=fastq; view=FqRd2; quality=33; sex=female;
 ```
 
 
 ## Query output
-<!-- .element: style="margin-bottom: 1em;"-->
-<div class="panel panel-default"><font color="#31708f"><i class="fa fa-arrow-circle-right"></i></font> The default output format is the <span class="blue">index file format</span> but it can be changed to TSV with the `-t` option</div>
+<!-- .element: style="margin-bottom: 0.6em;"-->
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> The default output format is the <span class="blue">index file format</span> but it can be changed to TSV with the `-t` option</div>
 <!-- .element: style="margin-bottom: 1em;"-->
 
 ```bash
 # TSV output - single attribute
 $ idxtools show view=FqRd1 -t path
-./data/test1_1.fastq.gz
-./data/test2_1.fastq.gz
+/data/test1_1.fastq.gz
+/data/test2_1.fastq.gz
 
-# TSV outpu - multiple attributes
-$ idxtools show view=FqRd1 -t path
+# TSV output - multiple attributes
+$ idxtools show view=FqRd1 -t id,path
+test1   ./data/test1_1.fastq.gz
+test2   ./data/test2_1.fastq.gz
+
+# with header
+$ idxtools show view=FqRd1 -t id,path --header
+id  path
 test1   ./data/test1_1.fastq.gz
 test2   ./data/test2_1.fastq.gz
 
@@ -382,35 +410,50 @@ test2   ./data/test2_1.fastq.gz
 
 ## Adding files
 <!-- .element: style="margin-bottom: 1em;"-->
-<div class="panel panel-default"><font color="#31708f"><i class="fa fa-arrow-circle-right"></i></font> Files can be easily added to the index</div>
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Files can be easily added to the index</div>
 <!-- .element: style="margin-bottom: 1em;"-->
 
 ```bash
-$ idxtools show type=bam
-./data/test2.bam    labExpId=test2; type=bam; view=Alignments; quality=64; sex=male;
+# add /data/test1.bam
+$ idxtools add path=/data/test1.bam id=test1 type=bam view=Alignments
 
-# add ./data/test1.bam
-$ idxtools add path=./data/test1.bam id=test1 type=bam view=Alignments
-
+# check
 $ idxtools show type=bam
-./data/test1.bam    labExpId=test1; type=bam; view=Alignments; quality=33; sex=female;
-./data/test2.bam    labExpId=test2; type=bam; view=Alignments; quality=64; sex=male;
+/data/test1.bam    labExpId=test1; type=bam; view=Alignments; quality=33; sex=female;
+/data/test2.bam    labExpId=test2; type=bam; view=Alignments; quality=64; sex=male;
 
 ```
 
 
 ## Removing files
 <!-- .element: style="margin-bottom: 1em;"-->
-<div class="panel panel-default"><font color="#31708f"><i class="fa fa-arrow-circle-right"></i></font> Files can be easily removed from the index</div>
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Files can be easily removed from the index</div>
 <!-- .element: style="margin-bottom: 1em;"-->
 
 ```bash
-# remove ./data/test1.bam
-$ idxtools add path=./data/test1.bam id=test1 type=bam view=Alignments
+# remove /data/test1.bam
+$ idxtools remove /data/test1.bam
 
+# check
 $ idxtools show type=bam
-./data/test2.bam    labExpId=test2; type=bam; view=Alignments; quality=64; sex=male;
+/data/test2.bam    labExpId=test2; type=bam; view=Alignments; quality=64; sex=male;
 
+```
+
+
+## Removing datasets
+<!-- .element: style="margin-bottom: 1em;"-->
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Datasets can also be removed from the index</div>
+<!-- .element: style="margin-bottom: 1em;"-->
+
+```bash
+# remove test2
+$ idxtools remove id=test2
+
+# check
+$ idxtools show
+./data/test1_1.fastq.gz labExpId=test1; type=fastq; view=FqRd1; quality=33; sex=female;
+./data/test1_2.fastq.gz labExpId=test1; type=fastq; view=FqRd2; quality=33; sex=female;
 ```
 ------
 

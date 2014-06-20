@@ -3,11 +3,19 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,700);
 
 .reveal .slides section .fragment.grow.visible {
-  /*color: #31708f;*/
+  color: #31708f;
 }
 
-div .panel-default .blue {
+.reveal .blue {
   color: #31708f;
+}
+
+.reveal .red {
+  color: #a94442;
+}
+
+.reveal .green {
+  color: #3c763d;
 }
 
 .reveal i{
@@ -86,7 +94,7 @@ div .panel-default {
   bottom: 15px;
   opacity: .7;
   z-index: 31;
-  width: 35px;
+  width: 3em;
   font-size: 0.5em;
   font-weight: bold;
   text-align: center;
