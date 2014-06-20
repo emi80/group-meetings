@@ -3,7 +3,12 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,700);
 
 .reveal .slides section .fragment.grow.visible {
-  color: #31708f;
+  /*color: #31708f;*/
+}
+
+i.fa {
+  font-size: 0.7em;
+  padding: 0.05em;
 }
 
 div .panel-default {
@@ -19,6 +24,24 @@ div .panel-default {
 
 .navbar-default {
   background-image: linear-gradient(to top,#D5D6D1 0,#F0F1EB 100%);
+}
+
+.navbar-nav>li>a {
+  padding-top: 0.5em;
+  padding-bottom: 0.2em;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: #F0F1EB;
+  background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  color: #F0F1EB;
+  background-color: #080808;
 }
 
 .reveal {
