@@ -1,6 +1,16 @@
 # Blueprint pipeline
 
 
+## Blueprint pipeline
+<div class="panel panel-default"><font color="#31708f">&#8658;</font> RNAseq pipeline written in Bash</div>
+<!-- .element: style="margin-bottom: 2em;"-->
+
+- mapping (GEMtools)
+- bigwig
+- contig
+- quantification (Flux Capacitor)
+- BAM statistics (RSeQC)
+
 
 ## Bash
 <!-- .element: style="color: #3c763d;"-->
@@ -10,7 +20,6 @@
 - widely supported on any Linux platform
 <!-- .element: style="margin-top: 2em"-->
 - most bioinformaticians are used to it
-
 
 
 ## SGE options
@@ -35,12 +44,44 @@ Queue, memory and time **must** be specified when submitting the job.
 </div>
 
 
+## Modular execution
+<!-- .element: style="color: #3c763d; margin-bottom: 0.6em;"-->
+
+    # getting pipeline steps to be executed
+    steps=(mapping bigwig contig flux)
+
+    if [[ "$@" ]]; then
+        read -ra steps <<< "$@"
+    fi
+
+    for step in ${steps[@]}; do
+        case $step in
+            mapping)
+                doMapping="true"
+                ;;
+            bigwig)
+                doBigWig="true"
+                ;;
+            contig)
+                doContig="true"
+                ;;
+            quant|flux)
+                doFlux="true"
+                ;;
+        esac
+    done
+
+Run specific steps:
+<!-- .element: style="margin-top: 1em; text-align: left; margin-left: 1.5em;"-->
+
+    blueprint.pipeline.sh ... -- contig flux
+
 
 ## Monolitic pipeline
 <!-- .element: style="color: #a94442; margin-bottom: 1em;"-->
 
 - pipeline steps are executed sequencially
-- one node per run is used <font color="#a94442">&#8605; weak parallelization</font>
+- one cluster node per run is used <font color="#a94442">&#8605; weak parallelization</font>
 - bad resource management - not all steps use the same amount of cpus/memory
 
 
@@ -99,13 +140,13 @@ User has to keep metadata and file information:
 # Idxtools
 
 
-##Index files
+## Index files
 <!-- .element: style="margin-bottom: 1em;"-->
 
 <div class="panel panel-default"><font color="#31708f">&#8658;</font> plain text database files to store metadata information for files and their content</div>
 
 
-##Format
+## Format
 <!-- .element: style="margin-bottom: 1em;"-->
 
     <filepath>TAB<attributes_list>
