@@ -179,12 +179,8 @@
 				}
 
 				Reveal.addEventListener( 'slidechanged', function( event ) {
-    		// event.previousSlide, event.currentSlide, event.indexh, event.indexv
-    			$("a[id*='nav-']").parent().removeClass("active");
+					$("a[id*='nav-']").parent().removeClass("active");
     			$("#nav-" + event.indexh).parent().addClass("active");
-				} );
-
-				Reveal.addEventListener( 'slidechanged', function( event ) {
 					var head=$("#nav-"+event.indexh).html().split("<br>")[0]
 					$("a[id*='nav-']").each(function() {
 						var text = $(this).html().split("<br>")[0];
@@ -198,7 +194,8 @@
 						 	$("#nav-sections").append('<li><a id="nav-'+(index)+'" href="#/'+(index)+'">'+$("h1", this).text()+'</a></li>')
 						}
 					});
-
+					$("a[id*='nav-']").parent().removeClass("active");
+    			$("#nav-" + event.indexh).parent().addClass("active");
 					$("a[id*='nav-']").each(function() {
 						var text = $(this).html().split("<br>")[0];
 						$(this).html(text+"<br>"+vslidedots(event,$(this).attr("id").split("-")[1]));
