@@ -201,6 +201,13 @@
 						$(this).html(text+"<br>"+vslidedots(event,$(this).attr("id").split("-")[1]));
 					})
 				});
+
+				$(document).keypress(function(e){
+			    var checkWebkitandIE=(e.which==84 ? 1 : 0);
+			    var checkMoz=(e.which==84 ? 1 : 0);
+			    var display = ($(".navbar-fixed-top").css("display") == 'block' ? 'none' : 'block');
+			    if (checkWebkitandIE || checkMoz) $(".navbar-fixed-top").css("display", display);
+			});
 		</script>
 	</body>
 </html>
