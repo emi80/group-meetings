@@ -737,10 +737,180 @@ hello
 # Grape 2
 <a href="//grape-pipeline.readthedocs.org"><h3><i class="fa fa-external-link-square"> grape-pipeline.readthedocs.org</i></h3></a>
 
-<!-- ------
+------
 
 # Modules
-<div class="panel panel-default blue">Software environement managment</font></div>
+####Software environement managment
+<a href="//modules.sourceforge.net"><h3><i class="fa fa-external-link-square"> modules.sourceforge.net</i></h3></a>
+
+
+## Modules
+<!-- .element: style="margin-bottom: 0.6em;"-->
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Package for the dynamic modification of a user's environment via modulefiles.</div>
+<!-- .element: style="margin-bottom: 2em;"-->
+
+- **loaded** and **unloaded** dynamically and atomically
+- all popular shells supported
+- language binding for Perl and Python
+- managing different versions of applications
+- complete suites (metamodules)
+
+
+## Modules path
+<!-- .element: style="margin-bottom: 0.6em;"-->
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Paths of directories containing modulefiles are specified by setting the MODULEPATH environment variable.</div>
+<!-- .element: style="margin-bottom: 1em;"-->
+
+<pre><code class="bash">$ echo $MODULEPATH
+/software/rg/el6.3/modulefiles:/usr/share/Modules/modulefiles:/etc/modulefiles
+
+# modulefile folder structure
+$ tree /software/rg/el6.3/modulefiles
+/software/rg/el6.3/modulefiles/
+&#9500;&#9472;&#9472; aspera
+&#9474;   &#9500;&#9472;&#9472; 3.0.1
+&#9474;   &#9492;&#9472;&#9472; 3.3.3
+&#9500;&#9472;&#9472; bedtools
+&#9474;   &#9500;&#9472;&#9472; 2.17.0
+&#9474;   &#9492;&#9472;&#9472; 2.19.1
+...
+</code></pre>
+
+
+## Modulefiles
+<!-- .element: style="margin-bottom: 0.6em;"-->
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i>  Contains the information needed to configure the shell for an application.</div>
+
+<!-- .element: style="margin-top: 1em;"-->
+```
+#%Module1.0
+########################################################
+#
+# Author: Emilio Palumbo (emilio.palumbo@crg.es)
+#
+########################################################
+
+set PROG_NAME       samtools
+set PROG_VERSION    0.1.19
+set PROG_HOME       /software/rg/el6.3/$PROG_NAME-$PROG_VERSION
+
+proc ModulesHelp { } {
+
+      puts stderr "$PROG_NAME version $PROG_VERSION"
+}
+
+module-whatis "loads the $PROG_NAME $PROG_VERSION module"
+
+module-verbosity {on}
+
+# Tests of consistency
+# --------------------
+# This application cannot be loaded if another $PROG_NAME modulefile was previously loaded
+
+set namelow [string tolower $PROG_NAME]
+conflict $namelow
+
+### This shows info about loaded/unloaded module
+if { [module-info mode] != "whatis" } {
+   puts stderr "[module-info mode] [module-info name] (PATH, MANPATH, LD_LIBRARY_PATH, C_INCLUDE_PATH)"
+}
+
+prepend-path      PATH                 $PROG_HOME/bin
+prepend-path      MANPATH              $PROG_HOME/man
+prepend-path      LD_LIBRARY_PATH      $PROG_HOME/lib
+prepend-path      C_INCLUDE_PATH       $PROG_HOME/include
+```
+
+
+## Available modules
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+<!-- .element: style="margin-top: 1em;"-->
+    $ module avail
+    ------------------------ /software/rg/el6.3/modulefiles ------------------------
+    aspera/3.0.1(default)              htslib/0.2.0-rc8(default)
+    aspera/3.3.3                       ipsa/1.0(default)
+    bedtools/2.17.0(default)           ipsa/1.1
+    bedtools/2.19.1                    jip-tools/1.0(default)
+    bowtie/1.0.1(default)              picard/1.81(default)
+    cufflinks/2.0.2                    pigz/2.2.5(default)
+    cufflinks/2.1.1                    pigz/2.3.1
+    cufflinks/2.2.1(default)           plink/1.07(default)
+    edirect/1.50(default)              python/2.7/2.7.3
+    emboss/6.6.0(default)              python/2.7/2.7.5
+    fastqc/0.10.1(default)             python/2.7/2.7.6(default)
+    flux/1.2.3                         python/2.7/2.7.6-sqlite
+    flux/1.2.4(default)                python/3/3.3.4
+    flux/1.2.4-SNAPSHOT                python-modules/2.6(default)
+    flux/1.3                           rsem/1.1.17
+    flux/1.4                           rsem/1.2.12(default)
+    flux/1.5.1                         samtools/0.1.18
+    flux/1.6                           samtools/0.1.19(default)
+    flux/1.6.1                         shrimp/2.2.3(default)
+    gemtools/1.6.1-i3                  sickle/1.210(default)
+    gemtools/1.6.2-i3(default)         sratoolkit/2.3.5(default)
+    gemtools/1.7.1-i3                  sublime-text/3-build-3059(default)
+    gemtools/1.7-i3                    texlive/2012(default)
+    glimmps                            ucsc/2013.02(default)
+    htop/1.0.2(default)                vcftools/0.2.12a(default)
+
+    ------------------------ /usr/share/Modules/modulefiles ------------------------
+    dot         module-cvs  module-info modules     null        use.own
+
+    ------------------------------- /etc/modulefiles -------------------------------
+    compat-openmpi-x86_64 openmpi-x86_64
+
+
+## Load/unload modules
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+```bash
+# load default module version
+$ module load samtools
+load samtools/0.1.19 (PATH, MANPATH, LD_LIBRARY_PATH, C_INCLUDE_PATH)
+$ which samtools
+/software/rg/el6.3/samtools-0.1.19/bin/samtools
+
+# load specific version
+$ module load samtools/0.1.18
+load samtools/0.1.18 (PATH, MANPATH, LD_LIBRARY_PATH, C_INCLUDE_PATH)
+$ which samtools
+/software/rg/el6.3/samtools-0.1.18/bin/samtools
+
+# switch module version
+$ module switch samtools samtools/0.1.19
+switch1 samtools/0.1.18 (PATH, MANPATH, LD_LIBRARY_PATH, C_INCLUDE_PATH)
+...
+$ which samtools
+/software/rg/el6.3/samtools-0.1.19/bin/samtools
+```
+
+
+## List loaded modules
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+```bash
+# list loaded modules
+$ module list
+Currently Loaded Modulefiles:
+  1) samtools/0.1.19   2) bedtools/2.17.0
+```
+
+
+## Unload modules
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+```bash
+# unload module
+$ module rm samtools
+remove samtools/0.1.19 (PATH, MANPATH, LD_LIBRARY_PATH, C_INCLUDE_PATH)
+
+# unload all loaded modules
+$ module purge
+remove samtools/0.1.19 (PATH, MANPATH, LD_LIBRARY_PATH, C_INCLUDE_PATH)
+remove bedtools/2.17.0 (PATH)
+```
+------
 
 <!-- ------
 
