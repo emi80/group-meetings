@@ -141,7 +141,7 @@ User has to keep metadata and file information:
 
 - tsv/csv files
 - Google spreadsheets
-- Index files <!-- .element: class="fragment grow" -->
+- Index files
 
 ------
 
@@ -472,7 +472,22 @@ $ idxtools show
 - simplified management of jobs and resources
 
 
-## Cluster configuration
+## Tools
+<!-- .element: style="margin-bottom: 0.6em;"-->
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> The smallest unit of execution in JIP is a `tool`. </div>
+<!-- .element: style="margin-bottom: 2em;"-->
+
+Tools can be implemented in various ways:
+
+- JIP scritps
+- Python APIs
+
+<div class="panel panel-default" style="margin-top: 2em;">
+Tools can be combined to pipelines to build bigger workflows.
+</div>
+
+
+## Configuration
 <!-- .element: style="margin-bottom: 1em;"-->
 ```json
 {
@@ -529,6 +544,7 @@ $ jip jobs
 <!-- .element: style="margin-bottom: 1em;"-->
 
 JIP scripts are extended Bash scripts:
+<!-- .element: style="text-align: left; margin-left: 1.5em;"-->
 
 ```bash
     #!/usr/bin/env jip
@@ -542,6 +558,7 @@ JIP scripts are extended Bash scripts:
 
 Make the file executable and you can use the JIP interpreter to run it or
 submit it:
+<!-- .element: style="text-align: left; margin-left: 1.5em;"-->
 
 ```bash
     $ chmod +x hello.jip
@@ -554,24 +571,11 @@ submit it:
 ```
 
 
-## Tools
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> The smallest unit of execution in JIP is a `tool`. </div>
-<!-- .element: style="margin-bottom: 2em;"-->
-
-Tools can be implemented in various ways:
-
-- JIP scritps
-- Python APIs
-
-<div class="panel panel-default" style="margin-top: 2em;">
-Tools can be combined to pipelines to build bigger workflows.
-</div>
-
-
 ## Tools path
-
-Scripts can be found automatically in your **current folder** or by **setting** the `JIP_PATH` environment variable. Use the `jip tools` command to list all the detected tools.
+<!-- .element: style="margin-bottom: 0.6em;"-->
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i>
+Scripts can be found automatically in your **current folder** or by **setting** the `JIP_PATH` environment variable. Use the `jip tools` command to list all the detected tools.</div>
+<!-- .element: style="margin-bottom: 2em;"-->
 
 ```bash
     $> export JIP_PATH=$PWD
@@ -579,7 +583,7 @@ Scripts can be found automatically in your **current folder** or by **setting** 
     ...
             Name                                            Path
     ======================================================================================
-    hello_world.jip          /users/rg/epalumbo/jip/hello.jip
+    hello.jip                                 /users/rg/epalumbo/jip/hello.jip
     ...
 ```
 
@@ -670,6 +674,42 @@ run('pigz', input=sorted_fastq, output=output)
 #%end
 ```
 
+
+## Multiplexing
+<!-- .element: style="margin-bottom: 0.6em;"-->
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i>
+Automatic expansion of wildcard for multiple input files. The tool/pipeline will be replicated across all input files.</div>
+<!-- .element: style="margin-bottom: 2em;"-->
+
+```bash
+$ ./sort_fastq.jip -i *_1.fastq -- --dry --show
+...
+#####################
+|  Job hierarchy    |
+#####################
+sort_fastq.0
+sort_fastq.1
+#####################
+| Tasks:         2  |
+| Jobs:          2  |
+| Named Groups:  1  |
+| Job Groups:    2  |
+#####################
+
+Job commands
+============
+### sort_fastq.0 -- Interpreter: bash
+###   stdout: <default>
+###   stderr: <default>
+cat /home/epalumbo/testA_1.fastq | paste - - - - | sort -k1,1 | tr '\t' '\n' >/home/epalumbo/testA_1_sorted.fastq
+###
+### sort_fastq.1 -- Interpreter: bash
+###   stdout: <default>
+###   stderr: <default>
+cat /home/epalumbo/testB_1.fastq | paste - - - - | sort -k1,1 | tr '\t' '\n' >/home/epalumbo/testB_1_sorted.fastq
+###
+
+```
 ------
 
 # Nextflow
@@ -688,10 +728,38 @@ run('pigz', input=sorted_fastq, output=output)
 - reproducibility
 
 
+## Processes and channels
+<!-- .element: style="margin-bottom: 0.6em;"-->
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> A Nextflow pipeline script is made by different isolated processes joined by asynchronous FIFO queues, called `channels`.</div>
+
+<div class="panel panel-default">The pipeline execution flow is implicitly defined by the input and output channels declarations.</div>
+<!-- .element: style="margin-top: 2em;"-->
+
+
+## Configuration
+<!-- .element: style="margin-bottom: 0.6em;"-->
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i>
+Pipeline configuration properties are defined in a file named `nextflow.config` in the pipeline execution directory. </div>
+<!-- .element: style="margin-bottom: 2em;"-->
+
+```java
+// sample configuration
+process {
+    executor = 'sge'
+    queue = 'rg-el6'
+}
+
+env {
+    PATH="$PWD/gemtools-1.6.2-i3/bin:$PWD/flux-capacitor-1.2.4/bin:$PATH"
+}
+```
+
+
 ## Scripts
 <!-- .element: style="margin-bottom: 0.6em;"-->
 
 Nextflow scripts are extended Groovy scripts:
+<!-- .element: style="text-align: left; margin-left: 1.5em;"-->
 
 ```java
 #!/usr/bin/env nextflow
@@ -732,11 +800,54 @@ hola
 ciao
 hello
 ```
-------
 
-# Grape 2
-<a href="//grape-pipeline.readthedocs.org"><h3><i class="fa fa-external-link-square"> grape-pipeline.readthedocs.org</i></h3></a>
 
+## Example pipeline
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+```java
+#!/usr/bin/env nextflow
+
+/*
+ * Pipeline parameters that can be ovverridden by the command line parameter
+ */
+params.query = "$HOME/sample.fa"
+params.db = "$HOME/tools/blast-db/pdb/pdb"
+params.out = "./result.txt"
+params.chunkSize = 100
+
+db = file(params.db)
+fasta = Channel
+            .fromPath(params.query)
+            .splitFasta(by: params.chunkSize)
+
+process blast {
+    input:
+    file 'query.fa' from fasta
+
+    output:
+    file 'top_hits'
+
+    """
+    blastp -db ${db} -query query.fa -outfmt 6 > blast_result
+    cat blast_result | head -n 10 | cut -f 2 > top_hits
+    """
+}
+
+process extract {
+    input:
+    file top_hits
+
+    output:
+    file 'sequences'
+
+    "blastdbcmd -db ${db} -entry_batch top_hits | head -n 10 > sequences"
+}
+
+sequences
+    .collectFile(name: params.out)
+    .subscribe { println "Result saved at file: $it" }
+```
 ------
 
 # Modules
@@ -886,6 +997,22 @@ $ which samtools
 ```
 
 
+## Unload modules
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+```bash
+# unload module
+# equivalent to 'module unload samtools' but shorter!
+$ module rm samtools
+remove samtools/0.1.19 (PATH, MANPATH, LD_LIBRARY_PATH, C_INCLUDE_PATH)
+
+# unload all loaded modules
+$ module purge
+remove samtools/0.1.19 (PATH, MANPATH, LD_LIBRARY_PATH, C_INCLUDE_PATH)
+remove bedtools/2.17.0 (PATH)
+```
+
+
 ## List loaded modules
 <!-- .element: style="margin-bottom: 0.6em;"-->
 
@@ -895,22 +1022,10 @@ $ module list
 Currently Loaded Modulefiles:
   1) samtools/0.1.19   2) bedtools/2.17.0
 ```
-
-
-## Unload modules
-<!-- .element: style="margin-bottom: 0.6em;"-->
-
-```bash
-# unload module
-$ module rm samtools
-remove samtools/0.1.19 (PATH, MANPATH, LD_LIBRARY_PATH, C_INCLUDE_PATH)
-
-# unload all loaded modules
-$ module purge
-remove samtools/0.1.19 (PATH, MANPATH, LD_LIBRARY_PATH, C_INCLUDE_PATH)
-remove bedtools/2.17.0 (PATH)
-```
 ------
+
+# Grape 2
+<a href="//grape-pipeline.readthedocs.org"><h3><i class="fa fa-external-link-square"> grape-pipeline.readthedocs.org</i></h3></a>
 
 <!-- ------
 
