@@ -34,13 +34,14 @@ div .panel-default {
 }
 
 .navbar {
-  min-height: none;
+  min-height: 0em;
 }
 
 .nav {
   /*font-family: "Lato", sans-serif;*/
   /*font-family: 'Special Elite', cursive;*/
   font-family: 'Play', sans-serif;
+  font-size: 0.8em;
 }
 
 .navbar-default {
@@ -50,6 +51,7 @@ div .panel-default {
 .navbar-nav>li>a {
   padding-top: 0.2em;
   padding-bottom: 0.2em;
+  line-height: inherit;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,
@@ -68,7 +70,7 @@ div .panel-default {
 .reveal {
   /*font-family: "Lato", sans-serif;*/
   font-family: 'Raleway', sans-serif;
-  font-size: 2em;
+  font-size: 1.8em;
   font-weight: normal;
   letter-spacing: -0.02em;
   /*color: #657b83; }*/
