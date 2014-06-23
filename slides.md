@@ -523,11 +523,215 @@ Check jobs with `jip jobs`:
 # check the status of the job
 $ jip jobs
 ```
+
+
+## Scripts
+<!-- .element: style="margin-bottom: 1em;"-->
+
+JIP scripts are extended Bash scripts:
+
+```bash
+    #!/usr/bin/env jip
+    # Greetings
+    # usage:
+    #     hello.jip <name>
+
+    echo "Hello ${name}"
+```
+<!-- .element: style="margin-bottom: 3em;"-->
+
+Make the file executable and you can use the JIP interpreter to run it or
+submit it:
+
+```bash
+    $ chmod +x hello.jip
+    # run the script
+    $ ./hello.jip Joe
+    # show dry run and command only
+    $ ./hello.jip Joe -- --dry --show
+    # submit the script run
+    $ ./hello.jip Joe -- submit
+```
+
+
+## Tools
+<!-- .element: style="margin-bottom: 0.6em;"-->
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> The smallest unit of execution in JIP is a `tool`. </div>
+<!-- .element: style="margin-bottom: 2em;"-->
+
+Tools can be implemented in various ways:
+
+- JIP scritps
+- Python APIs
+
+<div class="panel panel-default" style="margin-top: 2em;">
+Tools can be combined to pipelines to build bigger workflows.
+</div>
+
+
+## Tools path
+
+Scripts can be found automatically in your **current folder** or by **setting** the `JIP_PATH` environment variable. Use the `jip tools` command to list all the detected tools.
+
+```bash
+    $> export JIP_PATH=$PWD
+    $> jip tools
+    ...
+            Name                                            Path
+    ======================================================================================
+    hello_world.jip          /users/rg/epalumbo/jip/hello.jip
+    ...
+```
+
+
+## Example tool
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+```bash
+#!/bin/env jip
+# Sort fastq file by read id
+#
+# Usage:
+#   fastq-sort.jip [-i <fastq>] [-o <sorted_fastq>]
+#
+# Inputs:
+#   -i, --input <input>   Input fastq [default: stdin]
+#
+# Outputs:
+#   -o, --output <output>  Output sorted fastq [default: stdout]
+#
+
+${input|arg("cat ")|suf(" | ")}paste - - - - | sort -k1,1 | tr '\t' '\n' ${output|arg(">")}
+```
+
+
+## Example tool with logic
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+```bash
+#!/bin/env jip
+# Run pigz on an input file
+#
+# Usage:
+#   pigz.jip [-i <INPUT>] [-d] [-o <OUTPUT>]
+#
+# Inputs:
+#   -i, --input <INPUT>  The input file [default: stdin]
+#
+# Outputs:
+#   -o, --output <OUTPUT>  The output file [default: stdout]
+#
+# Options:
+#   -d, --decompress  Decompress data
+
+#%begin setup
+add_option('stdout', False, hidden=False, short='-c')
+if input.get():
+    if opts['input'].raw().endswith('gz'):
+        opts['decompress'] = True
+    else:
+        opts['decompress'] = False
+if not output.get():
+    opts['stdout'] = True
+else:
+    if output.get() == '${input}.gz' or output.get().replace('.gz','') == input.get():
+        opts['output'].hidden = True
+#%end
+
+pigz -p ${JIP_THREADS} ${stdout|arg} ${decompress|arg} ${input|arg("")} ${output|arg(">")}
+
+```
+
+
+## Example pipeline
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+```bash
+#!/bin/env jip
+#
+# Sort and compress fastq
+#
+# Usage:
+#   fq-pipe [-i <INPUT>] [-o <OUTPUT>]
+#
+# Inputs:
+#   -i, --input <INPUT>  Input file [default: stdin]
+#
+# Outputs:
+#   -o, --output <OUTPUT>  Output file [default: stdout]
+#
+
+#%begin pipeline
+decomp_input = input
+if type(input.raw()) == unicode and input.raw().endswith('gz'):
+    decomp_input = job(temp=True).run('pigz', input=decomp_input)
+sorted_fastq = job(temp=True).run('fastq-sort', input=decomp_input)
+run('pigz', input=sorted_fastq, output=output)
+#%end
+```
+
 ------
 
 # Nextflow
+#### Data-driven computational pipelines
 <a href="//www.nextflow.io"><h3><i class="fa fa-external-link-square"> www.nextflow.io</i></h3></a>
 
+
+## Nexflow
+<!-- .element: style="margin-bottom: 0.6em;"-->
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> A fluent DSL modelled around the UNIX pipe concept, that simplifies writing parallel and scalable pipelines in a portable manner.</div>
+<!-- .element: style="margin-bottom: 2em;"-->
+
+- unified parallelism
+- continuous checkpoints
+- fast prototyping
+- reproducibility
+
+
+## Scripts
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+Nextflow scripts are extended Groovy scripts:
+
+```java
+#!/usr/bin/env nextflow
+
+str = Channel.from('hello', 'hola', 'bonjour', 'ciao')
+
+process printHello {
+
+   input:
+   val str
+
+   output:
+   stdout into result
+
+   """
+   echo $str
+   """
+}
+
+result.subscribe { print it }
+```
+
+
+## Run a script
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+```bash
+$ chmod +x hello.nf
+$ ./hello.nf
+N E X T F L O W  ~  version 0.8.2
+[warm up] executor > local
+[5a/d7e7d3] Submitted process > printHello (2)
+[42/e78174] Submitted process > printHello (1)
+[c3/88c277] Submitted process > printHello (4)
+[7c/55887c] Submitted process > printHello (3)
+bonjour
+hola
+ciao
+hello
+```
 ------
 
 # Grape 2
