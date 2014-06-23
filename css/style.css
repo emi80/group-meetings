@@ -35,6 +35,7 @@ div .panel-default {
 
 .navbar {
   min-height: 0em;
+  margin-bottom: 0.1em;
 }
 
 .nav {
