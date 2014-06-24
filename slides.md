@@ -2,7 +2,7 @@
 
 
 ## Blueprint pipeline
-<!-- .element: style="margin-bottom: 1em;"-->
+<!-- .element: style="margin-bottom: 0.6em;"-->
 <div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> RNAseq pipeline written in Bash</div>
 <!-- .element: style="margin-bottom: 2em;"-->
 
@@ -26,7 +26,7 @@
 
 
 ## SGE options
-<!-- .element: class="green" style="margin-bottom: 1em;"-->
+<!-- .element: class="green" style="margin-bottom: 0.6em;"-->
 
 ```bash
 # Force bash shell
@@ -85,7 +85,7 @@ blueprint.pipeline.sh ... -- contig flux
 
 
 ## Monolitic pipeline
-<!-- .element: class="red" style="margin-bottom: 1em;"-->
+<!-- .element: class="red" style="margin-bottom: 0.6em;"-->
 
 - pipeline steps are executed sequencially
 - one cluster node per run is used <span class="red"> <i class="fa fa-arrow-right"></i> weak parallelization</span>
@@ -93,7 +93,7 @@ blueprint.pipeline.sh ... -- contig flux
 
 
 ## Batch execution
-<!-- .element: class="red" style="margin-bottom: 1em;"-->
+<!-- .element: class="red" style="margin-bottom: 0.6em;"-->
 
 Some extra code required:
 <!-- .element: style="text-align: left; margin-left: 1.5em"-->
@@ -134,7 +134,7 @@ done
 
 
 ## Data management
-<!-- .element: class="red" style="margin-bottom: 1em;"-->
+<!-- .element: class="red" style="margin-bottom: 0.6em;"-->
 
 User has to keep metadata and file information:
 <!-- .element: style="margin-bottom: 1em;"-->
@@ -150,7 +150,7 @@ User has to keep metadata and file information:
 
 
 ## Index files
-<!-- .element: style="margin-bottom: 1em;"-->
+<!-- .element: style="margin-bottom: 0.6em;"-->
 <div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Plain text database files to store metadata information for files and their content</div>
 
 
@@ -170,12 +170,12 @@ with `attribute_list` as a semicolon separated list of `key=value` strings:
 
 
 ## Idxtools
-<!-- .element: style="margin-bottom: 1em;"-->
+<!-- .element: style="margin-bottom: 0.6em;"-->
 <div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Python API and commandline tool to **create**, **query** and **modify** index files</div>
 
 
-## Model
-<!-- .element: style="margin-bottom: 1em;"-->
+## Dataset
+<!-- .element: style="margin-bottom: 0.6em;"-->
 <div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i><span class="blue"> Dataset</span> is the main data object</div>
 <!-- .element: style="margin-bottom: 1em;"-->
 
@@ -194,7 +194,7 @@ Files:
 
 
 ## Format.json
-<!-- .element: style="margin-bottom: 1em;"-->
+<!-- .element: style="margin-bottom: 0.6em;"-->
 <div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Specifies the syntax and vocabulary of an index file</div>
 <!-- .element: style="margin-bottom: 1em;"-->
 
@@ -217,7 +217,7 @@ Files:
 
 
 ## Mapping attribute keys
-<!-- .element: style="margin-bottom: 1em;"-->
+<!-- .element: style="margin-bottom: 0.6em;"-->
 
 Useful when importing from csv/tsv:
 <!-- .element: style="margin-bottom: 1em; text-align: left; margin-left: 1.5em"-->
@@ -306,7 +306,7 @@ $ idxtools show
 
 
 ## Importing TSV/CSV
-<!-- .element: style="margin-bottom: 1em;"-->
+<!-- .element: style="margin-bottom: 0.6em;"-->
 
 A CSV file, `test.csv`:
 
@@ -337,7 +337,7 @@ $ export IDX_FILE=$PWD/index.txt
 
 
 ## Querying the index
-<!-- .element: style="margin-bottom: 1em;"-->
+<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```bash
 # query by attributes
@@ -356,7 +356,7 @@ $ idxtools show type=bam
 
 
 ## Querying the index
-<!-- .element: style="margin-bottom: 1em;"-->
+<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```bash
 # queries use regular expressions
@@ -410,7 +410,7 @@ test2   ./data/test2_1.fastq.gz
 
 
 ## Adding files
-<!-- .element: style="margin-bottom: 1em;"-->
+<!-- .element: style="margin-bottom: 0.6em;"-->
 <div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Files can be easily added to the index</div>
 <!-- .element: style="margin-bottom: 1em;"-->
 
@@ -427,7 +427,7 @@ $ idxtools show type=bam
 
 
 ## Removing files
-<!-- .element: style="margin-bottom: 1em;"-->
+<!-- .element: style="margin-bottom: 0.6em;"-->
 <div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Files can be easily removed from the index</div>
 <!-- .element: style="margin-bottom: 1em;"-->
 
@@ -443,7 +443,7 @@ $ idxtools show type=bam
 
 
 ## Removing datasets
-<!-- .element: style="margin-bottom: 1em;"-->
+<!-- .element: style="margin-bottom: 0.6em;"-->
 <div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Datasets can also be removed from the index</div>
 <!-- .element: style="margin-bottom: 1em;"-->
 
@@ -488,7 +488,7 @@ Tools can be combined to pipelines to build bigger workflows.
 
 
 ## Configuration
-<!-- .element: style="margin-bottom: 1em;"-->
+<!-- .element: style="margin-bottom: 0.6em;"-->
 ```json
 {
     "cluster": "jip.cluster.SGE",
@@ -519,7 +519,7 @@ Tools can be combined to pipelines to build bigger workflows.
 
 
 ## Run or submit commands
-<!-- .element: style="margin-bottom: 1em;"-->
+<!-- .element: style="margin-bottom: 0.6em;"-->
 
 The `jip bash` command:
 
@@ -541,7 +541,7 @@ $ jip jobs
 
 
 ## Scripts
-<!-- .element: style="margin-bottom: 1em;"-->
+<!-- .element: style="margin-bottom: 0.6em;"-->
 
 JIP scripts are extended Bash scripts:
 <!-- .element: style="text-align: left; margin-left: 1.5em;"-->
@@ -811,7 +811,7 @@ hello
 /*
  * Pipeline parameters that can be ovverridden by the command line parameter
  */
-params.query = "$HOME/sample.fa"
+params.query = "$HOME/*.fa"
 params.db = "$HOME/tools/blast-db/pdb/pdb"
 params.out = "./result.txt"
 params.chunkSize = 100
@@ -851,7 +851,7 @@ sequences
 ------
 
 # Modules
-####Software environement managment
+####Software environment managment
 <a href="//modules.sourceforge.net"><h3><i class="fa fa-external-link-square"> modules.sourceforge.net</i></h3></a>
 
 
@@ -1026,6 +1026,26 @@ Currently Loaded Modulefiles:
 
 # Grape 2
 <a href="//grape-pipeline.readthedocs.org"><h3><i class="fa fa-external-link-square"> grape-pipeline.readthedocs.org</i></h3></a>
+
+
+## Current status
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+- Beta version released
+- JIP execution engine
+- Idxtools metadata management
+- Embedded software management(grape-buildout)
+- Pipeline steps:
+    - mappings
+    - transcript quantifications
+
+
+## Work in Progress
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+- Nextflow execution engine
+- modularity (e.g. start from BAM file)
+- Modules/Docker software management
 
 <!-- ------
 
