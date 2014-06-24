@@ -1,0 +1,15 @@
+#!/usr/bin/env jip
+# Sort fastq file by read id
+# 
+# Usage:
+#   sort_fastq.jip [-i <fastq>] [-o <sorted_fastq>]
+#
+# Inputs:
+#   -i, --input <input>   Input fastq [default: stdin]
+#
+# Outputs:
+#   -o, --output <output>  Output sorted fastq [default: stdout]
+#
+
+${input|arg("cat ")|suf(" | ")}paste - - - - | sort -k1,1 | tr '\t' '\n' ${output|arg(">")}
+
