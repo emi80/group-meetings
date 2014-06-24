@@ -195,7 +195,7 @@ Files:
 
 ## Format.json
 <!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Specifies the syntax and vocabulary of an index file</div>
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Specifies syntax and vocabulary of an index file</div>
 <!-- .element: style="margin-bottom: 1em;"-->
 
 ```json
@@ -286,7 +286,7 @@ Useful when importing from csv/tsv:
 ```
 
 
-## Specifying index and format files
+## Specifying input files
 <!-- .element: style="margin-bottom: 0.6em;"-->
 <div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Index and format files can be specified as <span class="blue">command line options</span> or as <span class="blue">environment variables</span></div>
 <!-- .element: style="margin-bottom: 1.4em;"-->
@@ -384,7 +384,7 @@ $ idxtools show quality="<40"
 
 ## Query output
 <!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> The default output format is the <span class="blue">index file format</span> but it can be changed to TSV with the `-t` option</div>
+<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> The default output format for queries is the <span class="blue">index file format</span> but it can be changed to TSV with the `-t` option</div>
 <!-- .element: style="margin-bottom: 1em;"-->
 
 ```bash
@@ -470,6 +470,7 @@ $ idxtools show
 - dependency support
 - automatic expansions
 - simplified management of jobs and resources
+- SQlite database for Jobs data
 
 
 ## Tools
@@ -710,7 +711,29 @@ cat /home/epalumbo/testB_1.fastq | paste - - - - | sort -k1,1 | tr '\t' '\n' >/h
 ###
 
 ```
-------
+
+
+## Complex pipelines
+<!-- .element: style="margin-bottom: 0.6em;"-->
+<div class="panel panel-default" style="margin-bottom: 1em;">
+SOLiD RNAseq pipeline 
+<p class="green">(shrimp + rsem + flux-capacitor) * 96:</p>
+</div>
+
+- index the genome
+- make the transcriptome and index it
+- convert csfasta to csfastq
+- genome mapping
+- transcriptome mapping
+- isoform quantifications
+- gene quantifications
+
+<div class="panel panel-default" style="margin-top: 1em;"><i class="fa fa-arrow-circle-right blue"></i>
+concurrency problems submitting the jobs: 
+<p><strong>SQlite db limitation</strong></p>
+</div>
+
+-------
 
 # Nextflow
 #### Data-driven computational pipelines
@@ -1032,7 +1055,7 @@ Currently Loaded Modulefiles:
 <!-- .element: style="margin-bottom: 0.6em;"-->
 
 - Beta version released
-- [Idxtools](#/2) metadata management
+- [Idxtools](#/2) data management
 - [JIP](#/3) execution engine
 - Embedded software management(grape-buildout)
 - Pipeline steps:
