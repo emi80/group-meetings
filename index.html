@@ -26,7 +26,7 @@
 		<link rel="stylesheet" href="css/reveal.min.css">
 		<!-- <link rel="stylesheet" href="css/ray.css">
 		<link rel="stylesheet" href="css/solarized_dark.css"> -->
-		<link rel="stylesheet" href="css/theme/serif.css" id="theme">
+		<!-- <link rel="stylesheet" href="css/theme/serif.css" id="theme"> -->
 		<link rel="stylesheet" href="css/style.css">
 		<!-- <link rel="stylesheet" href="css/theme.css"> -->
 
@@ -175,13 +175,11 @@
 
 				  // return current_slide.toString()+"/"+totalslides.toString();
 				  return Array(idxv+1).join('<i class="fa fa-dot-circle-o"></i>')+Array(subslides.length-idxv).join('<i class="fa fa-circle-o"></i>');
-				  // return Array(event.indexv+1).join('&#10022;')+Array(subslides.length-event.indexv).join('&#10023;');
 				}
 
 				Reveal.addEventListener( 'slidechanged', function( event ) {
 					$("a[id*='nav-']").parent().removeClass("active");
-    			$("#nav-" + event.indexh).parent().addClass("active");
-					var head=$("#nav-"+event.indexh).html().split("<br>")[0]
+    				$("#nav-" + event.indexh).parent().addClass("active");
 					$("a[id*='nav-']").each(function() {
 						var text = $(this).html().split("<br>")[0];
 						$(this).html(text+"<br>"+vslidedots(event,$(this).attr("id").split("-")[1]));
@@ -195,7 +193,7 @@
 						}
 					});
 					$("a[id*='nav-']").parent().removeClass("active");
-    			$("#nav-" + event.indexh).parent().addClass("active");
+    				$("#nav-" + event.indexh).parent().addClass("active");
 					$("a[id*='nav-']").each(function() {
 						var text = $(this).html().split("<br>")[0];
 						$(this).html(text+"<br>"+vslidedots(event,$(this).attr("id").split("-")[1]));
@@ -203,11 +201,11 @@
 				});
 
 				$(document).keypress(function(e){
-			    var checkWebkitandIE=(e.which==116 ? 1 : 0);
-			    var checkMoz=(e.which==116 ? 1 : 0);
-			    var display = ($(".navbar-fixed-top").css("display") == 'block' ? 'none' : 'block');
-			    if (checkWebkitandIE || checkMoz) $(".navbar-fixed-top").css("display", display);
-			});
+				    var checkWebkitandIE=(e.which==116 ? 1 : 0);
+				    var checkMoz=(e.which==116 ? 1 : 0);
+				    var display = ($(".navbar-fixed-top").css("display") == 'block' ? 'none' : 'block');
+				    if (checkWebkitandIE || checkMoz) $(".navbar-fixed-top").css("display", display);
+				});
 		</script>
 	</body>
 </html>
