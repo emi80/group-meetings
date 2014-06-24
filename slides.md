@@ -1032,20 +1032,20 @@ Currently Loaded Modulefiles:
 <!-- .element: style="margin-bottom: 0.6em;"-->
 
 - Beta version released
-- JIP execution engine
-- Idxtools metadata management
+- [Idxtools](#/2) metadata management
+- [JIP](#/3) execution engine
 - Embedded software management(grape-buildout)
 - Pipeline steps:
     - mappings
     - transcript quantifications
 
 
-## Work in Progress
+## Work in progress
 <!-- .element: style="margin-bottom: 0.6em;"-->
 
-- Nextflow execution engine
+- [Nextflow](#/4) execution engine
+- [Modules](#/5)/Docker software management
 - modularity (e.g. start from BAM file)
-- Modules/Docker software management
 
 <!-- ------
 
