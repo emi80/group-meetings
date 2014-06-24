@@ -733,7 +733,7 @@ concurrency problems submitting the jobs:
 <p><strong>SQlite db limitation</strong></p>
 </div>
 
--------
+------
 
 # Nextflow
 #### Data-driven computational pipelines
