@@ -8,5 +8,5 @@ start:
 
 stop:
 	@kill -9 `cat {server,chrome}.pid | tr '\n' ' '`
-	@rm {server,chrome}.pid
+	@rm {server,chrome}.pid server.log
 	@echo "Server stopped"
