@@ -1,5 +1,4 @@
 @import url(http://fonts.googleapis.com/css?family=Play);
-@import url(http://fonts.googleapis.com/css?family=Special+Elite);
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,700);
 
 .reveal .slides section .fragment.grow.visible {
@@ -39,8 +38,6 @@ div .panel-default {
 }
 
 .nav {
-  /*font-family: "Lato", sans-serif;*/
-  /*font-family: 'Special Elite', cursive;*/
   font-family: 'Play', sans-serif;
   font-size: 0.8em;
 }
@@ -69,12 +66,10 @@ div .panel-default {
 }
 
 .reveal {
-  /*font-family: "Lato", sans-serif;*/
   font-family: 'Raleway', sans-serif;
   font-size: 1.9em;
   font-weight: normal;
   letter-spacing: -0.02em;
-  /*color: #657b83; }*/
   color: #53545E; }
 
 .reveal h1,
@@ -87,7 +82,6 @@ div .panel-default {
   /*color: #2C4952;*/
   color: #53545E;
   font-family: "Play", sans-serif;
-  /*font-family: 'Special Elite', cursive;*/
   line-height: 0.9em;
   letter-spacing: 0.02em;
   text-transform: none;
