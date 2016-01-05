@@ -35,6 +35,7 @@ div .panel-default {
 .navbar {
   min-height: 0em;
   margin-bottom: 0.1em;
+  z-index: 100;
 }
 
 .nav {
@@ -91,7 +92,7 @@ div .panel-default {
   color: #53545E;
   position: fixed;
   display: block;
-  right: 15px;
+  right: 48%;
   bottom: 15px;
   opacity: .7;
   z-index: 31;
@@ -119,3 +120,23 @@ div .panel-default {
   background: rgba(255, 255, 255, 0.2);
   border-color: #13daec;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
+
+# read the docs badges
+/* Fix badge on RTD Theme */
+
+/* Please keep RTD badge displayed on your site */
+.rst-versions.rst-badge {
+    display: block;
+}
+
+.rst-other-versions {
+	text-align: left;
+}
+
+.rst-other-versions a {
+	border: 0;
+}
+
+.rst-other-versions dl {
+	margin: 0;
+}
