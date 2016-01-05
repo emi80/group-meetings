@@ -1,3 +1,9 @@
+# RNAseq Pipelines
+
+### Lab Meeting
+<!-- .element: style="margin-top: 1.2em;"-->
+------
+
 # Blueprint pipeline
 
 
@@ -716,7 +722,7 @@ cat /home/epalumbo/testB_1.fastq | paste - - - - | sort -k1,1 | tr '\t' '\n' >/h
 ## Complex pipelines
 <!-- .element: style="margin-bottom: 0.6em;"-->
 <div class="panel panel-default" style="margin-bottom: 1em;">
-SOLiD RNAseq pipeline 
+SOLiD RNAseq pipeline
 <p class="green">(shrimp + rsem + flux-capacitor) * 96:</p>
 </div>
 
@@ -729,7 +735,7 @@ SOLiD RNAseq pipeline
 - gene quantifications
 
 <div class="panel panel-default" style="margin-top: 1em;"><i class="fa fa-arrow-circle-right blue"></i>
-concurrency problems submitting the jobs: 
+concurrency problems submitting the jobs:
 <p><strong>SQlite db limitation</strong></p>
 </div>
 
