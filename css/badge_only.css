@@ -51,7 +51,7 @@ ul.fas li .fa-large:before,ul.fas li .fa-large:before{vertical-align:baseline}
 .rst-versions .rst-other-versions hr{display:block;height:1px;border:0;margin:20px 0;padding:0;border-top:solid 1px #413d3d}
 .rst-versions .rst-other-versions dd{display:inline-block;margin:0}
 .rst-versions .rst-other-versions dd a{display:inline-block;padding:6px;color:#fcfcfc}
-.rst-versions.rst-badge{width:auto;bottom:7px;right:7px;left:auto;border:none;max-width:300px;z-index:100;}
+.rst-versions.rst-badge{width:auto;bottom:7px;right:7px;left:auto;border:none;max-width:300px;z-index:100;display:none;}
 .rst-versions.rst-badge .icon-book{float:none}
 .rst-versions.rst-badge .fa-book{float:none}
 .rst-versions.rst-badge.shift-up .rst-current-version{text-align:right}
