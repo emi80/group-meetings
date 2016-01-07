@@ -2,9 +2,6 @@
 <html lang="en">
 
 	<head>
-		<script language="javascript" type="text/javascript">
-			var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-		</script>
 		<meta charset="utf-8">
 
 		<span id="spanDate"></span>
@@ -74,9 +71,9 @@
 		    </span>
     	<div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
-        <dd><a id="20140625" href="/20140625">June 24, 2015</a></dd>
-        <dd><a id="20160113" href="/20160113">January 13, 2016</a></dd>
+        <dt>Group meetings</dt>
+        <dd><a href="/20140625">June 24, 2015</a></dd>
+        <dd><a href="/20160113">January 13, 2016</a></dd>
     	</dl>
 		</div>
 		<script src="/lib/js/head.min.js"></script>
@@ -84,11 +81,12 @@
 		<script src="/bootstrap/js/bootstrap.min.js"></script>
 
 		<script>
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
+			var date, dateString;
+			var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 			$(document).ready(function() {
-				$('.rst-current-version').attr('version', window.location.href.match(/[0-9]{8}/gi));
-				var text = '<span class="fa fa-book">&nbsp;</span>' + $('#' + $('.rst-current-version').attr('version')).text() + '<span class="fa fa-caret-down"></span>';
+				date = getPresentationDate();
+				dateString = months[date.getMonth()-1] + " " + date.getDate()+ ", " + date.getFullYear();
+				var text = '<span class="fa fa-book">&nbsp;</span>' + dateString + '<span class="fa fa-caret-down"></span>';
 				$('.rst-current-version').html(text);
 			});
 			Reveal.initialize({
@@ -112,6 +110,14 @@
 					{ src: '/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
 			});
+
+			function getPresentationDate() {
+				 var locationDate = window.location.href.match(/[0-9]{8}/gi)[0];
+				 var year = locationDate.substr(0, 4);
+				 var month = locationDate.substr(4, 2);
+				 var day = locationDate.substr(6, 2);
+				 return new Date(year, month, day);
+			}
 
 			function vslidedots(event, el){
 			  var totalslides = document.querySelectorAll( '.reveal .slides section:not(.stack)' ).length;
@@ -140,9 +146,8 @@
 			});
 
 			Reveal.addEventListener( 'ready', function( event ) {
-				var date = new Date(2014, 06, 25);
-				var dateString = months[date.getMonth()-1] + " " + date.getDate()+ ", " + date.getFullYear();
-				document.title = "Emilio Palumbo - Lab Meeting - " + dateString;
+				// document.title = "Emilio Palumbo - Lab Meeting - " + dateString;
+				document.title = $(Reveal.getSlide(0)).find('h1').text();
 				var text = '<p><small>Emilio Palumbo<br>' + dateString + '</small></p>';
 				$(Reveal.getSlide(0)).append(text);
 				$(".reveal .slides>section").each(function ( index ) {
