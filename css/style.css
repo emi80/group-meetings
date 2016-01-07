@@ -36,6 +36,8 @@ div .panel-default {
   min-height: 0em;
   margin-bottom: 0.1em;
   z-index: 100;
+  background-color: transparent;
+  /*border-bottom: none;*/
 }
 
 .nav {
@@ -48,22 +50,27 @@ div .panel-default {
 }
 
 .navbar-nav>li>a {
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
   line-height: inherit;
+  /*border-bottom: 2px solid transparent;*/
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
   color: #F0F1EB;
   background-color: transparent;
+  /*border-bottom: 2px solid rgba(222, 222, 0, 0.9);*/
 }
 
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
   color: #F0F1EB;
-  background-color: #080808;
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
+  /*border-bottom: 2px solid rgba(222, 222, 0, 0.9);*/
 }
 
 .reveal {
@@ -120,23 +127,3 @@ div .panel-default {
   background: rgba(255, 255, 255, 0.2);
   border-color: #13daec;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
-
-# read the docs badges
-/* Fix badge on RTD Theme */
-
-/* Please keep RTD badge displayed on your site */
-.rst-versions.rst-badge {
-    display: block;
-}
-
-.rst-other-versions {
-	text-align: left;
-}
-
-.rst-other-versions a {
-	border: 0;
-}
-
-.rst-other-versions dl {
-	margin: 0;
-}
