@@ -79,6 +79,10 @@ div .panel-default {
   font-size: 1.9em;
   color: #53545E; }
 
+.reveal strong {
+  font-weight: 500;
+}
+
 .reveal h1,
 .reveal h2,
 .reveal h3,

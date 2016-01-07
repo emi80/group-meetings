@@ -106,6 +106,9 @@
 				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
 
 				margin: 0,
+				keyboard: {
+			    66: toggleFonts,
+			  },
 				// Optional libraries used to extend on reveal.js
 				dependencies: [
 					{ src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
@@ -122,6 +125,16 @@
 				 var month = strDate.substr(4, 2);
 				 var day = strDate.substr(6, 2);
 				 return new Date(year, month, day);
+			}
+
+			function increaseFontWeight(element, ratio) {
+				return Math.round(element * ratio / 100) * 100;
+			}
+
+			function toggleFonts() {
+				fw = ($('body').css('font-weight') == 300) ? 400 : 300;
+				$('body').css('font-weight', fw);
+				$('.reveal strong').css('font-weight', increaseFontWeight($('body').css('font-weight'), 1.75));
 			}
 
 			function vslidedots(event, el){
@@ -155,7 +168,6 @@
 				document.title = $(Reveal.getSlide(0)).find('h1').text();
 				var text = '<p><small>Emilio Palumbo<br>' + dateString + '</small></p>';
 				$(Reveal.getSlide(0)).append(text);
-				$('.reveal strong').css('font-weight', Math.round($('body').css('font-weight') * 1.75/100)*100);
 				$(".reveal .slides>section").each(function ( index ) {
 					if (index>0) {
 					 	$("#nav-sections").append('<li><a id="nav-'+(index)+'" href="#/'+(index)+'">'+$("h1", this).text()+'</a></li>')
