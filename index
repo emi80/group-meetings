@@ -43,7 +43,7 @@
 		<script src="/lib/js/html5shiv.js"></script>
 		<![endif]-->
 	</head>
-	
+
 	<body>
 	  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
@@ -155,6 +155,7 @@
 				document.title = $(Reveal.getSlide(0)).find('h1').text();
 				var text = '<p><small>Emilio Palumbo<br>' + dateString + '</small></p>';
 				$(Reveal.getSlide(0)).append(text);
+				$('.reveal strong').css('font-weight', Math.round($('body').css('font-weight') * 1.75/100)*100);
 				$(".reveal .slides>section").each(function ( index ) {
 					if (index>0) {
 					 	$("#nav-sections").append('<li><a id="nav-'+(index)+'" href="#/'+(index)+'">'+$("h1", this).text()+'</a></li>')
