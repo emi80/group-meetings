@@ -154,6 +154,22 @@
 			  return Array(idxv+1).join('<i class="fa fa-dot-circle-o"></i>')+Array(subslides.length-idxv).join('<i class="fa fa-circle-o"></i>');
 			}
 
+			function renderPanel(element) {
+				var panel = element.find('p');
+				var re = /<!-- (panel)([^\(]+)?\(?([^\)]+)?\)? -->/gi
+				panel.each(function() {
+					var m = re.exec($(this).html())
+					if (m) {
+						var panelText = $(this).html().replace(re, '');
+						var cls = m[1]=='panel' ? 'class="panel panel-default"' : '';
+						var char = m[2] == '->' ? 'fa-arrow-circle-right' : 'fa-circle-o';
+						var color = m[3];
+						var fa = m[2] && m[3] ? `<i class="fa ${char} ${color}"></i>` : '';
+						$(this).html(`<div><span ${cls}>${fa} ${panelText} </span></div>`);
+					}
+				});
+			}
+
 			Reveal.addEventListener( 'slidechanged', function( event ) {
 				$("a[id*='nav-']").parent().removeClass("active");
   				$("#nav-" + event.indexh).parent().addClass("active");
@@ -170,6 +186,7 @@
 				$(Reveal.getSlide(0)).append(text);
 				$(".reveal .slides>section").each(function ( index ) {
 					if (index>0) {
+						renderPanel($(this));
 					 	$("#nav-sections").append('<li><a id="nav-'+(index)+'" href="#/'+(index)+'">'+$("h1", this).text()+'</a></li>')
 					}
 				});
