@@ -42,11 +42,11 @@ So...
 
 ## Workflow
 
-1. [Mapping](#/)
-2. [Filtering](#/)
-3. [Modelling Fragment Size](#/)
-4. [Peak Calling](#/)
-5. [Wiggle Plots](#/)
+1. [Mapping](#/BlueprintMapping)
+2. [Filtering](#/BlueprintFiltering)
+3. [Modelling Fragment Size](#/BlueprintModellingFragmentSize)
+4. [Peak Calling](#/BlueprintPeakCalling)
+5. [Wiggle Plots](#/BlueprintWigglePlots)
 
 ------
 
@@ -55,12 +55,12 @@ So...
 
 ## Workflow
 
-1. [Mapping](#/Mapping)
-2. [Filter QC](#/FilterQC)
-3. [Xcor](#/Xcor)
-4. [SPP](#/SPP)
-5. [MACS2](#/MACS2)
-6. [IDR](#/IDR)
+1. [Mapping](#/ENCODEMapping)
+2. [Filter QC](#/ENCODEFilterQC)
+3. [Xcor](#/ENCODEXcor)
+4. [SPP](#/ENCODESPP)
+5. [MACS2](#/ENCODEMACS2)
+6. [IDR](#/ENCODEIDR)
 
 
 ## Mapping
