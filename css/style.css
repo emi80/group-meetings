@@ -26,8 +26,8 @@ body {
 
 i.fa {
   font-size: 0.7em;
-  /*padding: 0.05em;*/
-  vertical-align: top;
+  padding: 0.05em;
+  /*vertical-align: top;*/
 }
 
 div .panel-default {
