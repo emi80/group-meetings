@@ -172,11 +172,12 @@
 			}
 
 			function setSlideIds(element) {
+				var section = element.find('h1').text();
 				var slides = element.find('section[data-markdown]');
 				slides.each(function() {
 					var header = $(this).find('h2').text();
 					if (header) {
-						$(this).attr('id', header.replace(/ /gi, ''));
+						$(this).attr('id', section + header.replace(/ /gi, ''));
 					}
 				});
 			}
