@@ -26,12 +26,13 @@ body {
 
 i.fa {
   font-size: 0.7em;
-  padding: 0.05em;
+  /*padding: 0.05em;*/
+  vertical-align: top;
 }
 
 div .panel-default {
   background-color: rgba(83, 84, 94, 0.1);
-  padding: 0.6em 1em
+  padding: 0.6em 1em;
 }
 
 .navbar {
