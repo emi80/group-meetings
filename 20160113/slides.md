@@ -4,7 +4,49 @@
 <!-- .element: style="margin-top: 1.2em;"-->
 ------
 
-# OLD pipeline
+# Introduction
+
+
+## Motivation
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+<!-- panel->(blue) -->
+Need for an automated pipeline for processing **ERC** project ``CHiP-seq`` samples
+
+
+## Former analysis
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+<!-- panel -->
+<!-- .element: style="margin-bottom: 1em;"-->
+Manual workflow including the following steps:
+
+- mapping with ``GEM``
+- fragment length estimation with ``SPP`` (``phantompeaktools``)
+- peak calling with ``align2rawsignal`` (a.k.a ``WIGGLER``)
+
+
+## Drawbacks
+
+- Manual execution
+- ``WIGGLER`` requires a specific version of ``MATLAB Runtime`` and is unmantained
+
+
+<!-- .slide: data-background="rgba(0, 0, 0, 1)" -->
+<!-- .element: style="color:#ddd;font-size:2em;" -->
+So...
+------
+
+# Blueprint
+
+
+## Workflow
+
+1. [Mapping](#/)
+2. [Filtering](#/)
+3. [Modelling Fragment Size](#/)
+4. [Peak Calling](#/)
+5. [Wiggle Plots](#/)
 
 ------
 
@@ -106,4 +148,4 @@ perform IDR analysis on replicates
 final peak calls
 ------
 
-# Nextflow
+# Current Implementation
