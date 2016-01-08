@@ -155,9 +155,9 @@
 			}
 
 			function renderPanel(element) {
-				var panel = element.find('p');
+				var panels = element.find('p');
 				var re = /<!-- (panel)([^\(]+)?\(?([^\)]+)?\)? -->/gi
-				panel.each(function() {
+				panels.each(function() {
 					var m = re.exec($(this).html())
 					if (m) {
 						var panelText = $(this).html().replace(re, '');
@@ -165,7 +165,18 @@
 						var char = m[2] == '->' ? 'fa-arrow-circle-right' : 'fa-circle-o';
 						var color = m[3];
 						var fa = m[2] && m[3] ? `<i class="fa ${char} ${color}"></i>` : '';
-						$(this).html(`<div><span ${cls}>${fa} ${panelText} </span></div>`);
+						// $(this).html(`<div><span ${cls}>${fa} ${panelText} </span></div>`);
+						$(this).html(`<div ${cls}>${fa} ${panelText} </div>`);
+					}
+				});
+			}
+
+			function setSlideIds(element) {
+				var slides = element.find('section[data-markdown]');
+				slides.each(function() {
+					var header = $(this).find('h2').text();
+					if (header) {
+						$(this).attr('id', header.replace(/ /gi, ''));
 					}
 				});
 			}
@@ -187,6 +198,7 @@
 				$(".reveal .slides>section").each(function ( index ) {
 					if (index>0) {
 						renderPanel($(this));
+						setSlideIds($(this));
 					 	$("#nav-sections").append('<li><a id="nav-'+(index)+'" href="#/'+(index)+'">'+$("h1", this).text()+'</a></li>')
 					}
 				});
