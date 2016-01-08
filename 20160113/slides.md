@@ -11,7 +11,14 @@
 # ENCODE
 
 
-## Stages
+## Workflow
+
+1. [Mapping](#/Mapping)
+2. [Filter QC](#/FilterQC)
+3. [Xcor](#/Xcor)
+4. [SPP](#/SPP)
+5. [MACS2](#/MACS2)
+6. [IDR](#/IDR)
 
 
 ## Mapping
@@ -46,12 +53,12 @@
 
 <!-- panel->(blue) -->
 <!-- .element: style="margin-bottom: 2em;"-->
-uses ``SPP`` to compute cross correlation QC scores
+uses ``SPP`` to calculate cross correlation QC scores and to estimate the fragment size
 
   - create ``tagAlign`` file
   - create ``BEDPE`` file
   - subsample ``tagAlign`` file (15M reads)
-  - calculate Xcor
+  - run ``SPP``
 
 
 ## SPP
@@ -97,8 +104,6 @@ perform IDR analysis on replicates
 <!-- panel->(green) -->
 <!-- .element: style="margin-top: 2em;"-->
 final peak calls
-
-
 ------
 
 # Nextflow
