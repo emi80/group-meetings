@@ -1,4 +1,4 @@
-# ChIPseq Pipelines
+# ChIP-seq Pipelines
 
 ### Lab Meeting
 <!-- .element: style="margin-top: 1.2em;"-->
@@ -11,7 +11,7 @@
 <!-- .element: style="margin-bottom: 0.6em;"-->
 
 <!-- panel->(blue) -->
-Need for an automated pipeline for processing **ERC** project ``CHiP-seq`` samples
+Need for an automated pipeline for processing **ERC** project ``ChIP-seq`` samples
 
 
 ## Former analysis
@@ -29,12 +29,7 @@ Manual workflow including the following steps:
 ## Drawbacks
 
 - Manual execution
-- ``WIGGLER`` requires a specific version of ``MATLAB Runtime`` and is unmantained
-
-
-<!-- .slide: data-background="rgba(0, 0, 0, 1)" -->
-<!-- .element: style="color:#ddd;font-size:2em;" -->
-So...
+- ``align2rawsignal`` requires a specific version of ``MATLAB Runtime`` and is unmantained
 ------
 
 # Blueprint
@@ -47,6 +42,61 @@ So...
 3. [Modelling Fragment Size](#/BlueprintModellingFragmentSize)
 4. [Peak Calling](#/BlueprintPeakCalling)
 5. [Wiggle Plots](#/BlueprintWigglePlots)
+
+
+## Mapping
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+<!-- panel->(blue) -->
+<!-- .element: style="margin-bottom: 2em;"-->
+``BWA`` with default parameters + low quality trimming
+
+1. ``bwa aln``
+  - max edit distance **0.04**
+  - disallow long gaps
+  - trimming low quality (**<5**) reads
+<!-- .element: style="margin-bottom: 0.6em;"-->
+2. ``bwa samse``
+  - max **3** output alignments
+
+3.  mark duplicates
+
+
+## Filtering
+
+- exclude SAM flag ``1024``
+  * PCR or optical duplicates
+- remove low quality (**<5**) mappings
+
+
+## Modelling Fragment Size
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+<!-- panel->(blue) -->
+<!-- .element: style="margin-bottom: 2em;"-->
+uses ``SPP`` to estimate the fragment size
+
+
+## Peak Calling
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+<!-- panel->(blue) -->
+<!-- .element: style="margin-bottom: 2em;"-->
+uses ``MACS2`` to estimate the fragment size using both the standard method
+and the ``-broad`` flag depending on the mark in question
+
+- Standard: ``H3K27me3``, ``H3K36me3``, ``H3K9me3``, ``H3K4me1``
+- Broad: ``H3K27ac``, ``H3K4me3``, ``H3K9/14ac``, ``H2A.Zac``
+
+
+## Wiggle Plots
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+<!-- panel->(blue) -->
+<!-- .element: style="margin-bottom: 2em;"-->
+uses ``align2RawSignal`` to produce signal plots. Sex specific
+fasta and ``umap`` files are used.
+
 
 ------
 
@@ -81,7 +131,7 @@ So...
 
 ## Filter QC
 
-  - exclude ``FLAG 1804``
+  - exclude SAM flag``1804``
     * read unmapped
     * mate unmapped
     * secondary alignments
@@ -95,7 +145,7 @@ So...
 
 <!-- panel->(blue) -->
 <!-- .element: style="margin-bottom: 2em;"-->
-uses ``SPP`` to calculate cross correlation QC scores and to estimate the fragment size
+uses ``SPP`` to calculate cross correlation QC scores and estimate fragment size
 
   - create ``tagAlign`` file
   - create ``BEDPE`` file
@@ -122,13 +172,13 @@ uses ``SPP`` to call peaks
 
 <!-- panel->(blue) -->
 <!-- .element: style="margin-bottom: 2em;"-->
-uses ``MACS2`` to call peaks
+uses ``MACS2`` to call peaks - assumes ``input`` is always present
 
   - narrow peaks and preliminary signal tracks
   - broad and gapped peaks
   - fold enrichment signal tracks
   - ``-log10(p-value)`` signal tracks
-  - bigWigs from beds to support trackhub visualization of peak files
+  - bigWigs from beds to support ``trackhub`` visualization of peak files
 
 
 ## IDR
@@ -149,3 +199,50 @@ final peak calls
 ------
 
 # Current Implementation
+
+
+## Workflow
+
+1. [Mapping](#/CurrentImplementationMapping)
+2. [Model](#/CurrentImplementationModel)
+3. [Peak Calling](#/CurrentImplementationPeakCalling)
+
+
+## Mapping
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+<!-- panel->(blue) -->
+<!-- .element: style="margin-bottom: 2em;"-->
+``GEM``
+
+1. ``gem-mapper`` with default parameters
+2. ``gt.filter``
+  - max edit distance (**2** - absolute number of bases)
+<!-- .element: style="margin-bottom: 0.6em;"-->
+3. ``gt.filter``
+  - max **10** output alignments
+4. exclude SAM flag ``256``
+  - keep primary alignments only
+
+
+## Model
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+<!-- panel->(blue) -->
+<!-- .element: style="margin-bottom: 2em;"-->
+uses ``SPP`` to estimate fragment size and produce cross-correlation plot
+
+
+## Peak Calling
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+<!-- panel->(blue) -->
+<!-- .element: style="margin-bottom: 2em;"-->
+uses ``MACS2`` to call peaks - work with or without ``input``
+
+  - narrow peaks and preliminary signal tracks
+  - broad and gapped peaks
+  - pileup signal tracks
+  - only with ``input`` present:
+    - fold enrichment signal tracks
+    - ``-log10(p-value)`` signal tracks
