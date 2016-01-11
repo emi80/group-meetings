@@ -92,7 +92,7 @@
 					}
 					$(this).text(ds);
 				});
-				var text = '<span class="fa fa-book">&nbsp;</span>' + dateString + '<span class="fa fa-caret-down"></span>';
+				var text = '<span class="fa fa-book">&nbsp;</span> ' + dateString + ' <span class="fa fa-caret-down"></span>';
 				$('.rst-current-version').html(text);
 			});
 			Reveal.initialize({
@@ -164,9 +164,11 @@
 						var cls = m[1]=='panel' ? 'class="panel panel-default"' : '';
 						var char = m[2] == '->' ? 'fa-arrow-circle-right' : 'fa-circle-o';
 						var color = m[3];
-						var fa = m[2] && m[3] ? `<i class="fa ${char} ${color}"></i>` : '';
+						// var fa = m[2] && m[3] ? `<i class="fa ${char} ${color}"></i>` : '';
+						var fa = m[2] && m[3] ? '<i class="fa ' + char + ' ' + color + '"></i>' : '';
 						// $(this).html(`<div><span ${cls}>${fa} ${panelText} </span></div>`);
-						$(this).html(`<div ${cls}>${fa} ${panelText} </div>`);
+						// $(this).html(`<div ${cls}>${fa} ${panelText} </div>`);
+						$(this).html('<div ' + cls + '>' + fa + ' ' + panelText + ' </div>');
 					}
 				});
 			}
