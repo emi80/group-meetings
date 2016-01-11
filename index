@@ -177,7 +177,7 @@
 				slides.each(function() {
 					var header = $(this).find('h2').text();
 					if (header) {
-						$(this).attr('id', section + header.replace(/ /gi, ''));
+						$(this).attr('id', (section + header).replace(/ /gi, ''));
 					}
 				});
 			}
