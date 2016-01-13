@@ -88,7 +88,7 @@
 					});
 					$('.rst-other-versions a').each(function() {
 						var version = $(this);
-						$.get(version.attr('href') + "/data.json", function(data) {
+						$.get(version.attr('href') + "/presentation.json", function(data) {
 							var date = getPresentationDate(data.date);
 							version.text(date);
 							if (window.location.href.includes(version.attr('href'))) {
