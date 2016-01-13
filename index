@@ -81,6 +81,7 @@
 			$(document).ready(function() {
 				baseUrl = window.location.origin + window.location.pathname.split("/").slice(0,-2).join("/");
 				$.get(baseUrl + "/versions.json", function(data) {
+					if (typeof(data) == 'string') data = JSON.parse(data);
 					$(data).each(function(i, val){
 						val.href = baseUrl + "/" + val.href
 						var text = '<dd><a href="' + val.href + '">' + date +'</a></dd>'
@@ -89,6 +90,7 @@
 					$('.rst-other-versions a').each(function() {
 						var version = $(this);
 						$.get(version.attr('href') + "/presentation.json", function(data) {
+							if (typeof(data) == 'string') data = JSON.parse(data);
 							var date = getPresentationDate(data.date);
 							version.text(date);
 							if (window.location.href.includes(version.attr('href'))) {
