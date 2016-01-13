@@ -64,36 +64,42 @@
 			</div>
 			<div class="rst-versions rst-badge" data-toggle="rst-versions">
 		    <span class="rst-current-version" data-toggle="rst-current-version">
-		      <span class="fa fa-book">&nbsp;</span>
+		      <span class="fa fa-book"></span>
 		      <span class="fa fa-caret-down"></span>
 		    </span>
     	<div class="rst-other-versions">
       <dl>
         <dt>Group meetings</dt>
-        <dd><a href="../20140625"></a></dd>
-        <dd><a href="../20160113"></a></dd>
     	</dl>
 		</div>
 		<script src="../lib/js/head.min.js"></script>
 		<script src="../js/reveal.min.js"></script>
 		<script src="../bootstrap/js/bootstrap.min.js"></script>
 		<script>
-		  var locationDate = window.location.pathname.replace(/\/$/gi, '').split('/').pop()
 			var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-			var date, dateString;
+			var date, dateString, locationDate;
 			$(document).ready(function() {
-				$('.rst-other-versions').find('a').each(function() {
-					var thisDate = $(this).attr('href').split('/').pop();
-					var d = getPresentationDate(thisDate);
-					var ds = months[d.getMonth()-1] + " " + d.getDate()+ ", " + d.getFullYear();
-					if (thisDate == locationDate) {
-						date = d;
-						dateString = ds;
-					}
-					$(this).text(ds);
+				baseUrl = window.location.origin + window.location.pathname.split("/").slice(0,-2).join("/");
+				$.get(baseUrl + "/versions.json", function(data) {
+					$(data).each(function(i, val){
+						val.href = baseUrl + "/" + val.href
+						var text = '<dd><a href="' + val.href + '">' + date +'</a></dd>'
+						$('.rst-other-versions').append(text);
+					});
+					$('.rst-other-versions a').each(function() {
+						var version = $(this);
+						$.get(version.attr('href') + "/data.json", function(data) {
+							var date = getPresentationDate(data.date);
+							version.text(date);
+							if (window.location.href.includes(version.attr('href'))) {
+								var currentVersion = '<span class="fa fa-book"></span> ' + date + ' <span class="fa fa-caret-down"></span>';
+								$('.rst-current-version').html(currentVersion);
+								var titleSlideInfo = '<p><small>Emilio Palumbo<br>' + date + '</small></p>';
+								$(Reveal.getSlide(0)).append(titleSlideInfo);
+							}
+						});
+					});
 				});
-				var text = '<span class="fa fa-book">&nbsp;</span> ' + dateString + ' <span class="fa fa-caret-down"></span>';
-				$('.rst-current-version').html(text);
 			});
 			Reveal.initialize({
 				controls: false,
@@ -120,11 +126,9 @@
 				]
 			});
 
-			function getPresentationDate(strDate) {
-				 var year = strDate.substr(0, 4);
-				 var month = strDate.substr(4, 2);
-				 var day = strDate.substr(6, 2);
-				 return new Date(year, month, day);
+			function getPresentationDate(dateString) {
+				var d = new Date(dateString);
+				return months[d.getMonth()] + " " + d.getDate()+ ", " + d.getFullYear();
 			}
 
 			function increaseFontWeight(element, ratio) {
@@ -194,10 +198,7 @@
 			});
 
 			Reveal.addEventListener( 'ready', function( event ) {
-				// document.title = "Emilio Palumbo - Lab Meeting - " + dateString;
 				document.title = $(Reveal.getSlide(0)).find('h1').text();
-				var text = '<p><small>Emilio Palumbo<br>' + dateString + '</small></p>';
-				$(Reveal.getSlide(0)).append(text);
 				$(".reveal .slides>section").each(function ( index ) {
 					if (index>0) {
 						renderPanel($(this));
