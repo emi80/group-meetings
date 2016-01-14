@@ -250,8 +250,8 @@ uses ``MACS2`` to call peaks - work with or without ``input``
 # Future work
 
 
-## IHEC reference standards
-<!-- .element: style="margin-bottom: 0.6em;"-->
+## ![](http://ihec-epigenomes.org/fileadmin/ihec/images/logo.png)
+<!-- .slide: id="FutureworkIHEC"-->
 
 - QC metrics
   1. Read length and sequencing depth
