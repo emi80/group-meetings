@@ -287,4 +287,3 @@ Note:
   <!-- .element: style="margin-top: 0.5em;"-->
   2. produce the UCSC track hub file
 <!-- .element: style="margin-bottom: 1em;"-->
--
