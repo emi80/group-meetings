@@ -96,8 +96,6 @@ and the ``-broad`` flag depending on the mark in question
 <!-- .element: style="margin-bottom: 2em;"-->
 uses ``align2RawSignal`` to produce signal plots. Sex specific
 fasta and ``umap`` files are used.
-
-
 ------
 
 # ENCODE
@@ -204,8 +202,9 @@ final peak calls
 ## Workflow
 
 1. [Mapping](#/CurrentImplementationMapping)
-2. [Model](#/CurrentImplementationModel)
-3. [Peak Calling](#/CurrentImplementationPeakCalling)
+2. [Merge BAM files on metadata key](#/CurrentImplementationWorkflow)
+3. [Model](#/CurrentImplementationModel)
+4. [Peak Calling](#/CurrentImplementationPeakCalling)
 
 
 ## Mapping
@@ -246,3 +245,46 @@ uses ``MACS2`` to call peaks - work with or without ``input``
   - only with ``input`` present:
     - fold enrichment signal tracks
     - ``-log10(p-value)`` signal tracks
+------
+
+# Future work
+
+
+## IHEC reference standards
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+- QC metrics
+  1. Read length and sequencing depth
+  <!-- .element: style="margin-top: 0.5em;"-->
+  2. Fraction aligned reads, duplicate reads
+  3. Concordance between replicate datasets
+  4. Fraction of reads in enriched intervals, and other criteria.
+  5. Use of controls
+<!-- .element: style="margin-bottom: 1em;"-->
+- Biological replicates
+
+Note:
+1. ~30-50 million aligned reads with at least a 36 base read length
+2. primer dimer artifacts, contamination, potential PCR artifacts
+4. Roadmap project is working on data based QA criteria
+5. library derived from the chromatin preparation
+
+
+## HOMER
+<!-- .element: style="margin-bottom: 0.6em;"-->
+![alt text](http://homer.salk.edu/homer/pic2.gif "")
+
+1. Peak finding / Transcript detection / Feature identification (``findPeaks``)
+2. Motif analysis (``findMotifsGenome.pl)``
+3. Annotation of Peaks (``annotatePeaks.pl``)
+
+
+## Pipeline steps
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+- UCSC track hubs
+  1. automatically make BigWig files accessible
+  <!-- .element: style="margin-top: 0.5em;"-->
+  2. produce the UCSC track hub file
+<!-- .element: style="margin-bottom: 1em;"-->
+-
