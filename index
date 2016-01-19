@@ -201,6 +201,7 @@
 
 			Reveal.addEventListener( 'ready', function( event ) {
 				$('a').attr('target', '_blank');
+				$('.rst-other-versions a').attr('target', '');
 				document.title = $(Reveal.getSlide(0)).find('h1').text();
 				$(".reveal .slides>section").each(function ( index ) {
 					if (index>0) {
