@@ -357,6 +357,13 @@ H000H3K4me2X1   /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/aa
 <!-- .element: style="margin-top: 2em;"-->
 
 
+## Check other references
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+- [![IHEC](http://ihec-epigenomes.org/fileadmin/ihec/images/logo.png)<!-- .element: class="pipeline" style="vertical-align: baseline;" -->](http://ihec-epigenomes.org/outcomes/protocols/) protocols
+- CRG Bioinformatics Unit
+
+
 ## Extend workflow
 <!-- .element: style="margin-bottom: 0.6em;"-->
 
