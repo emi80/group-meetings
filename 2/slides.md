@@ -34,7 +34,7 @@ Manual workflow including the following steps:
 ------
 
 # Blueprint
-### (list of commands)
+#### protocol
 
 
 ## Workflow
@@ -102,10 +102,10 @@ fasta and `umap` files are used.
 
 # ENCODE
 
-<h3>
-([![DNAnexus pipeline](http://sra.dnanexus.com/images/dnanexus.png)<!-- .element: class="pipeline" -->](https://www.dnanexus.com/)
-pipeline in development)
-</h3>
+<h4>
+[![DNAnexus pipeline](http://sra.dnanexus.com/images/dnanexus.png)<!-- .element: class="pipeline" -->](https://www.dnanexus.com/)
+pipeline in development
+</h4>
 
 
 
@@ -190,12 +190,12 @@ perform IDR analysis on replicates
 final peak calls
 ------
 
-# CRG
+# RG lab  
 
-<h3>
-([![Nextflow pipeline](../img/nextflow2014_no-bg.png)<!-- .element: class="pipeline" -->](http://www.nextflow.io/)
-pipeline in development)
-</h3>
+<h4>
+[![Nextflow pipeline](../img/nextflow2014_no-bg.png)<!-- .element: class="pipeline" -->](http://www.nextflow.io/)
+pipeline in development
+</h4>
 
 
 ## Workflow
