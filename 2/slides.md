@@ -115,9 +115,8 @@ pipeline in development)
 1. [Mapping](#/ENCODEMapping)
 2. [Filter QC](#/ENCODEFilterQC)
 3. [Xcor](#/ENCODEXcor)
-4. [SPP](#/ENCODESPP)
-5. [MACS2](#/ENCODEMACS2)
-6. [IDR](#/ENCODEIDR)
+4. [MACS2](#/ENCODEMACS2)
+5. [IDR](#/ENCODEIDR)
 
 
 ## Mapping
@@ -158,20 +157,6 @@ uses `SPP` to calculate cross correlation QC scores and estimate fragment size
   - create `BEDPE` file
   - subsample `tagAlign` file (15M reads)
   - run `SPP`
-
-
-## SPP
-<!-- .element: style="margin-bottom: 0.6em;"-->
-
-<!-- panel->(blue) -->
-<!-- .element: style="margin-bottom: 2em;"-->
-uses `SPP` to call peaks
-
-  - call peaks
-    * RegionPeaks (`-savr` option)
-  - fix bad coordinates in peak files
-    * adjust feature end coordinates that go off the end of the chromosome (`slopBed`)
-    * remove any features that are still not within the boundaries of the chromosome (`bedClip`)
 
 
 ## MACS2
