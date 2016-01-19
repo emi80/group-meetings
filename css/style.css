@@ -89,7 +89,6 @@ div .panel-default {
   letter-spacing: 0.02em;
   color: #53545E;
 }
-
 .reveal strong {
   font-weight: 500;
 }
@@ -144,3 +143,14 @@ div .panel-default {
   background: rgba(255, 255, 255, 0.2);
   border-color: #13daec;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
+
+.reveal pre code {
+  white-space: pre;
+}
+
+.reveal section .pipeline {
+  width: 30%;
+  margin-bottom: 0;
+  vertical-align: baseline;
+  box-shadow: none;
+}
