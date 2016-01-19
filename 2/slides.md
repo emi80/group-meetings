@@ -11,7 +11,7 @@
 <!-- .element: style="margin-bottom: 0.6em;"-->
 
 <!-- panel->(blue) -->
-Need for an automated pipeline for processing **ERC** project ``ChIP-seq`` samples
+Need for an automated pipeline for processing **ERC** project `ChIP-seq` samples
 
 
 ## Former analysis
@@ -21,18 +21,19 @@ Need for an automated pipeline for processing **ERC** project ``ChIP-seq`` sampl
 <!-- .element: style="margin-bottom: 1em;"-->
 Manual workflow including the following steps:
 
-- mapping with ``GEM``
-- fragment length estimation with ``SPP`` (``phantompeaktools``)
-- peak calling with ``align2rawsignal`` (a.k.a ``WIGGLER``)
+- mapping with `GEM`
+- fragment length estimation with `SPP` (`phantompeaktools`)
+- peak calling with `align2rawsignal` (a.k.a `WIGGLER`)
 
 
 ## Drawbacks
 
 - Manual execution
-- ``align2rawsignal`` requires a specific version of ``MATLAB Runtime`` and is unmantained
+- `align2rawsignal` requires a specific version of `MATLAB Runtime` and is unmantained
 ------
 
 # Blueprint
+### (list of commands)
 
 
 ## Workflow
@@ -49,14 +50,14 @@ Manual workflow including the following steps:
 
 <!-- panel->(blue) -->
 <!-- .element: style="margin-bottom: 2em;"-->
-``BWA`` with default parameters + low quality trimming
+`BWA` with default parameters + low quality trimming
 
-1. ``bwa aln``
+1. `bwa aln`
   - max edit distance **0.04**
   - disallow long gaps
   - trimming low quality (**<5**) reads
 <!-- .element: style="margin-bottom: 0.6em;"-->
-2. ``bwa samse``
+2. `bwa samse`
   - max **3** output alignments
 
 3.  mark duplicates
@@ -64,7 +65,7 @@ Manual workflow including the following steps:
 
 ## Filtering
 
-- exclude SAM flag ``1024``
+- exclude SAM flag `1024`
   * PCR or optical duplicates
 - remove low quality (**<5**) mappings
 
@@ -74,7 +75,7 @@ Manual workflow including the following steps:
 
 <!-- panel->(blue) -->
 <!-- .element: style="margin-bottom: 2em;"-->
-uses ``SPP`` to estimate the fragment size
+uses `SPP` to estimate the fragment size
 
 
 ## Peak Calling
@@ -82,11 +83,11 @@ uses ``SPP`` to estimate the fragment size
 
 <!-- panel->(blue) -->
 <!-- .element: style="margin-bottom: 2em;"-->
-uses ``MACS2`` to estimate the fragment size using both the standard method
-and the ``-broad`` flag depending on the mark in question
+uses `MACS2` to estimate the fragment size using both the standard method
+and the `-broad` flag depending on the mark in question
 
-- Standard: ``H3K27me3``, ``H3K36me3``, ``H3K9me3``, ``H3K4me1``
-- Broad: ``H3K27ac``, ``H3K4me3``, ``H3K9/14ac``, ``H2A.Zac``
+- Standard: `H3K27me3`, `H3K36me3`, `H3K9me3`, `H3K4me1`
+- Broad: `H3K27ac`, `H3K4me3`, `H3K9/14ac`, `H2A.Zac`
 
 
 ## Wiggle Plots
@@ -94,11 +95,17 @@ and the ``-broad`` flag depending on the mark in question
 
 <!-- panel->(blue) -->
 <!-- .element: style="margin-bottom: 2em;"-->
-uses ``align2RawSignal`` to produce signal plots. Sex specific
-fasta and ``umap`` files are used.
+uses `align2RawSignal` to produce signal plots. Sex specific
+fasta and `umap` files are used.
 ------
 
 # ENCODE
+
+<h3>
+([![DNAnexus pipeline](http://sra.dnanexus.com/images/dnanexus.png)<!-- .element: class="pipeline" -->](https://www.dnanexus.com/)
+pipeline in development)
+</h3>
+
 
 
 ## Workflow
@@ -116,20 +123,20 @@ fasta and ``umap`` files are used.
 
 <!-- panel->(blue) -->
 <!-- .element: style="margin-bottom: 2em;"-->
-``BWA`` with default parameters
+`BWA` with default parameters
 
-1. ``bwa aln``
+1. `bwa aln`
   - max edit distance **0.04**
   - disallow long gaps
   - no trimming
 <!-- .element: style="margin-bottom: 0.6em;"-->
-2. ``bwa samse``
+2. `bwa samse`
   - max **3** output alignments
 
 
 ## Filter QC
 
-  - exclude SAM flag``1804``
+  - exclude SAM flag`1804`
     * read unmapped
     * mate unmapped
     * secondary alignments
@@ -143,12 +150,12 @@ fasta and ``umap`` files are used.
 
 <!-- panel->(blue) -->
 <!-- .element: style="margin-bottom: 2em;"-->
-uses ``SPP`` to calculate cross correlation QC scores and estimate fragment size
+uses `SPP` to calculate cross correlation QC scores and estimate fragment size
 
-  - create ``tagAlign`` file
-  - create ``BEDPE`` file
-  - subsample ``tagAlign`` file (15M reads)
-  - run ``SPP``
+  - create `tagAlign` file
+  - create `BEDPE` file
+  - subsample `tagAlign` file (15M reads)
+  - run `SPP`
 
 
 ## SPP
@@ -156,13 +163,13 @@ uses ``SPP`` to calculate cross correlation QC scores and estimate fragment size
 
 <!-- panel->(blue) -->
 <!-- .element: style="margin-bottom: 2em;"-->
-uses ``SPP`` to call peaks
+uses `SPP` to call peaks
 
   - call peaks
-    * RegionPeaks (``-savr`` option)
+    * RegionPeaks (`-savr` option)
   - fix bad coordinates in peak files
-    * adjust feature end coordinates that go off the end of the chromosome (``slopBed``)
-    * remove any features that are still not within the boundaries of the chromosome (``bedClip``)
+    * adjust feature end coordinates that go off the end of the chromosome (`slopBed`)
+    * remove any features that are still not within the boundaries of the chromosome (`bedClip`)
 
 
 ## MACS2
@@ -170,13 +177,13 @@ uses ``SPP`` to call peaks
 
 <!-- panel->(blue) -->
 <!-- .element: style="margin-bottom: 2em;"-->
-uses ``MACS2`` to call peaks - assumes ``input`` is always present
+uses `MACS2` to call peaks - assumes `input` is always present
 
   - narrow peaks and preliminary signal tracks
   - broad and gapped peaks
   - fold enrichment signal tracks
-  - ``-log10(p-value)`` signal tracks
-  - bigWigs from beds to support ``trackhub`` visualization of peak files
+  - `-log10(p-value)` signal tracks
+  - bigWigs from beds to support `trackhub` visualization of peak files
 
 
 ## IDR
@@ -196,13 +203,18 @@ perform IDR analysis on replicates
 final peak calls
 ------
 
-# Current Implementation
+# CRG
+
+<h3>
+([![Nextflow pipeline](../img/nextflow2014_no-bg.png)<!-- .element: class="pipeline" -->](http://www.nextflow.io/)
+pipeline in development)
+</h3>
 
 
 ## Workflow
 
 1. [Mapping](#/CurrentImplementationMapping)
-2. [Merge BAM files on metadata key](#/CurrentImplementationWorkflow)
+2. [Merge ](#/CurrentImplementationMerge)
 3. [Model](#/CurrentImplementationModel)
 4. [Peak Calling](#/CurrentImplementationPeakCalling)
 
@@ -212,16 +224,24 @@ final peak calls
 
 <!-- panel->(blue) -->
 <!-- .element: style="margin-bottom: 2em;"-->
-``GEM``
+`GEM`
 
-1. ``gem-mapper`` with default parameters
-2. ``gt.filter``
+1. `gem-mapper` with default parameters
+2. `gt.filter`
   - max edit distance (**2** - absolute number of bases)
 <!-- .element: style="margin-bottom: 0.6em;"-->
-3. ``gt.filter``
+3. `gt.filter`
   - max **10** output alignments
-4. exclude SAM flag ``256``
+4. exclude SAM flag `256`
   - keep primary alignments only
+
+
+## Merge
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+<!-- panel->(blue) -->
+<!-- .element: style="margin-bottom: 2em;"-->
+merge `BAM` files on metadata key and produce single output with read groups
 
 
 ## Model
@@ -229,7 +249,7 @@ final peak calls
 
 <!-- panel->(blue) -->
 <!-- .element: style="margin-bottom: 2em;"-->
-uses ``SPP`` to estimate fragment size and produce cross-correlation plot
+uses `SPP` to estimate fragment size and produce cross-correlation plot
 
 
 ## Peak Calling
@@ -237,31 +257,112 @@ uses ``SPP`` to estimate fragment size and produce cross-correlation plot
 
 <!-- panel->(blue) -->
 <!-- .element: style="margin-bottom: 2em;"-->
-uses ``MACS2`` to call peaks - work with or without ``input``
+uses `MACS2` to call peaks - works with or without `input`
 
   - narrow peaks and preliminary signal tracks
   - broad and gapped peaks
   - pileup signal tracks
-  - only with ``input`` present:
+  - only with `input` present:
     - fold enrichment signal tracks
-    - ``-log10(p-value)`` signal tracks
+    - `-log10(p-value)` signal tracks
+
+
+## Run the pipeline
+
+```bash
+$ nextflow run chipseq-pipeline.nf --help
+N E X T F L O W  ~  version 0.16.2
+Launching chipseq-pipeline.nf
+
+C H I P - N F ~ ChIP-seq Pipeline
+=================================
+Run ChIP-seq analyses on a set of data.
+
+Usage:
+    chipseq-pipeline.nf --index TSV_FILE --genome GENOME_FILE [OPTION]...
+
+Options:
+    --help                              Show this message and exit.
+    --index TSV_FILE                    Tab separated file containing information about the data.
+    --genome GENOME_FILE                Reference genome file.
+    --mismatches N_MISMATCHES           Allow max N_MISMATCHES error events for a read (Default: 2).
+    --multimaps N_MULTIMAPS             Allow max N_MULTIMAPS mappings for a read (Default: 10).
+    --rescale                           Rescale peak scores to conform to the format supported by the
+                                        UCSC genome browser (score must be <1000) (Default: false).
+```
+
+
+## Index file
+
+```bash
+H024H3X1        H024H3X1_ACNNGN         /users/rg/projects/ERC/chipseq.sequences/H24X_H3_11630_ACNNGN.fastq.gz  -               H3
+H024H3X1        H024H3X1_ACTTGA         /users/rg/projects/ERC/chipseq.sequences/H24X_H3_11630_ACTTGA.fastq.gz  -               H3
+H024H3X1        H024H3X1_ANNNNA         /users/rg/projects/ERC/chipseq.sequences/H24X_H3_11630_ANNNNA.fastq.gz  -               H3
+H024H3X1        H024H3X1_ANTTGA         /users/rg/projects/ERC/chipseq.sequences/H24X_H3_11630_ANTTGA.fastq.gz  -               H3
+H000H3K4me2X1   H000H3K4me2X1_GCCAAT    /users/rg/projects/ERC/chipseq.sequences/H0X_4m2_11603_GCCAAT.fastq.gz  H000InputX1     H3K4me2
+H000InputX1     H000InputX1_AGTTCC      /users/rg/projects/ERC/chipseq.sequences/input_7473_AGTTCC.fastq.gz     H000InputX1     input
+```
+
+1. identifier used for merging the BAM files
+2. single run identifier
+3. path to the fastq file to be processed
+4. identifier of the input or `-` if no control is used
+5. mark/histone or `input` if the line refers to a control
+
+
+## Output data
+
+- `Alignments`
+- `pileupSignal`, pileup signal tracks
+- `fcSignal`,  fold enrichment signal tracks
+- `pvalueSignal`, **-log10(p-value)** signal tracks
+- `narrowPeak`, peak locations with peak summit, pvalue and qvalue (`BED6+4`)
+- `broadPeak`, similar to `narrowPeak` (without relative summit position to peak start) (`BED6+3`)
+- `gappedPeak`, both narrow and broad peaks with additional information (`BED12+3`)
+
+<!-- panel->(blue) -->
+<!-- .element: style="margin-top: 1em;"-->
+check [MACS2 output files](https://github.com/taoliu/MACS#output-files) for details
+
+
+## Pipeline db file
+
+```bash
+H024H3X1        /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/22/f0f9f135d78955142801c95bbfb306/peakOut/H024H3X1.pileup_signal.bw         H3         255     pileupSignal
+H024H3X1        /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/22/f0f9f135d78955142801c95bbfb306/peakOut/H024H3X1_peaks.narrowPeak         H3         255     narrowPeak
+H024H3X1        /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/dd/bd027353586b40ff6117af0576ea4e/H024H3X1.bam                              H3         255     Alignments
+H024H3X1        /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/22/f0f9f135d78955142801c95bbfb306/peakOut/H024H3X1_peaks.gappedPeak         H3         255     gappedPeak
+H024H3X1        /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/22/f0f9f135d78955142801c95bbfb306/peakOut/H024H3X1_peaks.broadPeak          H3         255     broadPeak
+H000H3K4me2X1   /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/ff/716beee56097d48f2bd174d7916db9/peakOut/H000H3K4me2X1_peaks.gappedPeak    H3K4me2    200     gappedPeak
+H000H3K4me2X1   /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/ff/716beee56097d48f2bd174d7916db9/peakOut/H000H3K4me2X1.fc_signal.bw        H3K4me2    200     fcSignal
+H000H3K4me2X1   /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/ff/716beee56097d48f2bd174d7916db9/peakOut/H000H3K4me2X1.pval_signal.bw      H3K4me2    200     pvalueSignal
+H000H3K4me2X1   /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/ff/716beee56097d48f2bd174d7916db9/peakOut/H000H3K4me2X1_peaks.broadPeak     H3K4me2    200     broadPeak
+H000H3K4me2X1   /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/ff/716beee56097d48f2bd174d7916db9/peakOut/H000H3K4me2X1.pileup_signal.bw    H3K4me2    200     pileupSignal
+H000H3K4me2X1   /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/ff/716beee56097d48f2bd174d7916db9/peakOut/H000H3K4me2X1_peaks.narrowPeak    H3K4me2    200     narrowPeak
+H000H3K4me2X1   /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/aa/33097530d5095386f5fc984c468fc2/H000H3K4me2X1_GCCAAT_primary.bam          H3K4me2    200     Alignments
+```
+
+1. merge identifier
+2. path
+3. mark/histone
+4. estimated fragment length
+5. data type
+
 ------
 
 # Future work
 
 
-## ![](http://ihec-epigenomes.org/fileadmin/ihec/images/logo.png)
-<!-- .slide: id="FutureworkIHEC"-->
+## Add QC metrics
+<!-- .element: style="margin-bottom: 0.6em;"-->
 
-- QC metrics
-  1. Read length and sequencing depth
-  <!-- .element: style="margin-top: 0.5em;"-->
-  2. Fraction aligned reads, duplicate reads
-  3. Concordance between replicate datasets
-  4. Fraction of reads in enriched intervals, and other criteria.
-  5. Use of controls
-<!-- .element: style="margin-bottom: 1em;"-->
-- Biological replicates
+- Read length and sequencing depth
+- Fraction aligned reads, duplicate reads
+- Fraction of reads in enriched intervals
+  - other criteria?
+
+<!-- .element: style="margin-top: 1em;"-->
+![](http://ihec-epigenomes.org/fileadmin/ihec/images/logo.png)
 
 Note:
 1. ~30-50 million aligned reads with at least a 36 base read length
@@ -270,20 +371,18 @@ Note:
 5. library derived from the chromatin preparation
 
 
-## HOMER
-<!-- .element: style="margin-bottom: 0.6em;"-->
-![alt text](http://homer.salk.edu/homer/pic2.gif "")
-
-1. Peak finding / Transcript detection / Feature identification (``findPeaks``)
-2. Motif analysis (``findMotifsGenome.pl)``
-3. Annotation of Peaks (``annotatePeaks.pl``)
-
-
-## Pipeline steps
+## Extend workflow
 <!-- .element: style="margin-bottom: 0.6em;"-->
 
 - UCSC track hubs
-  1. automatically make BigWig files accessible
+  - automatically make BigWig files accessible
   <!-- .element: style="margin-top: 0.5em;"-->
-  2. produce the UCSC track hub file
+  - produce the UCSC track hub file
 <!-- .element: style="margin-bottom: 1em;"-->
+- downstream analyses
+  - peak finding / transcript detection / feature identification
+  <!-- .element: style="margin-top: 0.5em;"-->
+  - motif analysis
+  - annotation of Peaks
+<!-- .element: style="margin-bottom: 1em;"-->
+- biological replicates
