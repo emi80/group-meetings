@@ -4,11 +4,11 @@ body {
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
-/*html:-webkit-full-screen-ancestor {
+html:-webkit-full-screen-ancestor {
   background-color: inherit; }
 
 html:-moz-full-screen-ancestor {
-  background-color: inherit; }*/
+  background-color: inherit; }
 
 .reveal .slides section .fragment.grow.visible {
   color: #31708f;
