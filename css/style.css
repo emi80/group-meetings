@@ -60,7 +60,7 @@ div .panel-default {
   background-image: linear-gradient(to top,#D5D6D1 0,#F0F1EB 100%);
 }
 
-.navbar-nav>li>a {
+.navbar-nav > li > a {
   padding-top: 0.3em;
   padding-bottom: 0.3em;
   line-height: inherit;
@@ -91,6 +91,16 @@ div .panel-default {
 }
 .reveal strong {
   font-weight: 500;
+}
+
+.reveal ol > li > ul,
+.reveal ul > li > ul {
+  margin-bottom: 0.6em;
+}
+
+.reveal ol > li,
+.reveal ul > li {
+  margin-bottom: 0.1em;
 }
 
 .reveal h1,
