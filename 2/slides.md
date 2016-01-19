@@ -18,7 +18,7 @@ Need for an automated pipeline for processing **ERC** project `ChIP-seq` samples
 <!-- .element: style="margin-bottom: 0.6em;"-->
 
 <!-- panel -->
-<!-- .element: style="margin-bottom: 1em;"-->
+<!-- .element: style="margin-bottom: 1.6em;"-->
 Manual workflow including the following steps:
 
 - mapping with `GEM`
@@ -27,6 +27,7 @@ Manual workflow including the following steps:
 
 
 ## Drawbacks
+<!-- .element: style="margin-bottom: 0.6em;"-->
 
 - Manual execution
 - `align2rawsignal` requires a specific version of `MATLAB Runtime` and is unmantained
@@ -37,6 +38,7 @@ Manual workflow including the following steps:
 
 
 ## Workflow
+<!-- .element: style="margin-bottom: 0.6em;"-->
 
 1. [Mapping](#/BlueprintMapping)
 2. [Filtering](#/BlueprintFiltering)
@@ -49,21 +51,20 @@ Manual workflow including the following steps:
 <!-- .element: style="margin-bottom: 0.6em;"-->
 
 <!-- panel->(blue) -->
-<!-- .element: style="margin-bottom: 2em;"-->
+<!-- .element: style="margin-bottom: 2em;" -->
 `BWA` with default parameters + low quality trimming
 
 1. `bwa aln`
   - max edit distance **0.04**
-  - disallow long gaps
   - trimming low quality (**<5**) reads
-<!-- .element: style="margin-bottom: 0.6em;"-->
+  - disallow long gaps
 2. `bwa samse`
   - max **3** output alignments
-
-3.  mark duplicates
+3. mark duplicates
 
 
 ## Filtering
+<!-- .element: style="margin-bottom: 0.6em;" -->
 
 - exclude SAM flag `1024`
   * PCR or optical duplicates
@@ -109,6 +110,7 @@ pipeline in development)
 
 
 ## Workflow
+<!-- .element: style="margin-bottom: 0.6em;"-->
 
 1. [Mapping](#/ENCODEMapping)
 2. [Filter QC](#/ENCODEFilterQC)
@@ -129,20 +131,20 @@ pipeline in development)
   - max edit distance **0.04**
   - disallow long gaps
   - no trimming
-<!-- .element: style="margin-bottom: 0.6em;"-->
 2. `bwa samse`
   - max **3** output alignments
 
 
 ## Filter QC
+<!-- .element: style="margin-bottom: 0.6em;"-->
 
-  - exclude SAM flag`1804`
-    * read unmapped
-    * mate unmapped
-    * secondary alignments
-    * not passing platform quality check
-    * PCR or optical duplicates
-  - mark duplicates with Picard
+- exclude SAM flag `1804`
+  * read unmapped
+  * mate unmapped
+  * secondary alignments
+  * not passing platform quality check
+  * PCR or optical duplicates
+- mark duplicates with Picard
 
 
 ## Xcor
@@ -212,6 +214,7 @@ pipeline in development)
 
 
 ## Workflow
+<!-- .element: style="margin-bottom: 0.6em;"-->
 
 1. [Mapping](#/CurrentImplementationMapping)
 2. [Merge ](#/CurrentImplementationMerge)
@@ -224,12 +227,11 @@ pipeline in development)
 
 <!-- panel->(blue) -->
 <!-- .element: style="margin-bottom: 2em;"-->
-`GEM`
+uses the `GEM` mapper and tools
 
 1. `gem-mapper` with default parameters
 2. `gt.filter`
   - max edit distance (**2** - absolute number of bases)
-<!-- .element: style="margin-bottom: 0.6em;"-->
 3. `gt.filter`
   - max **10** output alignments
 4. exclude SAM flag `256`
@@ -268,6 +270,7 @@ uses `MACS2` to call peaks - works with or without `input`
 
 
 ## Run the pipeline
+<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```bash
 $ nextflow run chipseq-pipeline.nf --help
@@ -293,6 +296,7 @@ Options:
 
 
 ## Index file
+<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```bash
 H024H3X1        H024H3X1_ACNNGN         /users/rg/projects/ERC/chipseq.sequences/H24X_H3_11630_ACNNGN.fastq.gz  -               H3
@@ -304,6 +308,7 @@ H000InputX1     H000InputX1_AGTTCC      /users/rg/projects/ERC/chipseq.sequences
 ```
 
 1. identifier used for merging the BAM files
+<!-- .element: style="margin-top: 2em;"-->
 2. single run identifier
 3. path to the fastq file to be processed
 4. identifier of the input or `-` if no control is used
@@ -326,6 +331,7 @@ check [MACS2 output files](https://github.com/taoliu/MACS#output-files) for deta
 
 
 ## Pipeline db file
+<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```bash
 H024H3X1        /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/22/f0f9f135d78955142801c95bbfb306/peakOut/H024H3X1.pileup_signal.bw         H3         255     pileupSignal
@@ -343,6 +349,7 @@ H000H3K4me2X1   /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/aa
 ```
 
 1. merge identifier
+<!-- .element: style="margin-top: 1em;"-->
 2. path
 3. mark/histone
 4. estimated fragment length
@@ -356,13 +363,13 @@ H000H3K4me2X1   /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/aa
 ## Add QC metrics
 <!-- .element: style="margin-bottom: 0.6em;"-->
 
-- Read length and sequencing depth
-- Fraction aligned reads, duplicate reads
-- Fraction of reads in enriched intervals
-  - other criteria?
+- read length and sequencing depth
+- fraction aligned reads, duplicate reads
+- fraction of reads in enriched intervals
+- **other criteria**?
 
-<!-- .element: style="margin-top: 1em;"-->
 ![](http://ihec-epigenomes.org/fileadmin/ihec/images/logo.png)
+<!-- .element: style="margin-top: 2em;"-->
 
 Note:
 1. ~30-50 million aligned reads with at least a 36 base read length
@@ -376,13 +383,9 @@ Note:
 
 - UCSC track hubs
   - automatically make BigWig files accessible
-  <!-- .element: style="margin-top: 0.5em;"-->
   - produce the UCSC track hub file
-<!-- .element: style="margin-bottom: 1em;"-->
 - downstream analyses
   - peak finding / transcript detection / feature identification
-  <!-- .element: style="margin-top: 0.5em;"-->
   - motif analysis
   - annotation of Peaks
-<!-- .element: style="margin-bottom: 1em;"-->
 - biological replicates
