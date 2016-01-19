@@ -307,8 +307,8 @@ H000InputX1     H000InputX1_AGTTCC      /users/rg/projects/ERC/chipseq.sequences
 - `fcSignal`,  fold enrichment signal tracks
 - `pvalueSignal`, **-log10(p-value)** signal tracks
 - `narrowPeak`, peak locations with peak summit, pvalue and qvalue (`BED6+4`)
-- `broadPeak`, similar to `narrowPeak` (without relative summit position to peak start) (`BED6+3`)
-- `gappedPeak`, both narrow and broad peaks with additional information (`BED12+3`)
+- `broadPeak`, similar to `narrowPeak` (`BED6+3`)
+- `gappedPeak`, both narrow and broad peaks (`BED12+3`)
 
 <!-- panel->(blue) -->
 <!-- .element: style="margin-top: 1em;"-->
