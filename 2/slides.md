@@ -34,7 +34,7 @@ Manual workflow including the following steps:
 ------
 
 # Blueprint
-#### protocol
+<a href="http://dcc.blueprint-epigenome.eu/#/md/chip_seq_grch38"><h4><i class="fa fa-external-link-square"> BLUEPRINT DCC</i></h4></a>
 
 
 ## Workflow
@@ -106,6 +106,7 @@ fasta and `umap` files are used.
 [![DNAnexus pipeline](http://sra.dnanexus.com/images/dnanexus.png)<!-- .element: class="pipeline" -->](https://www.dnanexus.com/)
 pipeline in development
 </h4>
+<a href="https://github.com/ENCODE-DCC/chip-seq-pipeline/"><i class="fa fa-github"> ENCODE DCC</i></a>
 
 
 
@@ -196,6 +197,7 @@ final peak calls
 [![Nextflow pipeline](../img/nextflow2014_no-bg.png)<!-- .element: class="pipeline" -->](http://www.nextflow.io/)
 pipeline in development
 </h4>
+<a href="https://github.com/guigolab"><i class="fa fa-github"> Guigo Lab</i></a>
 
 
 ## Workflow
