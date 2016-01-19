@@ -259,6 +259,9 @@ uses `MACS2` to call peaks - works with or without `input`
 
 ```bash
 $ nextflow run chipseq-pipeline.nf --help
+```
+
+```bash
 N E X T F L O W  ~  version 0.16.2
 Launching chipseq-pipeline.nf
 
