@@ -356,12 +356,6 @@ H000H3K4me2X1   /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/aa
 ![](http://ihec-epigenomes.org/fileadmin/ihec/images/logo.png)
 <!-- .element: style="margin-top: 2em;"-->
 
-Note:
-1. ~30-50 million aligned reads with at least a 36 base read length
-2. primer dimer artifacts, contamination, potential PCR artifacts
-4. Roadmap project is working on data based QA criteria
-5. library derived from the chromatin preparation
-
 
 ## Extend workflow
 <!-- .element: style="margin-bottom: 0.6em;"-->
