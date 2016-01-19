@@ -364,7 +364,7 @@ H000H3K4me2X1   /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/aa
 - CRG Bioinformatics Unit
 
 
-## Extend workflow
+## Extend the workflow
 <!-- .element: style="margin-bottom: 0.6em;"-->
 
 - UCSC track hubs
