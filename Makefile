@@ -1,12 +1,15 @@
 SHELL="/bin/bash"
 
-start:
-	@python -m SimpleHTTPServer > server.log 2>&1 & echo "$$!" > server.pid 
+utils/serve:
+	@cd utils && go build serve.go
+
+start: utils/serve
+	@utils/serve & echo "$$!" > server.pid
 	@echo "Server started on localhost:8000"
-	@google-chrome http://localhost:8000 & echo "$$!" > chrome.pid
-	@echo "Launching Google Chrome..."
+	@open http://localhost:8000/2/
+	@echo "Opening presentation..."
 
 stop:
-	@kill -9 `cat {server,chrome}.pid | tr '\n' ' '`
-	@rm {server,chrome}.pid server.log
+	@kill $$(cat server.pid | tr '\n' ' ')
+	@rm server.pid
 	@echo "Server stopped"
