@@ -23,7 +23,7 @@ Manual workflow including the following steps:
 
 - mapping with `GEM`
 - fragment length estimation with `SPP` (`phantompeaktools`)
-- peak calling with `align2rawsignal` (a.k.a `WIGGLER`)
+- signal with `align2rawsignal` (a.k.a `WIGGLER`)
 
 
 ## Drawbacks
@@ -380,3 +380,6 @@ H000H3K4me2X1   /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/aa
   - motif analysis
   - annotation of Peaks
 - biological replicates
+------
+
+## Thanks!
