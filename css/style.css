@@ -164,3 +164,17 @@ div .panel-default {
   vertical-align: baseline;
   box-shadow: none;
 }
+
+.reveal .header {
+  font-size: 0.8em;
+  position: absolute;
+  top: -40%;
+  left: 0%;
+}
+
+.reveal .footer {
+  font-size: 0.8em;
+  position: absolute; 
+  left: 0%;
+  bottom: -50%;
+}
