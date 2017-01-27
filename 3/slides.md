@@ -1,3 +1,8 @@
+<style>
+.reveal h1 {
+  font-size: 3.2em;
+}
+</style>
 # ![GA4GH](http://genomicsandhealth.org/files/logo_ga.png)<!-- .element: style="width: 70%; box-shadow: none; margin-bottom: 0em;"-->
 
 <!-- .element: style="margin-top: 1.2em;"-->
