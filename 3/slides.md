@@ -7,6 +7,7 @@
 
 <!-- .element: style="margin-top: 1.2em;"-->
 ### Lab Meeting
+
 ------
 
 # Introduction
@@ -34,6 +35,7 @@ http://genomicsandhealth.org/
 - Data Working Group
 - Regulatory and Ethics Working Group
 - Security Working Group
+
 ------
 
 # Data Working Group
@@ -83,9 +85,11 @@ The RNA and Gene Expression Task Team provides APIs to interoperably store, proc
 
 <!-- panel->(blue) -->
 The goal of the GA4GH annotation task team is to create common standards for reporting variant annotation including results formats and query methods (GA4GH schemas) for different classes of annotation.
+
 ------
 
 # Reference Server
+
 ------
 
 # API
