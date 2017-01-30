@@ -1,8 +1,3 @@
-<style>
-.reveal h1 {
-  font-size: 3.2em;
-}
-</style>
 # ![GA4GH](http://genomicsandhealth.org/files/logo_ga.png)<!-- .element: style="width: 70%; box-shadow: none; margin-bottom: 0em;"-->
 
 <!-- .element: style="margin-top: 1.2em;"-->
@@ -25,7 +20,7 @@ http://genomicsandhealth.org/
 
 ## Organization
 
-![](http://genomicsandhealth.org/files/Global-Alliance-how-we-work-v2.jpg)<!-- .element: style="width: 50%; box-shadow: none;margin-bottom: 0em;"-->
+![](http://genomicsandhealth.org/files/Global-Alliance-how-we-work-v2.jpg)<!-- .element: style="width: 70%; box-shadow: none;margin-bottom: 0em;"-->
 
 
 ## Working Groups
@@ -41,6 +36,17 @@ http://genomicsandhealth.org/
 # Data Working Group
 
 http://ga4gh.org/
+
+
+## Task Teams
+
+- Benchmarking
+- Containers and Workflows
+- File Formats
+- Metadata
+- Reference Genomes
+- RNA and Gene Expression
+- Variant Annotation
 
 
 ## Benchmarking
@@ -62,7 +68,12 @@ To increase the portability of code and the reproducibility of computational ana
 
 <!-- panel->(blue) -->
 The members of the File Formats Task team are the custodians of the SAM/BAM, CRAM, and VCF/BCF file formats.
-Metadata
+
+
+## Metadata
+<!-- .element: style="margin-bottom: 0.6em;"-->
+
+<!-- panel->(blue) -->
 To identify best approaches to handling and displaying information over and above the genomic sequence.
 
 
@@ -88,11 +99,14 @@ The goal of the GA4GH annotation task team is to create common standards for rep
 
 ------
 
-# Reference Server
+# Genomics API
+
+
+![](http://ga4gh.org/assets/images/documentation/GA4GH_API_interop.png)
 
 ------
 
-# API
+# Reference Server
 
 ------
 
