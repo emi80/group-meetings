@@ -102,9 +102,10 @@
 				controls: false,
 				progress: true,
 				history: true,
-        center: true,
-        slideNumber: true,
-        embedded: true,
+		        center: true,
+		        slideNumber: true,
+		        embedded: true,
+		        previewLinks: false,
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
 
