@@ -304,12 +304,12 @@ __RGLab__ in collaboration with the __EGA team__ will provide a reference server
 Use quantification data from:
 <!-- .element: style="margin-bottom: 1em; text-align: left; padding-left: 5em;"-->
 
-1. processing `CLL` RNAseq data 
+1. processing `CLL` (Chronic Lymphocytic Leukemia) RNAseq data 
   - at __RGLab__ with GRCh38/Gencode 25
 1. processing an `ENCODE` dataset 
   - at __Caltech__ with GRCh38/Gencode 25
-1. already processed `BeatAML` data
-  - at __Broad__ with GRCh38/Gencode ?
+1. already processed `BeatAML` (Acute Myeloid Leukemia) RNAseq data
+  - at __Broad__ with GRCh37/Gencode ?
 
 
 ## GA4GH server instances
