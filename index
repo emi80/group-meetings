@@ -193,6 +193,12 @@
 					var text = $(this).html().split("<br>")[0];
 					$(this).html(text+"<br>"+vslidedots(event,$(this).attr("id").split("-")[1]));
 				})
+				$('.slide-number').css("visibility","visible");
+				var slide = Reveal.getSlide(Reveal.getIndices().h);
+				var header = $(slide).find('h1.extra');
+				if (header.length > 0) {
+					$('.slide-number').css("visibility","hidden");
+				}
 			});
 
 			Reveal.addEventListener( 'ready', function( event ) {
@@ -200,10 +206,13 @@
 				$('.rst-other-versions a').attr('target', '');
 				document.title = $(Reveal.getSlide(0)).find('h1').text();
 				$(".reveal .slides>section").each(function ( index ) {
+					var header = $(this).find('h1.extra')
 					if (index>0) {
 						renderPanel($(this));
 						setSlideIds($(this));
-					 	$("#nav-sections").append('<li><a id="nav-'+(index)+'" href="#/'+(index)+'">'+$("h1", this).text()+'</a></li>')
+					 	if (header.length == 0) {
+						 	$("#nav-sections").append('<li><a id="nav-'+(index)+'" href="#/'+(index)+'">'+$("h1", this).text()+'</a></li>')
+					 	}
 					}
 				});
 				$("a[id*='nav-']").parent().removeClass("active");
