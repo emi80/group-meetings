@@ -1,0 +1,7 @@
+.reveal h1 {
+  font-size: 3.2em;
+}
+
+.reveal pre code {
+  white-space: pre-wrap;
+}
