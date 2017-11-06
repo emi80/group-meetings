@@ -71,6 +71,7 @@
 		<script src="../js/reveal.min.js"></script>
 		<script src="../bootstrap/js/bootstrap.min.js"></script>
 		<script>
+			var noNavBar = false;
 			var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 			var date, dateString, locationDate;
 			$(document).ready(function() {
@@ -100,7 +101,7 @@
 			});
 			Reveal.initialize({
 				controls: false,
-				progress: true,
+				progress: false,
 				history: true,
 		        center: true,
 		        slideNumber: true,
@@ -108,6 +109,7 @@
 		        previewLinks: false,
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+				backgroundTransition: 'none',
 
 				margin: 0,
 				keyboard: {
@@ -187,6 +189,9 @@
 			}
 
 			Reveal.addEventListener( 'slidechanged', function( event ) {
+				if (!noNavBar && $(Reveal.getCurrentSlide()).attr("data-state")!="no-nav-bar") {
+					$(".navbar-fixed-top").css("display", 'block');
+				}
 				$("a[id*='nav-']").parent().removeClass("active");
   				$("#nav-" + event.indexh).parent().addClass("active");
 				$("a[id*='nav-']").each(function() {
@@ -202,14 +207,14 @@
 			});
 
 			Reveal.addEventListener( 'ready', function( event ) {
-				$('a').attr('target', '_blank');
+				$('a.extern').attr('target', '_blank');
 				$('.rst-other-versions a').attr('target', '');
 				document.title = $(Reveal.getSlide(0)).find('h1').text();
 				$(".reveal .slides>section").each(function ( index ) {
 					var header = $(this).find('h1.extra')
 					if (index>0) {
 						renderPanel($(this));
-						setSlideIds($(this));
+						//setSlideIds($(this));
 					 	if (header.length == 0) {
 						 	$("#nav-sections").append('<li><a id="nav-'+(index)+'" href="#/'+(index)+'">'+$("h1", this).text()+'</a></li>')
 					 	}
@@ -223,6 +228,11 @@
 				})
 			});
 
+			Reveal.addEventListener( 'no-nav-bar', function() {
+				$(".navbar-fixed-top").css("display", "none");
+			}, false );
+
+
 			$("[data-toggle='rst-current-version']").click(function() {
         	$("[data-toggle='rst-versions']").toggleClass("shift-up")
       });
@@ -235,6 +245,7 @@
 			function toggleNavbar() {
 				var display = ($(".navbar-fixed-top").css("display") == 'block' ? 'none' : 'block');
 				$(".navbar-fixed-top").css("display", display);
+				noNavBar = (display == 'none')
 			}
 
 			function toggleVersions() {
