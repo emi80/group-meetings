@@ -25,7 +25,7 @@ Do we need a LIMS?
 
 ## Maybe not...
 
-![Google Sheet Sample](/img/sheet.png)
+![Google Sheet Sample](../img/sheet.png)
 
 
 ## Use Google Docs
