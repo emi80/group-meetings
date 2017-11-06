@@ -82,10 +82,13 @@ Choose a common set of attributes which best describes the project, experiments 
 
 
 ## RG pipelines
+<!-- .element: style="margin-bottom: 0.5em;"-->
 
-- grape-nf (also for riboprofiling) [<i class="fa-github fa-lg"></i>](https://github.com/guigolab/grape-nf)
-- chip-nf [<i class="fa-github"></i>](https://github.com/guigolab/chip-nf)
-- ipsa-nf [<i class="fa-github"></i>](https://github.com/guigolab/ipsa-nf)
+- grape-nf (also for riboprofiling) [<i style="float: right; margin-left: 0.5em;" class="fa-github fa-lg"></i>](https://github.com/guigolab/grape-nf)
+- chip-nf [<i style="float: right;" class="fa-github fa-lg"></i>](https://github.com/guigolab/chip-nf)
+- ipsa-nf [<i style="float: right;" class="fa-github fa-lg"></i>](https://github.com/guigolab/ipsa-nf)
+
+![Nextflow](../img/nextflow2014_no-bg.png)<!-- .element: style="height: 1.5em; margin: 2em 0;"-->
 
 
 ## Containers
