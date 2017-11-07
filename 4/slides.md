@@ -5,7 +5,7 @@
 
 ------
 
-- Managing experiments, samples, assays data 
+- Managing experiments, samples and assays data 
 
 - Managing metadata
 
@@ -23,9 +23,9 @@
 Do we need a LIMS?
 
 
-## Maybe not...
 
-![Google Sheet Sample](../img/sheet.png)
+## Maybe not...
+<iframe style="width: 95%; height: 12em" src="../iframes/sheet.html"></iframe>
 
 
 ## Use Google Docs
