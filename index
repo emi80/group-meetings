@@ -15,27 +15,24 @@
 		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="../css/font-awesome-4.5.0.min.css">
-		<link rel="stylesheet" href="../css/reveal.min.css">
-		<link rel="stylesheet" href="../css/badge_only.css">
-		<link rel="stylesheet" href="../css/style.css">
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../css/rg.css">
 		<link rel="stylesheet" href="./style.css">
+		<link rel="stylesheet" href="../css/badge_only.css">
 		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="../lib/css/zenburn.css">
-		<!-- <link rel="stylesheet" href="../css/theme/default.css" id="theme"> -->
-		<script src="../css/jquery-2.0.3.min.js"></script>
-		<script src="../css/jquery-migrate-1.2.1.min.js"></script>
-		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
 		<script>
-			if( window.location.search.match( /print-pdf/gi ) ) {
-				var link = document.createElement( 'link' );
-				link.rel = 'stylesheet';
-				link.type = 'text/css';
-				link.href = '../css/print/pdf.css';
-				document.getElementsByTagName( 'head' )[0].appendChild( link );
-			}
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+
 		<!--[if lt IE 9]>
-		<script src="../lib/js/html5shiv.js"></script>
+		<script src="../reveal.js/lib/js/html5shiv.js"></script>
 		<![endif]-->
 	</head>
 
@@ -67,8 +64,10 @@
         <dt>Group meetings</dt>
     	</dl>
 		</div>
-		<script src="../lib/js/head.min.js"></script>
-		<script src="../js/reveal.min.js"></script>
+		<script src="../js/jquery-2.0.3.min.js"></script>
+		<script src="../js/jquery-migrate-1.2.1.min.js"></script>
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
 		<script src="../bootstrap/js/bootstrap.min.js"></script>
 		<script>
 			var noNavBar = false;
@@ -104,7 +103,7 @@
 				progress: false,
 				history: true,
 		        center: true,
-		        slideNumber: true,
+		        slideNumber: "c",
 		        embedded: true,
 		        previewLinks: false,
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
@@ -113,8 +112,8 @@
 
 				margin: 0,
 				keyboard: {
-			    66: toggleFonts,
-			  },
+					66: toggleFonts,
+				},
 				// Optional libraries used to extend on reveal.js
 				dependencies: [
 					{ src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
@@ -188,18 +187,29 @@
 				});
 			}
 
-			Reveal.addEventListener( 'slidechanged', function( event ) {
+			function updateSlide(show) {
 				if (!noNavBar && $(Reveal.getCurrentSlide()).attr("data-state")!="no-nav-bar") {
-					$(".navbar-fixed-top").css("display", 'block');
+					$(".navbar-fixed-top").css("display", show ? 'block' : "none");
+					$('.slide-number').css("visibility", show ? "visible" : "hidden");
 				}
+				if (Reveal.isFirstSlide()) {
+					$('.slide-number').css("visibility","hidden");
+				}
+				if (Reveal.isLastSlide()) {
+					$('.slide-number').css("visibility","hidden");
+					$(".navbar-fixed-top").css("display", "none");
+				}
+			}
+
+			Reveal.addEventListener( 'slidechanged', function( event ) {
+				updateSlide(true)
 				$("a[id*='nav-']").parent().removeClass("active");
   				$("#nav-" + event.indexh).parent().addClass("active");
 				$("a[id*='nav-']").each(function() {
 					var text = $(this).html().split("<br>")[0];
 					$(this).html(text+"<br>"+vslidedots(event,$(this).attr("id").split("-")[1]));
 				})
-				$('.slide-number').css("visibility","visible");
-				var slide = Reveal.getSlide(Reveal.getIndices().h);
+				var slide = Reveal.getCurrentSlide();
 				var header = $(slide).find('h1.extra');
 				if (header.length > 0) {
 					$('.slide-number').css("visibility","hidden");
@@ -207,6 +217,7 @@
 			});
 
 			Reveal.addEventListener( 'ready', function( event ) {
+				updateSlide(true)
 				$('a.extern').attr('target', '_blank');
 				$('.rst-other-versions a').attr('target', '');
 				document.title = $(Reveal.getSlide(0)).find('h1').text();
@@ -229,7 +240,7 @@
 			});
 
 			Reveal.addEventListener( 'no-nav-bar', function() {
-				$(".navbar-fixed-top").css("display", "none");
+				updateSlide(false)
 			}, false );
 
 
