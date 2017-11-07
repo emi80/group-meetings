@@ -10,6 +10,22 @@ html:-webkit-full-screen-ancestor {
 html:-moz-full-screen-ancestor {
   background-color: inherit; }
 
+.reveal ol, .reveal ul {
+    text-align: left;
+    margin: 0 0 0 1em;
+}
+
+.reveal small {
+    font-size: .6em;
+    line-height: 1.2em;
+    vertical-align: top;
+}
+
+.reveal p {
+  margin-bottom: 10px;
+  line-height: 1.2em;
+}
+
 .reveal .slides section .fragment.grow.visible {
   color: #31708f;
 }
