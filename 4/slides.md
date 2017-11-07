@@ -25,7 +25,7 @@ Do we need a LIMS?
 
 
 ## Maybe not...
-<iframe style="width: 95%; height: 12em" src="../iframes/sheet.html"></iframe>
+<iframe style="width: 95%; height: 12em" data-src="../iframes/sheet.html"></iframe>
 
 
 ## Use Google Docs
@@ -135,5 +135,4 @@ It refers to records of the inputs, entities, systems, and processes that influe
 
 ------
 
-## THANKS!
-<!-- .element: style="font-size: 3.2em" -->
+<!-- .slide: data-background-image="../img/thank-you.png" data-background-size="50%" data-background-color="#111"> -->

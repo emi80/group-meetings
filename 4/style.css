@@ -1,22 +1,9 @@
-.reveal h1 {
-  font-size: 3.2em;
-}
-
-.reveal pre code {
-  white-space: pre-wrap;
-}
-
 .reveal .big {
   font-size: 2.1em;
 }
 
 .reveal .light {
   color: rgb(240, 241, 235);
-}
-
-.reveal ol > li > ul,
-.reveal ul > li > ul {
-  margin: 0.2em 1em;
 }
 
 .reveal ul > li.icon {
@@ -27,18 +14,17 @@
 .reveal ul > li.plus:before {    
   font-family: 'FontAwesome';
   content: '\f067';
-  float: left;
   width: 1.8em;
   font-size: 0.5em;
   color: #3c763d;
+  margin-right: 1em;
 }
 
 .reveal ul > li.minus:before {    
   font-family: 'FontAwesome';
   content: '\f068';
-  float: left;
   width: 1.8em;
   font-size: 0.5em;
   color: #a94442;
-}
+  margin-right: 1em;
 }
