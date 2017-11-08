@@ -141,4 +141,4 @@ $ tree
 
 ------
 
-<!-- .slide: data-background-image="../img/thank-you.png" data-background-size="50%" data-background-color="#111"> -->
+<!-- .slide: data-background-image="../img/thank-you.png" data-background-size="50%" data-background-color="#fff"> -->
