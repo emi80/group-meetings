@@ -107,7 +107,7 @@ it refers to records of the inputs, entities, systems, and processes that influe
 
 ## Other Analyses
 
-- readme files are ok but can get messy and hard to manage <i class="fa fa-arrow-right blue"></i> can use per folder bash history<!-- .element: class="extern" -->
+- readme files are ok but can get messy and hard to manage <i class="fa fa-arrow-right blue"></i> can use specific bash history for analysis folders
 - use version control ([git](https://git-scm.com)<!-- .element: class="extern" --> recommended)
 ```bash
 $ tree
