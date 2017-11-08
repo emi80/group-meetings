@@ -1,7 +1,6 @@
 # NGS Data Flow 
 
-<!-- .element: style="margin-top: 1.2em;"-->
-### Lab Meeting
+### Lab Meeting<!-- .element: style="margin-top: 1.2em;"-->
 
 ------
 
@@ -20,7 +19,7 @@
 
 <!-- .slide: data-state="no-nav-bar" data-background="#111111" -->
 <!-- .element: class="big light" -->
-Do we need a LIMS?
+Do we need a LIMS/Electronic Notebook?
 
 
 
@@ -39,30 +38,23 @@ Do we need a LIMS?
 
 ## Other documents
 
-<!-- .element: class="panel panel-default" style="margin-top: 1.5em;" -->
-use a shared resource (Dropbox, remote folder) to store all documents related to libraries, sequences and data in general <i class="fa-question fa-lg blue"></i><i class="fa-question fa-lg red fa-rotate-180"></i>
+use a shared resource (Dropbox, remote folder) to store all documents related to libraries, sequences and data in general<!-- .element: class="panel panel-default" style="margin-top: 1.5em;" --> <i class="fa-question fa-lg blue"></i><i class="fa-question fa-lg red fa-rotate-180"></i>
 
 ------
 
 # Metadata Management
 
 
-<!-- .slide: data-state="no-nav-bar" data-background="#111111" -->
-<!-- .element: class="big light" -->
-Do we need a controlled vocabulary?
-
-
 ## Controlled Vocabulary
 
 - full control on attribute names and values<!-- .element: class="icon plus" -->
-- needs time for rigorous definition of all names/values<!-- .element: class="icon minus" -->
-- not flexible<!-- .element: class="icon minus" -->
+- needs the definition of a fixed schema<!-- .element: class="icon minus" -->
+- needs time for rigorous definition of predefined, authorised terms<!-- .element: class="icon minus" -->
 
 
 ## Metadata Attributes
 
-<!-- .element: class="panel panel-default" style="margin: 2em 0;"-->
-Choose a common set of attributes which best describes the project, experiments and data and stick to it
+Choose a common set of attributes which best describes the project, experiments and data and stick to it<!-- .element: class="panel panel-default" style="margin: 2em 0;"-->
 
 1. unique identifier for each experiment/sample
 1. description(s) - check verbosity
@@ -75,8 +67,8 @@ Choose a common set of attributes which best describes the project, experiments 
 
 ## Primary Analysis
 
-- established pipelines
-- containerized processing
+- use common pipelines
+- containerized processing ([Docker](https://www.docker.com)<!-- .element: class="extern" -->, [Singularity](http://singularity.lbl.gov)<!-- .element: class="extern" -->)
 - data provenance
 - [metadata](#/3) management
 
@@ -88,7 +80,7 @@ Choose a common set of attributes which best describes the project, experiments 
 - chip-nf [<i style="float: right;" class="fa-github fa-lg"></i>](https://github.com/guigolab/chip-nf)
 - ipsa-nf [<i style="float: right;" class="fa-github fa-lg"></i>](https://github.com/guigolab/ipsa-nf)
 
-![Nextflow](../img/nextflow2014_no-bg.png)<!-- .element: style="height: 1.5em; margin: 2em 0;"-->
+![Nextflow](../img/nextflow2014_no-bg.png)<!-- .element: style="height: 50px; "-->
 
 
 ## Containers
@@ -105,19 +97,33 @@ a lightweight, stand-alone, executable package of a piece of software that inclu
 
 ## Data Provenance
 
+it refers to records of the inputs, entities, systems, and processes that influence data of interest, providing a historical record of the data and its origins
 <!-- .element: class="panel panel-default" style="margin: 2em 0;"-->
-It refers to records of the inputs, entities, systems, and processes that influence data of interest, providing a historical record of the data and its origins
 
-- pipeline versions
-- software versions
-- Docker/Singularity image hash
+- pipeline version
+- software version
+- container image hashe
 
 
 ## Other Analyses
 
+- readme files are ok but can get messy and hard to manage <i class="fa fa-arrow-right blue"></i> can use per folder bash history<!-- .element: class="extern" -->
 - use version control ([git](https://git-scm.com)<!-- .element: class="extern" --> recommended)
-- publish on [GitHub](https://github.com)<!-- .element: class="extern" --> (and/or other public resource)
-- [data provenance](#/4/3)
+```bash
+$ tree
+.
+├── my-script-20171012-fix-bug.py
+├── my-script-20171012.py
+├── my-script-20171014.py
+├── my-script-20171014-v2.py
+├── my-script-fix-bug.py
+├── my-script-fix-bug-v2-my-project.py
+├── my-script.py
+└── my-script-v2.py
+...
+```
+- publish script source on [GitHub](https://github.com)<!-- .element: class="extern" --> (and/or other online resource)
+- store [data provenance](#/4/3)
 
 ------
 
