@@ -1,4 +1,4 @@
-# Managing NGS Data 
+# NGS Data Flow 
 
 ### Lab Meeting<!-- .element: style="margin-top: 1.2em;"-->
 
