@@ -57,9 +57,11 @@ body {
 	-webkit-font-smoothing: subpixel-antialiased;
 }
 
-i.fa {
-	font-size: 0.7em;
-	padding: 0.05em;
+i {
+	&.fa {
+		font-size: 0.7em;
+		padding: 0.05em;
+	}
 }
 
 .reveal {
@@ -92,6 +94,11 @@ i.fa {
 		
 		&.fa-lg {
 			font-size: 1.33em;
+		}
+
+		&.fa-right {
+			clear: right;
+			float: right;
 		}
 	}
 
