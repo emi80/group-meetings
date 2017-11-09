@@ -317,6 +317,7 @@ i.fa {
     .reveal i.fa-lg {
       font-size: 1.33em; }
     .reveal i.fa-right {
+      margin-left: 0.5ex;
       clear: right;
       float: right; }
   .reveal .panel-default {
