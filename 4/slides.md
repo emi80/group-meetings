@@ -1,4 +1,4 @@
-# NGS Data Flow 
+# Managing NGS Data 
 
 ### Lab Meeting<!-- .element: style="margin-top: 1.2em;"-->
 
@@ -10,11 +10,11 @@
 
 - Performing analyses
 
-- Publishing raw data and results
+- Organizing and publishin raw data and results
 
 ------
 
-# Experiment Management
+# Experiment Data
 
 
 <!-- .slide: data-state="no-nav-bar" data-background="#111111" -->
@@ -42,7 +42,7 @@ use a shared resource (Dropbox, remote folder) to store all documents related to
 
 ------
 
-# Metadata Management
+# Metadata
 
 
 ## Controlled Vocabulary
@@ -62,7 +62,7 @@ Choose a common set of attributes which best describes the project, experiments 
 
 ------
 
-# Data Analysis
+# Analysis
 
 
 ## Primary Analysis
@@ -127,10 +127,10 @@ $ tree
 
 ------
 
-# Data Publishing
+# Organizing and Publishing
 
 
-## Strategies
+## Publish
 
 - personal web folder(`public_html`/`public-docs`)
 - in-house web server (http://rnaseq.crg.es)<!-- .element: class="extern" -->
