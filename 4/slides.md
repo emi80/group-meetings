@@ -211,7 +211,7 @@ define common policies, operations and use cases in order to optimize storage, r
 
 
 ## Development
-build a standalone tool for data management and access <!-- panel->(green) -->
+build a set of tools for data management and access <!-- panel->(green) -->
 
 - simple user interface
 - persistence of data and metadata (using a `key-value` store)
@@ -222,7 +222,7 @@ build a standalone tool for data management and access <!-- panel->(green) -->
 ## Config
 
 ```toml
-# Tool configuration file
+# Main configuration file
 
 [data]
 id = "labExpId"
@@ -279,10 +279,10 @@ attributes = [
 ## Usage
 
 ```
-tool command
+main command
 
 Usage:
-  tool [command]
+  main [command]
 
 Available Commands:
   help        Help about any command
