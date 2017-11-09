@@ -10,7 +10,7 @@
 
 - Performing analyses
 
-- Organizing and publishin raw data and results
+- Organizing and publishing raw data and results
 
 ------
 
@@ -57,13 +57,13 @@ Do we need a LIMS?
 [Google Sheets API](https://developers.google.com/sheets/api/) allow to read, write, and format data in Sheets. Programmatically create and update pivot tables, data validation, charts and more.
 <!-- panel -->
 
-- can be fetched with `curl`
-- client libraries for common programming languages (e.g. `Python`, `Java`)
+- `curl` access
+- client libraries (e.g. `Python`, `Java`)
 
 
 ## Other documents
 
-use a shared resource (Dropbox, remote folder) to store all documents related to libraries, sequences and data in general<!-- .element: class="panel panel-default" style="margin-top: 1.5em;" --> <i class="fa-question fa-lg blue"></i><i class="fa-question fa-lg red fa-rotate-180"></i>
+use a shared resource (Dropbox, remote folder) to store all documents related to libraries, sequences and data in general<!-- .element: class="panel panel-default" style="margin-top: 1.5em;" --> <i class="fa fa-question fa-lg blue"></i><i class="fa fa-question fa-lg red fa-rotate-180"></i>
 
 
 ## Metadata
@@ -73,8 +73,8 @@ use a shared resource (Dropbox, remote folder) to store all documents related to
 ## Controlled Vocabulary
 
 - full control on attribute names and values<!-- .element: class="icon plus" -->
-- needs the definition of a fixed schema<!-- .element: class="icon minus" -->
-- needs time for rigorous definition of predefined, authorised terms<!-- .element: class="icon minus" -->
+- definition of a fixed schema<!-- .element: class="icon minus" -->
+- rigorous definition of predefined, authorised terms<!-- .element: class="icon minus" -->
 
 
 ## Metadata Attributes
@@ -92,31 +92,31 @@ Choose a common set of attributes which best describes the project, experiments 
 
 ## Primary Analysis
 
-- use common pipelines
+- common pipelines
 - containerized processing ([Docker](https://www.docker.com)<!-- .element: class="extern" -->, [Singularity](http://singularity.lbl.gov)<!-- .element: class="extern" -->)
 - data provenance
-- [metadata](#/3) management
+- [metadata](#/2/8) management
 
 
 ## RG pipelines
 <!-- .element: style="margin-bottom: 0.5em;"-->
 
-- grape-nf (also for riboprofiling) [<i style="float: right; margin-left: 0.5em;" class="fa-github fa-lg"></i>](https://github.com/guigolab/grape-nf)
-- chip-nf [<i style="float: right;" class="fa-github fa-lg"></i>](https://github.com/guigolab/chip-nf)
-- ipsa-nf [<i style="float: right;" class="fa-github fa-lg"></i>](https://github.com/guigolab/ipsa-nf)
+- grape-nf (also for riboprofiling) [<i class="fa fa-github fa-lg fa-right"></i>](https://github.com/guigolab/grape-nf)
+- chip-nf [<i class="fa fa-github fa-lg fa-right"></i>](https://github.com/guigolab/chip-nf)
+- ipsa-nf [<i  class="fa fa-github fa-lg fa-right"></i>](https://github.com/guigolab/ipsa-nf)
 
 ![Nextflow](../img/nextflow2014_no-bg.png)<!-- .element: style="height: 50px; "-->
 
 
 ## Containers
 
-a lightweight, stand-alone, executable package of a piece of software that includes everything needed to run it: code, runtime, system tools, system libraries, settings
+lightweight, stand-alone, executable packages of a piece of software that include everything needed to run it: code, runtime, system tools, system libraries, settings
 <!-- .element: class="panel panel-default" style="margin: 2em 0;"-->
 
-- containerized software will always run the same, regardless of the environment<!-- .element: class="icon plus" -->
-- containers isolate software from its surroundings<!-- .element: class="icon plus" -->
+- will always run the same, regardless of the environment<!-- .element: class="icon plus" -->
+- isolate software from its surroundings<!-- .element: class="icon plus" -->
 - negligible runtime overhead<!-- .element: class="icon plus" -->
-- image preparation<!-- .element: class="icon minus" -->
+- container image preparation (software install, configuration)<!-- .element: class="icon minus" -->
 - setup complexity/security<!-- .element: class="icon minus" -->
 
 
@@ -132,9 +132,9 @@ it refers to records of the inputs, entities, systems, and processes that influe
 
 ## Other Analyses
 
-- maintain readme files
+- readme files
     - if the get messy and hard to manage <i class="fa fa-arrow-right blue"></i> explore specific bash history for analysis folders
-- use version control ([git](https://git-scm.com)<!-- .element: class="extern" --> recommended)
+- version control ([git](https://git-scm.com)<!-- .element: class="extern" --> recommended)
 ```bash
 $ tree
 .
@@ -149,8 +149,8 @@ $ tree
 ...
 ```
 - publish script source on [GitHub](https://github.com)<!-- .element: class="extern" --> (and/or other online resource)
-- use containers
-- keep [data provenance](#/4/3)
+- [containerized processing](#/3/3)
+- [data provenance](#/3/4)
 
 ------
 
@@ -160,7 +160,13 @@ $ tree
 ## Organize
 
 - organize files in `project` folders
+- store metadata information in a database
 - keep a global index of the lab projects data (internal and external)
+
+
+## Access
+
+Common access operations and use cases <i class="fa fa-question fa-lg blue"></i> <i class="fa fa-question fa-lg red fa-rotate-180"></i>
 
 
 ## Publish
