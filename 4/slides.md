@@ -38,9 +38,9 @@ software-based management system with features that support a modern laboratory'
 Do we need a LIMS?
 
 
-
 ## Maybe not...
-<iframe style="width: 95%; height: 12em" data-src="../iframes/sheet.html"></iframe>
+<!-- .element: style="margin-top: 0.5em;" -->
+<iframe class="stretch" data-src="../iframes/sheet.html"></iframe>
 
 
 ## Use Google Docs
@@ -189,17 +189,21 @@ define common policies, operations and use cases in order to optimize storage, r
 ## Publish
 
 - personal web folder (`public_html` or `public-docs`)
-- in-house web server (e.g. http://rnamaps.crg.eu)<!-- .element: class="extern" -->
+- in-house web server (e.g. next slides)<!-- .element: class="extern" -->
 - public resources:
     - [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra)<!-- .element: class="extern" -->
     - [EBI ArrayExpress](https://www.ebi.ac.uk/arrayexpress/)<!-- .element: class="extern" -->
 - hybrid (in-house + public)
 
 
-<iframe class="stretch" src="http://rnaseq.crg.eu/project/ENCODE/"></iframe>
+<iframe class="stretch" data-src="http://rnaseq.crg.eu/project/ENCODE/"></iframe>
+
+[Old Grape RNAseq @ CRG](http://rnaseq.crg.eu)
 
 
-<iframe class="stretch" src="http://rnamaps.crg.eu"></iframe>
+<iframe class="stretch" data-src="http://rnamaps.crg.eu"></iframe>
+
+[RNAmaps @ CRG](http://rnamaps.crg.eu)
 
 ------
 
