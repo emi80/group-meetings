@@ -14,12 +14,28 @@
 
 ------
 
-# Experiment Data
+# Management
+
+
+## Experiment Data
+<!-- .element: style="font-size: 2.8em"-->
+
+
+## LIMS
+`Laboratory Information Management System`
+
+software-based management system with features that support a modern laboratory's operation <!-- panel -->
+
+- workflow and data tracking
+- electronic laboratory notebook (ELN)
+- data mining and analysis
+- enterprise resource planning
+
 
 
 <!-- .slide: data-state="no-nav-bar" data-background="#111111" -->
 <!-- .element: class="big light" -->
-Do we need a LIMS/Electronic Notebook?
+Do we need a LIMS?
 
 
 
@@ -36,13 +52,22 @@ Do we need a LIMS/Electronic Notebook?
 - stored on Google servers<!-- .element: class="icon minus" -->
 
 
+## Programmatic access
+
+[Google Sheets API](https://developers.google.com/sheets/api/) allow to read, write, and format data in Sheets. Programmatically create and update pivot tables, data validation, charts and more.
+<!-- panel -->
+
+- can be fetched with `curl`
+- client libraries for common programming languages (e.g. `Python`, `Java`)
+
+
 ## Other documents
 
 use a shared resource (Dropbox, remote folder) to store all documents related to libraries, sequences and data in general<!-- .element: class="panel panel-default" style="margin-top: 1.5em;" --> <i class="fa-question fa-lg blue"></i><i class="fa-question fa-lg red fa-rotate-180"></i>
 
-------
 
-# Metadata
+## Metadata
+<!-- .element: style="font-size: 2.8em"-->
 
 
 ## Controlled Vocabulary
@@ -107,7 +132,8 @@ it refers to records of the inputs, entities, systems, and processes that influe
 
 ## Other Analyses
 
-- readme files are ok but can get messy and hard to manage <i class="fa fa-arrow-right blue"></i> can use specific bash history for analysis folders
+- maintain readme files
+    - if the get messy and hard to manage <i class="fa fa-arrow-right blue"></i> explore specific bash history for analysis folders
 - use version control ([git](https://git-scm.com)<!-- .element: class="extern" --> recommended)
 ```bash
 $ tree
@@ -123,11 +149,18 @@ $ tree
 ...
 ```
 - publish script source on [GitHub](https://github.com)<!-- .element: class="extern" --> (and/or other online resource)
-- store [data provenance](#/4/3)
+- use containers
+- keep [data provenance](#/4/3)
 
 ------
 
-# Organizing and Publishing
+# Storage
+
+
+## Organize
+
+- organize files in `project` folders
+- keep a global index of the lab projects data (internal and external)
 
 
 ## Publish
