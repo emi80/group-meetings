@@ -38,8 +38,9 @@
 
 	<body>
 	  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
+      <div class="container-fluid">
         <div class="navbar-collapse collapse">
+		<span class="navbar-brand"></span>
           <ul id="nav-sections" class="nav navbar-nav navbar-right">
           </ul>
         </div>
@@ -221,6 +222,7 @@
 				$('a.extern').attr('target', '_blank');
 				$('.rst-other-versions a').attr('target', '');
 				document.title = $(Reveal.getSlide(0)).find('h1').text();
+				$('.navbar-brand').text(document.title);
 				$(".reveal .slides>section").each(function ( index ) {
 					var header = $(this).find('h1.extra')
 					if (index>0) {

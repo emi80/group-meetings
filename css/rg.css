@@ -314,8 +314,8 @@ i.fa {
   .reveal i {
     font-family: 'FontAwesome';
     font-style: normal; }
-  .reveal i.fa-lg {
-    font-size: 1.33em; }
+    .reveal i.fa-lg {
+      font-size: 1.33em; }
   .reveal .panel-default {
     background-color: rgba(83, 84, 94, 0.1);
     padding: 0.6em 1em; }
@@ -372,6 +372,10 @@ i.fa {
   z-index: 100;
   background-color: transparent;
   /*border-bottom: none;*/ }
+  .navbar > .container-fluid .navbar-brand {
+    margin-left: 0px;
+    padding: 5px;
+    height: auto; }
 
 .nav {
   font-size: 0.8em;
@@ -386,14 +390,10 @@ i.fa {
   line-height: inherit;
   /*border-bottom: 2px solid transparent;*/ }
 
-.navbar-inverse .navbar-nav > li > a:hover,
-.navbar-inverse .navbar-nav > li > a:focus {
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
   color: #F0F1EB;
   background-color: transparent; }
-
-.navbar-inverse .navbar-nav > .active > a,
-.navbar-inverse .navbar-nav > .active > a:hover,
-.navbar-inverse .navbar-nav > .active > a:focus {
+.navbar-inverse .navbar-nav > .active a, .navbar-inverse .navbar-nav > .active a:hover, .navbar-inverse .navbar-nav > .active a:focus {
   color: #F0F1EB;
   background-color: transparent;
   background-image: none;
