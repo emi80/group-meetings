@@ -248,10 +248,10 @@
       });
 
 			$(document).keypress(function(e){
-				console.log(e.which);
 				if (e.which == 117) toggleFonts(); // 'u' pressed
 				if (e.which == 116) toggleNavbar(); // 't' pressed
 				if (e.which == 118) toggleVersions(); // 'v' pressed
+				if (e.which == 48) Reveal.slide(0); // '0' pressed
 			});
 
 			function toggleNavbar() {
