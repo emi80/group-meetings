@@ -50,6 +50,7 @@ Do we need a LIMS?
 - customization<!-- .element: class="icon plus" -->
 - no consistency check/enforcing<!-- .element: class="icon minus" -->
 - stored on Google servers<!-- .element: class="icon minus" -->
+- use Google authentication<!-- .element: class="icon tilde" -->
 
 
 ## Programmatic access
@@ -58,7 +59,7 @@ Do we need a LIMS?
 <!-- panel -->
 
 - `curl` access
-- client libraries (e.g. `Python`, `Java`)
+- client libraries (e.g. `Python`, `Java`, `Go`)
 
 
 ## Other documents
@@ -81,12 +82,12 @@ use a shared resource (Dropbox, remote folder) to store all documents related to
 
 ## Metadata Attributes
 
-choose a common set of attributes which best describes the project, experiments and data and stick to it<!-- panel -->
+choose a common set of attributes which best describes the project, experiments and data<!-- panel -->
 
 1. unique identifier for each experiment/sample
 1. description fields - check verbosity
 1. internal vs public attributes
-1. map to standard metadata models (subset) (e.g. [IHEC](https://github.com/IHEC/ihec-metadata))
+1. map to standard metadata models (e.g. [IHEC](https://github.com/IHEC/ihec-metadata), [GA4GH](https://github.com/ga4gh/metadata-team))
 ------
 
 # Analysis
@@ -107,18 +108,6 @@ choose a common set of attributes which best describes the project, experiments 
 - ipsa-nf [<i  class="fa fa-github fa-lg fa-right"></i>](https://github.com/guigolab/ipsa-nf)
 
 ![Nextflow](../img/nextflow2014_no-bg.png)<!-- .element: style="height: 50px; "-->
-
-
-## grape-nf IHEC
-
-- switch `samtools` to [`sambamba`](http://lomereiter.github.io/sambamba/)<!-- .element: class="extern" --> (faster and more flexible)
-- add read trimming step
-- provide IHEC read `QC metrics`:
-    - % mapped
-    - % intergenic
-    - % ribosomal
-    - % duplicate
-- output results in a ordered folder structure (e.g. by experiment or data type)
 
 
 ## Containers
@@ -207,16 +196,22 @@ define common policies, operations and use cases in order to optimize storage, r
 
 ------
 
-# Tools
+# Development
 
 
-## Development
-build a set of tools for data management and access <!-- panel->(green) -->
+## Tools
+<!-- .element: style="font-size: 2.8em"-->
+
+
+## Data
+build a set of tools for data and metadata management and access <!-- panel->(green) -->
 
 - simple user interface
 - persistence of data and metadata (using a `key-value` store)
 - optimized import and update
 - fast information retrieval and manipulation
+- cross-project access
+- metadata query
 
 
 ## Config
@@ -276,25 +271,52 @@ attributes = [
 ```
 
 
-## Usage
+## Operations
 
-```
-main command
+|        |   |
+|--------|---|
+| `import` | import data and metadata from provider |
+| `show`   | retrieve data and metadata |
+| `update` | add/update data and metadata |
+| `link  ` | create links to data files using metadata information |
 
-Usage:
-  main [command]
+...<!-- .element: style="font-family: 'monospace'; font-size: 1.5em;"-->
 
-Available Commands:
-  help        Help about any command
-  import      Import data from provider
-  show        Retrieve data and metadata
-  add         Add data and metadata to the index
 
-Flags:
-      --config string   The config file to use (default "config")
-      --db string       The database (default "db")
-  -h, --help            help for idx
-```
+## Pipelines
+<!-- .element: style="font-size: 2.8em"-->
+
+
+## grape-nf
+
+- add reference files check (e.g. matching chromosomes, correct file format)
+- add mapping/filtering of `contaminant/abundant` sequences (e.g. ribosomal, viral/bacterial panels)
+- read duplicates <i class="fa fa-question fa-lg blue"></i><i class="fa fa-question fa-lg red"></i>
+- test and release `Riboprofiling` processing
+
+
+## grape-nf @ IHEC
+
+- add read trimming step
+- improve performance:
+	- switch `samtools` to [`sambamba`](http://lomereiter.github.io/sambamba/)<!-- .element: class="extern" -->
+	- improve current template scripts (<i class="fa fa-check green"></i>)
+- provide IHEC read `QC metrics`:
+    - `%` mapped
+    - `%` intergenic
+    - `%` ribosomal
+    - `%` duplicate
+- optional output folder structure (e.g. by experiment) <i class="fa fa-question fa-lg blue"></i><i class="fa fa-question fa-lg red"></i>
+
+
+## chip-nf @ IHEC
+
+- adapt pipeline to `IHEC` workflow
+- update tools and versions (e.g. use `bwa` for mapping)
+- add `IHEC` consensus metrics
+	- reads metrics (original, aligned, duplicated, final after dedup and `MAPQ>5`)
+	- Jensen-Shannon distance (`JSD`) and `CHANCE` divergence [<i class="fa fa-external-link"></i>](http://deeptools.readthedocs.io/en/latest/content/feature/plotFingerprint_QC_metrics.html?highlight=jensen%20CHANCE)<!-- .element: class="extern"-->
+	- `FRiP` scores
 ------
 
 <!-- .slide: data-background-image="../img/thank-you.png" data-background-size="50%" data-background-color="#fff"> -->
