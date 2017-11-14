@@ -28,3 +28,13 @@
   color: #a94442;
   margin-right: 1em;
 }
+
+.reveal ul > li.tilde:before {    
+  font-family: 'monospace';
+  font-weight: bold;
+  content: '\223c';
+  width: 1.8em;
+  font-size: 0.8em;
+  color: #cfc100;
+  margin-right: 0.5em;
+}
