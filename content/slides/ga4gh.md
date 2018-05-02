@@ -1,7 +1,7 @@
 ---
 title: "GA4GH"
 date: "2017-02-01"
-draft: true
+aliases: "/3"
 ---
 
 # Introduction

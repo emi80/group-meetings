@@ -1,7 +1,7 @@
 ---
 title: "RNAseq Pipelines"
 date: "2014-06-25"
-draft: true
+aliases: "/1"
 ---
 
 # Blueprint pipeline

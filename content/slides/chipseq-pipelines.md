@@ -1,7 +1,7 @@
 ---
 title: "ChIP-seq Pipelines"
 date: "2016-01-13"
-draft: true
+aliases: "/2"
 ---
 
 # Introduction

@@ -1,7 +1,7 @@
 ---
 title: "NGS Data Flow"
 date: "2017-11-15"
-draft: true
+aliases: "/4"
 ---
 
 - Managing experiments, samples and assays data 
