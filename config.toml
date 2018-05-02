@@ -1,3 +1,6 @@
-baseURL = "http://example.org/"
+baseURL = "https://public-docs.crg.es/rguigo/Data/epalumbo/group-meetings/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Lab Meeting"
+
+[params]
+author = "Emilio Palumbo"

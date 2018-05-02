@@ -4,8 +4,21 @@
 {{ partial "head/meta.html" . }}
 {{ partial "head/styles.html" . }}
 </head>
+<body>
+{{ partial "header/navbar.html" . }}
 <div class="reveal">
 <div class="slides">
+<section>
+	<h1>{{ .Title }}</h1>
+	<h3 style="margin-top: 1.2em;">{{ .Site.Title }}</h3>
+	<p>
+		<small>
+			{{ .Site.Params.Author }}
+			<br>
+			{{ .Date.Format "January 2, 2006" }}
+		</small>
+	</p>
+</section>
 <section data-markdown
 	data-separator="^------"
 	data-separator-vertical="^\n\n"
@@ -16,4 +29,5 @@
 </div>
 </div>
 {{ partial "footer/js.html" . }}
+</body>
 </html>

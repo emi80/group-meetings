@@ -1,15 +1,8 @@
 ---
 title: "RNAseq Pipelines"
 date: "2014-06-25"
-type: slides
 draft: true
 ---
-
-# RNAseq Pipelines
-
-### Lab Meeting
-<!-- .element: style="margin-top: 1.2em;"-->
-------
 
 # Blueprint pipeline
 
