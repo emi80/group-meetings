@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{ partial "head/meta.html" . }}
+{{ partial "head/styles.html" . }}
+</head>
+<div class="reveal">
+<div class="slides">
+<section data-markdown
+	data-separator="^------"
+	data-separator-vertical="^\n\n"
+	data-separator-notes="^Note:"
+	data-charset="UTF-8">
+{{ .RawContent }}
+</section>
+</div>
+</div>
+{{ partial "footer/js.html" . }}
+</html>
