@@ -194,7 +194,7 @@ final peak calls
 # RG lab  
 
 <h4>
-[![Nextflow pipeline](../img/nextflow2014_no-bg.png)<!-- .element: class="pipeline" -->](http://www.nextflow.io/)
+[![Nextflow pipeline](/img/nextflow2014_no-bg.png)<!-- .element: class="pipeline" -->](http://www.nextflow.io/)
 pipeline in development
 </h4>
 <a href="https://github.com/guigolab"><i class="fa fa-github"> Guigo Lab</i></a>
