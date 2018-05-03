@@ -685,10 +685,10 @@ run('pigz', input=sorted_fastq, output=output)
 
 
 ## Multiplexing
-<!-- .element: style="margin-bottom: 0.6em;"-->
+
 <div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i>
 Automatic expansion of wildcard for multiple input files. The tool/pipeline will be replicated across all input files.</div>
-<!-- .element: style="margin-bottom: 2em;"-->
+<!-- .element: style="margin-bottom: 0.5em;"-->
 
 ```bash
 $ ./sort_fastq.jip -i *_1.fastq -- --dry --show

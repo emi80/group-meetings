@@ -56,7 +56,7 @@ function vslidedots(event, el){
     var subslides = horizontal_slides[idxh].querySelectorAll('section');
 
     // return current_slide.toString()+"/"+totalslides.toString();
-    return Array(idxv+1).join('<i class="fa fa-dot-circle-o"></i>')+Array(subslides.length-idxv).join('<i class="dot fa fa-circle-o"></i>');
+    return Array(idxv+1).join('<i class="dot fa fa-dot-circle-o"></i>')+Array(subslides.length-idxv).join('<i class="dot fa fa-circle-o"></i>');
 }
 
 function renderPanel(element) {
