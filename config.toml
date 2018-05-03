@@ -1,6 +1,6 @@
 baseURL = "https://public-docs.crg.es/rguigo/Data/epalumbo/group-meetings/"
 languageCode = "en-us"
-title = "Lab Meeting"
+title = "Group Meetings"
 
 [params]
 author = "Emilio Palumbo"

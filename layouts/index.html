@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{ partial "head/meta.html" . }}
+{{ partial "head/styles.html" . }}
+</head>
+<body>
+<div class="container fluid">
+    <h1>{{ .Site.Title }}</h1>
+    {{ with .Site.GetPage "section" "slides" }}
+    {{ range .Data.Pages }}
+        <p>
+        <aside>{{ .Date.Format "January 2, 2006"}}</aside>
+        <a href="{{ .Permalink }}" style="color:black;">{{ .Title }}</a>{{ if .Draft }} <span style="color:#FF4136;">(unpublished)</span>{{ end }}
+        </p>
+    {{ end }}
+    {{ end }}
+</div>
+</body>
+</html>
