@@ -2,6 +2,7 @@
 title: "RNAseq Pipelines"
 date: "2014-06-25"
 aliases: "/1"
+layout: reveal
 ---
 
 # Blueprint pipeline

@@ -2,33 +2,8 @@
 <html lang="en">
 <head>
 {{ partial "head/meta.html" . }}
-{{ partial "head/styles.html" . }}
-{{ partial "head/js.html" . }}
 </head>
 <body>
-{{ partial "header/navbar.html" . }}
-<div class="reveal">
-<div class="slides">
-<section>
-	<h1>{{ .Title }}</h1>
-	<h3 style="margin-top: 1.2em;">Lab Meeting</h3>
-	<p>
-		<small>
-			{{ .Site.Params.Author }}
-			<br>
-			{{ .Date.Format "January 2, 2006" }}
-		</small>
-	</p>
-</section>
-<section data-markdown
-	data-separator="^------"
-	data-separator-vertical="^\n\n"
-	data-separator-notes="^Note:"
-	data-charset="UTF-8">
-{{ .RawContent }}
-</section>
-</div>
-</div>
-{{ partial "footer/js.html" . }}
+{{ .Content }}
 </body>
 </html>

@@ -2,6 +2,7 @@
 title: "ChIP-seq Pipelines"
 date: "2016-01-13"
 aliases: "/2"
+layout: reveal
 ---
 
 # Introduction
@@ -194,7 +195,7 @@ final peak calls
 # RG lab  
 
 <h4>
-[![Nextflow pipeline](/img/nextflow2014_no-bg.png)<!-- .element: class="pipeline" -->](http://www.nextflow.io/)
+[![Nextflow pipeline](nextflow2014_no-bg.png)<!-- .element: class="pipeline" -->](http://www.nextflow.io/)
 pipeline in development
 </h4>
 <a href="https://github.com/guigolab"><i class="fa fa-github"> Guigo Lab</i></a>

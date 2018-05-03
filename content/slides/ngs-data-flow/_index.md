@@ -2,6 +2,7 @@
 title: "NGS Data Flow"
 date: "2017-11-15"
 aliases: "/4"
+layout: reveal
 ---
 
 - Managing experiments, samples and assays data 
@@ -40,7 +41,7 @@ Do we need a LIMS?
 
 ## Maybe not...
 <!-- .element: style="margin-top: 0.5em;" -->
-<iframe class="stretch" data-src="/iframes/sheet.html"></iframe>
+<iframe class="stretch" data-src="sheet"></iframe>
 
 
 ## Use Google Docs
@@ -107,7 +108,7 @@ choose a common set of attributes which best describes the project, experiments 
 - chip-nf [<i class="fa fa-github fa-lg fa-right"></i>](https://github.com/guigolab/chip-nf)
 - ipsa-nf [<i  class="fa fa-github fa-lg fa-right"></i>](https://github.com/guigolab/ipsa-nf)
 
-![Nextflow](/img/nextflow2014_no-bg.png)<!-- .element: style="height: 50px; "-->
+![Nextflow](nextflow2014_no-bg.png)<!-- .element: style="height: 50px; "-->
 
 
 ## Containers
@@ -319,4 +320,4 @@ attributes = [
 	- `FRiP` scores
 ------
 
-<!-- .slide: data-background-image="../img/thank-you.png" data-background-size="50%" data-background-color="#fff"> -->
+<!-- .slide: data-background-image="thank-you.png" data-background-size="50%" data-background-color="#fff"> -->
