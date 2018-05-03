@@ -293,7 +293,7 @@ body {
   font-weight: 300;
   -webkit-font-smoothing: subpixel-antialiased; }
 
-i.fa {
+i.fa.dot {
   font-size: 0.7em;
   padding: 0.05em; }
 

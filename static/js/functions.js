@@ -56,7 +56,7 @@ function vslidedots(event, el){
     var subslides = horizontal_slides[idxh].querySelectorAll('section');
 
     // return current_slide.toString()+"/"+totalslides.toString();
-    return Array(idxv+1).join('<i class="fa fa-dot-circle-o"></i>')+Array(subslides.length-idxv).join('<i class="fa fa-circle-o"></i>');
+    return Array(idxv+1).join('<i class="fa fa-dot-circle-o"></i>')+Array(subslides.length-idxv).join('<i class="dot fa fa-circle-o"></i>');
 }
 
 function renderPanel(element) {
@@ -123,7 +123,6 @@ Reveal.addEventListener( 'ready', function( event ) {
     $('a.extern').attr('target', '_blank');
     $('.rst-other-versions a').attr('target', '');
     document.title = $(Reveal.getSlide(0)).find('h1').text();
-    $('.navbar-brand').text(document.title);
     $(".reveal .slides>section").each(function ( index ) {
         var header = $(this).find('h1.extra')
         if (index>0) {
