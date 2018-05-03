@@ -104,7 +104,7 @@ fasta and `umap` files are used.
 # ENCODE
 
 <h4>
-[![DNAnexus pipeline](http://sra.dnanexus.com/images/dnanexus.png)<!-- .element: class="pipeline" -->](https://www.dnanexus.com/)
+[![DNAnexus pipeline](dnanexus.png)<!-- .element: class="pipeline" -->](https://www.dnanexus.com/)
 pipeline in development
 </h4>
 <a href="https://github.com/ENCODE-DCC/chip-seq-pipeline/"><i class="fa fa-github"> ENCODE DCC</i></a>
@@ -359,14 +359,14 @@ H000H3K4me2X1   /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/aa
 - fraction of reads in enriched intervals
 - **other criteria**?
 
-![](http://ihec-epigenomes.org/fileadmin/ihec/images/logo.png)
+![](ihec.png)
 <!-- .element: style="margin-top: 2em;"-->
 
 
 ## Check other references
 <!-- .element: style="margin-bottom: 0.6em;"-->
 
-- [![IHEC](http://ihec-epigenomes.org/fileadmin/ihec/images/logo.png)<!-- .element: class="pipeline" style="vertical-align: baseline;" -->](http://ihec-epigenomes.org/outcomes/protocols/) protocols
+- [![IHEC](ihec.png)<!-- .element: class="pipeline" style="vertical-align: baseline;" -->](http://ihec-epigenomes.org/outcomes/protocols/) protocols
 - CRG Bioinformatics Unit
 
 
