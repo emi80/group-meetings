@@ -20,7 +20,7 @@ http://genomicsandhealth.org/
 
 ## Organization
 
-![](Global-Alliance-how-we-work-v2.jpg)<!-- .element: style="width: 70%; box-shadow: none;margin-bottom: 0em;"-->
+![](Global-Alliance-how-we-work-v2.jpg)<!-- .element: style="width: 60%; box-shadow: none;margin-bottom: 0em;"-->
 
 
 ## Working Groups
@@ -48,9 +48,8 @@ create global standards and tools for the secure, privacy respecting and interop
 
 ## Genomics API
 
-![](GA4GH_API_interop.png)<!-- .element: style="width: 80%; box-shadow: none;margin-bottom: 0em;"-->
+![](GA4GH_API_interop.png)<!-- .element: style="width: 70%; box-shadow: none;margin-bottom: 0em;"-->
 
-<!-- .element: class="footer" style="bottom:-10%; left: 10%;"-->
 [GA4GH Documentation](http://ga4gh.org/#/documentation)
 
 
