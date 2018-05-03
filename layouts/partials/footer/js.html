@@ -1,6 +1,31 @@
-<script src="./js/jquery-2.0.3.min.js"></script>
-<script src="./js/jquery-migrate-1.2.1.min.js"></script>
-<script src="./reveal.js/lib/js/head.min.js"></script>
-<script src="./reveal.js/js/reveal.js"></script>
-<script src="./bootstrap/js/bootstrap.min.js"></script>
-<script src="./js/functions.js"></script>
+<script src="{{ .Site.BaseURL }}/js/jquery-2.0.3.min.js"></script>
+<script src="{{ .Site.BaseURL }}/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="{{ .Site.BaseURL }}/reveal.js/lib/js/head.min.js"></script>
+<script src="{{ .Site.BaseURL }}/reveal.js/js/reveal.js"></script>
+<script src="{{ .Site.BaseURL }}/bootstrap/js/bootstrap.min.js"></script>
+<script src="{{ .Site.BaseURL }}/js/functions.js"></script>
+<script>
+Reveal.initialize({
+    controls: false,
+    progress: false,
+    history: true,
+    center: true,
+    slideNumber: "c",
+    embedded: false,
+    previewLinks: false,
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+    backgroundTransition: 'none',
+
+    margin: 0,
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+        { src: '{{ .Site.BaseURL }}/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '{{ .Site.BaseURL }}/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '{{ .Site.BaseURL }}/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '{{ .Site.BaseURL }}/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: '{{ .Site.BaseURL }}/reveal.js/plugin/zoom-js/zoom.js', async: true },
+        { src: '{{ .Site.BaseURL }}/reveal.js/plugin/notes/notes.js', async: true }
+    ]
+});
+</script>

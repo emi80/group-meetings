@@ -26,29 +26,6 @@ var noNavBar = false;
 //         });
 //     });
 // });
-Reveal.initialize({
-    controls: false,
-    progress: false,
-    history: true,
-    center: true,
-    slideNumber: "c",
-    embedded: false,
-    previewLinks: false,
-    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-    transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
-    backgroundTransition: 'none',
-
-    margin: 0,
-    // Optional libraries used to extend on reveal.js
-    dependencies: [
-        { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-        { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        { src: './reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-        { src: './reveal.js/plugin/zoom-js/zoom.js', async: true },
-        { src: './reveal.js/plugin/notes/notes.js', async: true }
-    ]
-});
 
 function getPresentationDate(dateString) {
     var d = new Date(dateString);
