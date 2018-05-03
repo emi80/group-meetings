@@ -1,0 +1,237 @@
+/**
+ * White theme for reveal.js. This is the opposite of the 'black' theme.
+ *
+ * By Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../../reveal.js/css/theme/template/mixins";
+@import "../../reveal.js/css/theme/template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(../../reveal.js/lib/font/source-sans-pro/source-sans-pro.css);
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #53545E;
+$headingColor: #53545E;
+
+// other colors
+$revealRed: #a94442;
+$revealGreen: #3c763d;
+$revealBlue: #31708f;
+
+$mainFontSize: 1.9em;
+$mainFontWeight: 300;
+$mainFont: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+$headingFont: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+$headingFontVariant: small-caps;
+$headingMargin: 0 0 20px 0;
+$headingLetterSpacing: 0.04em;
+$headingLineHeight: 0.9em;
+$headingTextShadow: none;
+$headingTextTransform: none;
+$headingFontWeight: $mainFontWeight;
+$linkColor: #2a76dd;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+$strongFontWeight: 500;
+
+// $heading1Size: 2.5em;
+// $heading2Size: 1.6em;
+// $heading3Size: 1.3em;
+// $heading4Size: 1.0em;
+
+// Theme template ------------------------------
+@import "../../reveal.js/css/theme/template/theme";
+// ---------------------------------------------
+
+body {
+	font-family: $mainFont;
+	font-weight: $mainFontWeight;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
+
+i {
+	&.fa {
+		font-size: 0.7em;
+		padding: 0.05em;
+	}
+}
+
+.reveal {
+	font-weight: $mainFontWeight;
+
+	.blue {
+		color: $revealBlue;
+	}
+
+	.green {
+		color: $revealGreen;
+	}
+
+	.red {
+		color: $revealRed;
+	}
+	
+	h1, h2, h3, h4, h5, h6 {
+		font-variant: $headingFontVariant;
+		-webkit-hyphens: none;
+		hyphens: none;
+	}
+	a {
+		color: lighten( $revealBlue, 15% );
+	}
+
+	i {
+		font-family: 'FontAwesome';
+		font-style: normal;
+		
+		&.fa-lg {
+			font-size: 1.33em;
+		}
+
+		&.fa-right {
+			margin-left: 0.5ex;
+			clear: right;
+			float: right;
+		}
+	}
+
+
+	.panel-default {
+		background-color: rgba(83, 84, 94, 0.1);
+		padding: 0.6em 1em;
+		margin: 1.2em;
+	  }
+
+	section  {
+		.has-dark-background {
+			&, h1, h2, h3, h4, h5, h6 {
+				color: #fff;
+			}
+		}
+
+		.fragment.grow.visible {
+			color: $revealBlue;
+		}
+
+		.pipeline {
+			width: 20%;
+			margin-bottom: 0;
+			vertical-align: baseline;
+			box-shadow: none;
+		}
+
+		img {
+			margin: 15px 0px;
+			background: rgba(255, 255, 255, 0.12);
+			border: none;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+			-webkit-transition: all .2s linear;
+			-moz-transition: all .2s linear;
+			-ms-transition: all .2s linear;
+			-o-transition: all .2s linear;
+			transition: all .2s linear; 
+		}
+	}
+
+	strong {
+		font-weight: $strongFontWeight;
+	}
+
+	pre code {
+		white-space: pre;
+	}
+
+	.slide-number {
+		color: $mainColor;
+		position: fixed;
+		display: block;
+		right: 48%;
+		bottom: 15px;
+		opacity: .7;
+		z-index: 31;
+		width: 4em;
+		font-size: 0.5em;
+		font-weight: $strongFontWeight;
+		text-align: center;
+		background-color: transparent;
+	}
+
+	.header {
+		font-size: 0.8em;
+		position: absolute;
+		top: -40%;
+		left: 0%;
+	}
+	  
+	.footer {
+		font-size: 0.8em;
+		position: absolute; 
+		left: 0%;
+		bottom: -50%;
+	}
+
+}
+
+// Bootstrap navbar ----------------------------
+.navbar {
+	min-height: 0em;
+	margin-bottom: 0.1em;
+	z-index: 100;
+	background-color: transparent;
+
+	/*border-bottom: none;*/
+
+	> .container-fluid .navbar-brand {
+		margin-left: 0px;
+		padding: 5px;
+		height: auto;
+	}
+}
+  
+.nav {
+	font-size: 0.8em;
+	font-variant: small-caps;
+}
+  
+.navbar-default {
+	background-image: linear-gradient(to top,#D5D6D1 0,#F0F1EB 100%);
+}
+  
+.navbar-nav > li > a {
+	padding-top: 0.3em;
+	padding-bottom: 0.3em;
+	line-height: inherit;
+	/*border-bottom: 2px solid transparent;*/
+}
+  
+.navbar-inverse .navbar-nav  {
+	> li {
+		> a{
+			&:hover, &:focus {
+				color: #F0F1EB;
+				background-color: transparent;
+				// border-bottom: 2px solid rgba(222, 222, 0, 0.9);
+			}
+		}
+	}
+	> .active {
+		a {
+			&, &:hover, &:focus {
+				color: #F0F1EB;
+				background-color: transparent;
+				background-image: none;
+				box-shadow: none;
+				// border-bottom: 2px solid rgba(222, 222, 0, 0.9);
+			}
+		}
+	}
+}
+// -------------------------------------------
