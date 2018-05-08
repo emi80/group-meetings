@@ -224,17 +224,18 @@ $ conda activate my-env
 ### non-Python programs and libraries<!-- .element: class="normal-font" -->
 
 ```bash
-$ conda install star
+$ conda install blast
 ```
-<!-- .element: class="big" style="font-size:1.7em;margin-top: 1em;width: 55%;"-->
+<!-- .element: class="big" style="font-size:1.7em;margin-top: 1em;width: 57%;"-->
 
 ```bash
-$ conda install perl-bioperl
+$ conda install -c bioconda star
 ```
-<!-- .element: class="big" style="font-size:1.7em;margin-top: 1em;width: 75%;"-->
+<!-- .element: class="big" style="font-size:1.7em;margin-top: 1em;width: 86%;"-->
 
 
 ### binary distributions<!-- .element: class="normal-font" -->
+(no compilation required)<!-- .element: class="text-info" -->
 
 
 ### no admin privileges required<!-- .element: class="normal-font" -->
@@ -256,9 +257,14 @@ $ conda env create -f my-env.yml
 ### latest versions of Python 2 and 3<!-- .element: class="normal-font" -->
 
 ```bash
-$ conda create -n py2 python=2
+$ conda create -n py python=2
 ```
-<!-- .element: class="big" style="font-size:1.5em;margin-top: 1em;width: 71%;"-->
+<!-- .element: class="big" style="font-size:1.5em;margin-top: 1em;width: 69%;position: absolute;top: 50%;left: 14%;"-->
+
+```python
+$ conda create -n py python=3
+```
+<!-- .element: class="big fragment" style="font-size:1.5em;margin-top: 1em;width: 69%;position:absolute;top: 50%;left: 14%;box-shadow: none;"-->
 
 ------
 <!-- .slide: data-background-image="thank-you.png" data-background-size="50%" data-background-color="#fff" -->
