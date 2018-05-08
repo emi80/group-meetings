@@ -9,7 +9,7 @@ layout: reveal
 # Status
 
 
-<!-- .slide: data-background-image="dishes.jpg" -->
+<!-- .slide: data-state="no-nav-bar" data-background-image="dishes.jpg" -->
 
 ------
 # Compiled software
@@ -261,7 +261,7 @@ $ conda create -n py python=2
 ```
 <!-- .element: class="big" style="font-size:1.5em;margin-top: 1em;width: 69%;"-->
 
-`=3`
+`=3` 
 <!-- .element: class="fragment" style="font-size:1.5em; background-color:#3f3f3f;position: fixed; right: 16.8%; top: 50.8%;"-->
 
 <!-- .element: class="big" style="font-size:1em;margin-top: 1.4em;width: 69%;position:absolute;top: 30%;left: 47%;"-->
