@@ -259,12 +259,12 @@ $ conda env create -f my-env.yml
 ```bash
 $ conda create -n py python=2
 ```
-<!-- .element: class="big" style="font-size:1.5em;margin-top: 1em;width: 69%;position: absolute;top: 50%;left: 14%;"-->
+<!-- .element: class="big" style="font-size:1.5em;margin-top: 1em;width: 69%;"-->
 
-```python
-$ conda create -n py python=3
-```
-<!-- .element: class="big fragment" style="font-size:1.5em;margin-top: 1em;width: 69%;position:absolute;top: 50%;left: 14%;box-shadow: none;"-->
+`=3`
+<!-- .element: class="fragment" style="font-size:1.5em; background-color:#3f3f3f;position: fixed; right: 16.8%; top: 50.8%;"-->
+
+<!-- .element: class="big" style="font-size:1em;margin-top: 1.4em;width: 69%;position:absolute;top: 30%;left: 47%;"-->
 
 ------
 <!-- .slide: data-background-image="thank-you.png" data-background-size="50%" data-background-color="#fff" -->
