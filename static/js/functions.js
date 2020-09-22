@@ -97,9 +97,22 @@ function updateSlide(show) {
     if (Reveal.isFirstSlide()) {
         $('.slide-number').css("visibility","hidden");
     }
-    if (Reveal.isLastSlide()) {
+    var slide = Reveal.getCurrentSlide();
+    var extra = $(slide).hasClass("extra");
+    if ((Reveal.isLastSlide() && !extra) || $(slide).hasClass("thanks")) {
         $('.slide-number').css("visibility","hidden");
         $(".navbar-fixed-top").css("display", "none");
+    }
+    if (extra) {
+        $(".navbar-fixed-top").css("display", "none");
+        var span = $(slide).find('span.extra');
+        if (span.length == 0) {
+            $(slide).append('<span class="rfooter extra">Additional slide</span>');
+        }
+        header = $(slide).find("h1");
+        if (header.length > 0) {
+            $('.slide-number').css("visibility","hidden");
+        }
     }
 }
 
@@ -111,11 +124,6 @@ Reveal.addEventListener( 'slidechanged', function( event ) {
         var text = $(this).html().split("<br>")[0];
         $(this).html(text+"<br>"+vslidedots(event,$(this).attr("id").split("-")[1]));
     })
-    var slide = Reveal.getCurrentSlide();
-    var header = $(slide).find('h1.extra');
-    if (header.length > 0) {
-        $('.slide-number').css("visibility","hidden");
-    }
 });
 
 Reveal.addEventListener( 'ready', function( event ) {
@@ -123,12 +131,13 @@ Reveal.addEventListener( 'ready', function( event ) {
     $('a.extern').attr('target', '_blank');
     $('.rst-other-versions a').attr('target', '');
     document.title = $(Reveal.getSlide(0)).find('h1').text();
-    $(".reveal .slides>section").each(function ( index ) {
-        var header = $(this).find('h1.extra')
+    $(".reveal .slides > section").each(function ( index ) {
         if (index>0) {
-            renderPanel($(this));
+            var header = $("h1", this);
+            var extra = $(this).hasClass('extra') || header.parent().hasClass('extra');
+            // renderPanel($(this));
             //setSlideIds($(this));
-            if (header.length == 0) {
+            if (!extra) {
                 $("#nav-sections").append('<li><a id="nav-'+(index)+'" href="#/'+(index)+'">'+$("h1", this).text()+'</a></li>')
             }
         }

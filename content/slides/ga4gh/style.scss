@@ -1,0 +1,35 @@
+.reveal h1 {
+  font-size: 3.2em;
+}
+
+.reveal pre code {
+  white-space: pre-wrap;
+}
+
+.reveal .rfooter {
+    position: fixed;
+    bottom: 5%;
+    right: 1%;
+    font-size: 1.2em;
+
+    > i {
+        font-size: 1.2em;
+    }
+}
+
+.reveal span.extra {
+    font-size: 0.7em;
+    color: rgba(4, 106, 165, 0.582);
+    font-weight: 500;
+}
+
+figure.plain {
+    > img {
+        box-shadow: none;
+    }
+}
+
+.reveal pre {
+    width: 100%;
+    padding: 0;
+}
