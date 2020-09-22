@@ -2,44 +2,48 @@
 title: "ChIP-seq Pipelines"
 date: "2016-01-13"
 aliases: "/2"
-layout: reveal
+outputs: ["Reveal"]
 ---
+
+{{% section %}}
 
 # Introduction
 
+---
 
 ## Motivation
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
-<!-- panel->(blue) -->
 Need for an automated pipeline for processing **ERC** project `ChIP-seq` samples
 
+---
 
 ## Former analysis
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
-<!-- panel -->
-<!-- .element: style="margin-bottom: 1.6em;"-->
 Manual workflow including the following steps:
 
 - mapping with `GEM`
 - fragment length estimation with `SPP` (`phantompeaktools`)
 - signal with `align2rawsignal` (a.k.a `WIGGLER`)
 
+---
 
 ## Drawbacks
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 - Manual execution
 - `align2rawsignal` requires a specific version of `MATLAB Runtime` and is unmantained
-------
+
+{{% /section %}}
+
+---
+
+{{% section %}}
 
 # Blueprint
 <a href="http://dcc.blueprint-epigenome.eu/#/md/chip_seq_grch38"><h4><i class="fa fa-external-link-square"> BLUEPRINT DCC</i></h4></a>
 
+---
 
 ## Workflow
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 1. [Mapping](#/BlueprintMapping)
 2. [Filtering](#/BlueprintFiltering)
@@ -47,72 +51,71 @@ Manual workflow including the following steps:
 4. [Peak Calling](#/BlueprintPeakCalling)
 5. [Wiggle Plots](#/BlueprintWigglePlots)
 
+---
 
+{{< slide id="BlueprintMapping" >}}
 ## Mapping
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
-<!-- panel->(blue) -->
-<!-- .element: style="margin-bottom: 2em;" -->
 `BWA` with default parameters + low quality trimming
 
-1. `bwa aln`
-  - max edit distance **0.04**
-  - trimming low quality (**<5**) reads
-  - disallow long gaps
-2. `bwa samse`
-  - max **3** output alignments
-3. mark duplicates
+  1. `bwa aln`
+      - max edit distance **0.04**
+      - trimming low quality (**<5**) reads
+      - disallow long gaps
+  2. `bwa samse`
+      - max **3** output alignments
+  3. mark duplicates
 
+---
 
+{{< slide id="BlueprintFiltering" >}}
 ## Filtering
-<!-- .element: style="margin-bottom: 0.6em;" -->
 
 - exclude SAM flag `1024`
   * PCR or optical duplicates
 - remove low quality (**<5**) mappings
 
+---
 
+{{< slide id="BlueprintModellingFragmentSize" >}}
 ## Modelling Fragment Size
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
-<!-- panel->(blue) -->
-<!-- .element: style="margin-bottom: 2em;"-->
 uses `SPP` to estimate the fragment size
 
+---
 
+{{< slide id="BlueprintPeakCalling" >}}
 ## Peak Calling
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
-<!-- panel->(blue) -->
-<!-- .element: style="margin-bottom: 2em;"-->
 uses `MACS2` to estimate the fragment size using both the standard method
 and the `-broad` flag depending on the mark in question
 
 - Standard: `H3K27me3`, `H3K36me3`, `H3K9me3`, `H3K4me1`
 - Broad: `H3K27ac`, `H3K4me3`, `H3K9/14ac`, `H2A.Zac`
 
+---
 
+{{< slide id="BlueprintWigglePlots" >}}
 ## Wiggle Plots
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
-<!-- panel->(blue) -->
-<!-- .element: style="margin-bottom: 2em;"-->
 uses `align2RawSignal` to produce signal plots. Sex specific
 fasta and `umap` files are used.
-------
+
+{{% /section %}}
+
+---
+
+{{% section %}}
 
 # ENCODE
 
-<h4>
-[![DNAnexus pipeline](dnanexus.png)<!-- .element: class="pipeline" -->](https://www.dnanexus.com/)
-pipeline in development
-</h4>
+{{< figure src="dnanexus.png" link="https://www.dnanexus.com/" width="20%" title="pipeline in development" class="plain" >}}
+
 <a href="https://github.com/ENCODE-DCC/chip-seq-pipeline/"><i class="fa fa-github"> ENCODE DCC</i></a>
 
-
+---
 
 ## Workflow
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 1. [Mapping](#/ENCODEMapping)
 2. [Filter QC](#/ENCODEFilterQC)
@@ -120,24 +123,24 @@ pipeline in development
 4. [MACS2](#/ENCODEMACS2)
 5. [IDR](#/ENCODEIDR)
 
+---
 
+{{< slide id="ENCODEMapping" >}}
 ## Mapping
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
-<!-- panel->(blue) -->
-<!-- .element: style="margin-bottom: 2em;"-->
 `BWA` with default parameters
 
-1. `bwa aln`
-  - max edit distance **0.04**
-  - disallow long gaps
-  - no trimming
-2. `bwa samse`
-  - max **3** output alignments
+  1. `bwa aln`
+      - max edit distance **0.04**
+      - disallow long gaps
+      - no trimming
+  2. `bwa samse`
+      - max **3** output alignments
 
+---
 
+{{< slide id="ENCODEFilterQC" >}}
 ## Filter QC
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 - exclude SAM flag `1804`
   * read unmapped
@@ -147,12 +150,11 @@ pipeline in development
   * PCR or optical duplicates
 - mark duplicates with Picard
 
+---
 
+{{< slide id="ENCODEXcor" >}}
 ## Xcor
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
-<!-- panel->(blue) -->
-<!-- .element: style="margin-bottom: 2em;"-->
 uses `SPP` to calculate cross correlation QC scores and estimate fragment size
 
   - create `tagAlign` file
@@ -160,12 +162,11 @@ uses `SPP` to calculate cross correlation QC scores and estimate fragment size
   - subsample `tagAlign` file (15M reads)
   - run `SPP`
 
+---
 
+{{< slide id="ENCODEMACS2" >}}
 ## MACS2
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
-<!-- panel->(blue) -->
-<!-- .element: style="margin-bottom: 2em;"-->
 uses `MACS2` to call peaks - assumes `input` is always present
 
   - narrow peaks and preliminary signal tracks
@@ -174,12 +175,11 @@ uses `MACS2` to call peaks - assumes `input` is always present
   - `-log10(p-value)` signal tracks
   - bigWigs from beds to support `trackhub` visualization of peak files
 
+---
 
+{{< slide id="ENCODEIDR" >}}
 ## IDR
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
-<!-- panel->(blue) -->
-<!-- .element: style="margin-bottom: 2em;"-->
 perform IDR analysis on replicates
 
   - True Replicates
@@ -187,66 +187,63 @@ perform IDR analysis on replicates
   - Rep 2 Self-pseudoreplicates
   - Pooled Pseudoreplicates
 
-<!-- panel->(green) -->
-<!-- .element: style="margin-top: 2em;"-->
 final peak calls
-------
 
-# RG lab  
+{{% /section %}}
 
-<h4>
-[![Nextflow pipeline](nextflow2014_no-bg.png)<!-- .element: class="pipeline" -->](http://www.nextflow.io/)
-pipeline in development
-</h4>
+---
+
+{{% section %}}
+
+# RG lab
+
+{{< figure src="nextflow2014_no-bg.png" link="https://nextflow.io/" width="20%" title="pipeline in development" class="plain" >}}
+
 <a href="https://github.com/guigolab"><i class="fa fa-github"> Guigo Lab</i></a>
 
+---
 
 ## Workflow
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 1. [Mapping](#/CurrentImplementationMapping)
 2. [Merge ](#/CurrentImplementationMerge)
 3. [Model](#/CurrentImplementationModel)
 4. [Peak Calling](#/CurrentImplementationPeakCalling)
 
+---
 
+{{< slide id="CurrentImplementationMapping" >}}
 ## Mapping
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
-<!-- panel->(blue) -->
-<!-- .element: style="margin-bottom: 2em;"-->
 uses the `GEM` mapper and tools
 
-1. `gem-mapper` with default parameters
-2. `gt.filter`
-  - max edit distance (**2** - absolute number of bases)
-3. `gt.filter`
-  - max **10** output alignments
-4. exclude SAM flag `256`
-  - keep primary alignments only
+  1. `gem-mapper` with default parameters
+  2. `gt.filter`
+      - max edit distance (**2** - absolute number of bases)
+  3. `gt.filter`
+      - max **10** output alignments
+  4. exclude SAM flag `256`
+      - keep primary alignments only
 
+---
 
+{{< slide id="CurrentImplementationMerge" >}}
 ## Merge
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
-<!-- panel->(blue) -->
-<!-- .element: style="margin-bottom: 2em;"-->
 merge `BAM` files on metadata key and produce single output with read groups
 
+---
 
+{{< slide id="CurrentImplementationModel" >}}
 ## Model
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
-<!-- panel->(blue) -->
-<!-- .element: style="margin-bottom: 2em;"-->
 uses `SPP` to estimate fragment size and produce cross-correlation plot
 
+---
 
+{{< slide id="CurrentImplementationPeakCalling" >}}
 ## Peak Calling
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
-<!-- panel->(blue) -->
-<!-- .element: style="margin-bottom: 2em;"-->
 uses `MACS2` to call peaks - works with or without `input`
 
   - narrow peaks and preliminary signal tracks
@@ -256,9 +253,9 @@ uses `MACS2` to call peaks - works with or without `input`
     - fold enrichment signal tracks
     - `-log10(p-value)` signal tracks
 
+---
 
 ## Run the pipeline
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```bash
 $ nextflow run chipseq-pipeline.nf --help
@@ -285,9 +282,9 @@ Options:
                                         UCSC genome browser (score must be <1000) (Default: false).
 ```
 
+---
 
 ## Index file
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```bash
 H024H3X1        H024H3X1_ACNNGN         /users/rg/projects/ERC/chipseq.sequences/H24X_H3_11630_ACNNGN.fastq.gz  -               H3
@@ -299,12 +296,12 @@ H000InputX1     H000InputX1_AGTTCC      /users/rg/projects/ERC/chipseq.sequences
 ```
 
 1. identifier used for merging the BAM files
-<!-- .element: style="margin-top: 2em;"-->
 2. single run identifier
 3. path to the fastq file to be processed
 4. identifier of the input or `-` if no control is used
 5. mark/histone or `input` if the line refers to a control
 
+---
 
 ## Output data
 
@@ -316,13 +313,11 @@ H000InputX1     H000InputX1_AGTTCC      /users/rg/projects/ERC/chipseq.sequences
 - `broadPeak`, similar to `narrowPeak` (`BED6+3`)
 - `gappedPeak`, both narrow and broad peaks (`BED12+3`)
 
-<!-- panel->(blue) -->
-<!-- .element: style="margin-top: 1em;"-->
 check [MACS2 output files](https://github.com/taoliu/MACS#output-files) for details
 
+---
 
 ## Pipeline db file
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```bash
 H024H3X1        /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/22/f0f9f135d78955142801c95bbfb306/peakOut/H024H3X1.pileup_signal.bw         H3         255     pileupSignal
@@ -340,19 +335,22 @@ H000H3K4me2X1   /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/aa
 ```
 
 1. merge identifier
-<!-- .element: style="margin-top: 1em;"-->
 2. path
 3. mark/histone
 4. estimated fragment length
 5. data type
 
-------
+{{% /section %}}
+
+---
+
+{{% section %}}
 
 # Future work
 
+---
 
 ## Add QC metrics
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 - read length and sequencing depth
 - fraction aligned reads, duplicate reads
@@ -360,18 +358,17 @@ H000H3K4me2X1   /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/aa
 - **other criteria**?
 
 ![](ihec.png)
-<!-- .element: style="margin-top: 2em;"-->
 
+---
 
 ## Check other references
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 - [![IHEC](ihec.png)<!-- .element: class="pipeline" style="vertical-align: baseline;" -->](http://ihec-epigenomes.org/outcomes/protocols/) protocols
 - CRG Bioinformatics Unit
 
+---
 
 ## Extend the workflow
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 - UCSC track hubs
   - automatically make BigWig files accessible
@@ -381,6 +378,9 @@ H000H3K4me2X1   /nfs/no_backup/rg/projects/ERC/human/chipseq/nf-pipeline/work/aa
   - motif analysis
   - annotation of Peaks
 - biological replicates
-------
+
+{{% /section %}}
+
+---
 
 ## Thanks!

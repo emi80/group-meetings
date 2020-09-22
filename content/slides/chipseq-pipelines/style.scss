@@ -1,0 +1,29 @@
+figure.plain {
+    > a {
+        vertical-align: text-bottom;
+        &:hover {
+            text-decoration: none;
+          }
+        > img {
+            box-shadow: none;
+        }
+    }
+    > figcaption {
+        display: inline-block;
+        vertical-align: sub;
+        > h4 {
+            font-size: 1.2em;
+            margin-left: .2em;
+        }
+    }
+}
+
+.reveal p > img,
+.reveal section > ul > li > a > img {
+    box-shadow: none;
+}
+
+.reveal pre {
+    width: 100%;
+    padding: 0;
+}
