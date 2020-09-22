@@ -1,0 +1,12 @@
+body {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+	font-weight: 300;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
+
+i {
+	&.fa {
+		font-size: 1em;
+		padding: 0.05em;
+	}
+}

@@ -2,24 +2,31 @@
 title: "Group Software"
 date: "2018-05-09"
 aliases: "/5"
-layout: reveal
+outputs: ["Reveal"]
 ---
 
+{{% section %}}
 
 # Status
 
+---
 
-<!-- .slide: data-state="no-nav-bar" data-background-image="dishes.jpg" -->
+{{< slide background-image="dishes.jpg" >}}
 
-------
+{{% /section %}}
+
+---
+
+{{% section %}}
+
 # Compiled software
 
+---
 
 ```bash
 # add group binaries to the PATH
 export PATH=/software/rg/el6.3/bin
 ```
-<!-- .element: class="big" -->
 
 <svg class="crossover"
    xmlns:svg="http://www.w3.org/2000/svg"
@@ -45,11 +52,13 @@ export PATH=/software/rg/el6.3/bin
   </g>
 </svg>
 
-<span class="rfooter"><i class="fa fa-hand-o-right text-info"></i> no `/software/rg/${OS}/bin` to `PATH`</span><!--.slide: data-state="no-nav-bar"-->
+<span class="rfooter"><i class="fa fa-hand-o-right text-info"></i> no `/software/rg/${OS}/bin` to `PATH`</span>
 
+---
 
 ## Modules
 
+---
 
 ```bash
 # add module paths
@@ -59,9 +68,8 @@ if [ "${MODULE_VERSION_STACK:-}" != "" ]; then
   module use -a /software/as/el6.3/EasyBuild/software/modules/all
   module use -a /software/as/el6.5/EasyBuild/CRG/modules/all
   module use -a /software/rg/el6.3/EasyBuild/software/modules/all
-fi 
+fi
 ```
-<!-- .element: class="big" style="font-size: 0.95em;"-->
 
 <svg class="crossover"
    xmlns:svg="http://www.w3.org/2000/svg"
@@ -87,6 +95,7 @@ fi
   </g>
 </svg>
 
+---
 
 ```bash
 # config SIT modules and add module path
@@ -98,37 +107,49 @@ if [ "${MODULE_VERSION_STACK:-}" != "" ]; then
   module use -a /software/rg/${OS}/EasyBuild/software/modules/all
 fi
 ```
-<!-- .element: class="big" style="font-size: 0.95em;"-->
 
-<span><i class="fa fa-hand-o-right text-info"></i> won't be maintained</span><!-- .element: class="rfooter"-->
+<span class="rfooter"><i class="fa fa-hand-o-right text-info"></i> won't be maintained</span>
 
-------
+{{% /section %}}
+
+---
+
+{{% section %}}
+
 # R
 
+---
 
 ```bash
 # add shared R libraries
 export R_LIBS=/software/R/packages
 ```
-<!-- .element: class="big" -->
 
+---
+{{< slide class=normal-font state="no-nav-bar" >}}
+### keep using shared libraries?
 
-### keep using shared libraries?<!--.element: class="normal-font"-->
+---
 
+{{< slide class=normal-font state="no-nav-bar" >}}
+### create a group folder for R libraries?
 
-### create a group folder for R libraries?<!--.element: class="normal-font"-->
+{{% /section %}}
 
-------
+---
+
+{{% section %}}
+
 # Python<span class=fragment style="color: red;">z</span>
 
+---
 
 ```bash
 if [[ -s /software/rg/el6.3/pythonz/etc/bashrc ]]; then
-  export PYTHONZ_ROOT=/software/rg/el6.3/pythonz 
+  export PYTHONZ_ROOT=/software/rg/el6.3/pythonz
   source /software/rg/el6.3/pythonz/etc/bashrc
 fi
 ```
-<!-- .element: class="big" style="font-size:1.15em;"-->
 
 <svg class="crossover"
    xmlns:svg="http://www.w3.org/2000/svg"
@@ -154,9 +175,11 @@ fi
   </g>
 </svg>
 
+---
 
 ## VirtualenvWrapper
 
+---
 
 ```bash
 if [ -d /software/rg/el6.3/virtualenvs ]; then
@@ -169,7 +192,6 @@ if [ -d /software/rg/el6.3/virtualenvs ]; then
   [[ -s $VENVWRAP ]] && source $VENVWRAP
 fi
 ```
-<!-- .element: class="big" style="font-size:1em;"-->
 
 <svg class="crossover"
    xmlns:svg="http://www.w3.org/2000/svg"
@@ -195,76 +217,99 @@ fi
   </g>
 </svg>
 
-------
-# Conda<!-- .element: style="display: none;"-->
-![conda](https://conda.io/docs/_images/conda_logo.svg)<!--.element: style="box-shadow:none;"-->
+{{% /section %}}
 
+---
 
-### focused on scientific computation<!-- .element: class="normal-font"-->
+{{% section %}}
 
+{{< slide id=conda >}}
+# Conda
+![conda](https://conda.io/docs/_images/conda_logo.svg)
 
-[![](https://bioconda.github.io/_images/bioconda.png)<!--.element: style="width: 50%; box-shadow:none;"-->](https://bioconda.github.io/)
+---
+
+{{< slide class=normal-font >}}
+### focused on scientific computation
+
+---
+{{< slide id=bioconda >}}
+
+![](https://bioconda.github.io/_images/bioconda.png)
 
 more than **3000** bioinformatics packages
 
+---
 
-### environments with isolated deps<!-- .element: class="normal-font" -->
+{{< slide class=normal-font >}}
+### environments with isolated deps
 
 ```bash
 $ conda create -n my-env
 ```
-<!-- .element: class="big" style="font-size:1.7em;margin-top: 1em;width: 65%;"-->
 
 ```bash
 $ conda activate my-env
 ```
-<!-- .element: class="big" style="font-size:1,7em;margin-top: 1em;width: 67%;"-->
 
+---
 
-### non-Python programs and libraries<!-- .element: class="normal-font" -->
+{{< slide class=normal-font >}}
+### non-Python programs and libraries
 
 ```bash
 $ conda install blast
 ```
-<!-- .element: class="big" style="font-size:1.7em;margin-top: 1em;width: 57%;"-->
 
 ```bash
 $ conda install -c bioconda star
 ```
-<!-- .element: class="big" style="font-size:1.7em;margin-top: 1em;width: 86%;"-->
 
+---
 
-### binary distributions<!-- .element: class="normal-font" -->
-(no compilation required)<!-- .element: class="text-info" -->
+{{< slide id=conda-binary class=normal-font >}}
+### binary distributions
+(no compilation required)
 
+---
 
-### no admin privileges required<!-- .element: class="normal-font" -->
+{{< slide class=normal-font >}}
+### no admin privileges required
 
+---
 
-### environment reproducibility<!-- .element: class="normal-font" -->
+{{< slide class=normal-font >}}
+### environment reproducibility
 
 ```bash
 $ conda env export -n my-env > my-env.yml
 ```
-<!-- .element: class="big" style="font-size:1.5em;margin-top: 1em;width: 97%;"-->
 
 ```bash
 $ conda env create -f my-env.yml
 ```
-<!-- .element: class="big" style="font-size:1.5em;margin-top: 1em;width: 76%;"-->
 
+---
 
-### latest versions of Python 2 and 3<!-- .element: class="normal-font" -->
+{{< slide class=normal-font >}}
+### latest versions of Python `2` and 3
 
 ```bash
 $ conda create -n py python=2
 ```
-<!-- .element: class="big" style="font-size:1.5em;margin-top: 1em;width: 69%;"-->
 
-`=3` 
-<!-- .element: class="fragment" style="font-size:1.5em; background-color:#3f3f3f;position: fixed; right: 16.8%; top: 50.8%;"-->
+---
 
-<!-- .element: class="big" style="font-size:1em;margin-top: 1.4em;width: 69%;position:absolute;top: 30%;left: 47%;"-->
+{{< slide class=normal-font >}}
+### latest versions of Python 2 and `3`
 
-------
-<!-- .slide: data-background-image="thank-you.png" data-background-size="50%" data-background-color="#fff" -->
+```bash
+$ conda create -n py python=3
+```
+
+
+{{% /section %}}
+
+---
+
+{{< slide background-image="thank-you.png" background-size="50%" background-color="#fff">}}

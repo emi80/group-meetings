@@ -1,12 +1,9 @@
 <link rel="stylesheet" href="{{ .Site.BaseURL }}/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="{{ .Site.BaseURL }}/bootstrap/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/font-awesome-4.5.0.min.css">
-<link rel="stylesheet" href="{{ .Site.BaseURL }}/reveal.js/css/reveal.css">
-<link rel="stylesheet" href="{{ .Site.BaseURL }}/css/rg.css">
-<!-- <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/style.css"> -->
 <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/badge_only.css">
-<!-- For syntax highlighting -->
-<link rel="stylesheet" href="{{ .Site.BaseURL }}/reveal.js/lib/css/zenburn.css">
-{{ with .Resources.GetMatch "style.css" }}
-<link rel="stylesheet" href="{{.RelPermalink}}">
+{{ range .Site.Params.Styles }}
+{{ $sass := resources.Get . }}
+{{ $style := $sass | resources.ToCSS | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $style.Permalink }}">
 {{ end }}

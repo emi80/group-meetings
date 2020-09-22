@@ -1,0 +1,67 @@
+.reveal pre {
+  font-size: 0.85em;
+  width: 100%;
+  padding: 0;
+
+  &.hljs {
+    font-size: 1.8em;
+    width: 100%;
+    line-height: 1.2em;;
+  }
+}
+
+.reveal .rfooter {
+  position: fixed;
+  bottom: 5%;
+  right: 1%;
+  font-size: 1.2em;
+
+  > i {
+    font-size: 1.2em;
+  }
+}
+
+.reveal svg.crossover {
+  display: block;
+  position: fixed;
+  top: 20%;
+  left: 30%;
+  transform: rotate(-105deg);
+}
+
+.cross {
+  fill:#a94442;
+  fill-opacity:1.0000000;
+  fill-rule:nonzero;
+  stroke:none;
+  stroke-width:1.0000000px;
+  stroke-linecap:butt;
+  stroke-linejoin:miter;
+  stroke-opacity:1.0000000;
+}
+
+.normal-font > h3 {
+  font-variant: normal;
+}
+
+.conda > h3 {
+  /* color: #009ACF; */
+  color: #43B02A;
+}
+
+#conda > p > img {
+  box-shadow: none;
+}
+
+#conda > h1 {
+  visibility: hidden;
+}
+
+#bioconda > p > img {
+  width: 50%;
+  box-shadow: none;
+}
+
+#conda-binary > p {
+  color: #009ACF;
+}

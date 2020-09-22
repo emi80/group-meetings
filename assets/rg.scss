@@ -78,7 +78,7 @@ i {
 	.red {
 		color: $revealRed;
 	}
-	
+
 	h1, h2, h3, h4, h5, h6 {
 		font-variant: $headingFontVariant;
 		-webkit-hyphens: none;
@@ -91,7 +91,7 @@ i {
 	i {
 		font-family: 'FontAwesome';
 		font-style: normal;
-		
+
 		&.fa-lg {
 			font-size: 1.33em;
 		}
@@ -137,7 +137,7 @@ i {
 			-moz-transition: all .2s linear;
 			-ms-transition: all .2s linear;
 			-o-transition: all .2s linear;
-			transition: all .2s linear; 
+			transition: all .2s linear;
 		}
 	}
 
@@ -170,68 +170,12 @@ i {
 		top: -40%;
 		left: 0%;
 	}
-	  
+
 	.footer {
 		font-size: 0.8em;
-		position: absolute; 
+		position: absolute;
 		left: 0%;
 		bottom: -50%;
 	}
 
 }
-
-// Bootstrap navbar ----------------------------
-.navbar {
-	min-height: 0em;
-	margin-bottom: 0.1em;
-	z-index: 100;
-	background-color: transparent;
-
-	/*border-bottom: none;*/
-
-	> .container-fluid .navbar-brand {
-		margin-left: 0px;
-		padding: 5px;
-		height: auto;
-	}
-}
-  
-.nav {
-	font-size: 0.8em;
-	font-variant: small-caps;
-}
-  
-.navbar-default {
-	background-image: linear-gradient(to top,#D5D6D1 0,#F0F1EB 100%);
-}
-  
-.navbar-nav > li > a {
-	padding-top: 0.3em;
-	padding-bottom: 0.3em;
-	line-height: inherit;
-	/*border-bottom: 2px solid transparent;*/
-}
-  
-.navbar-inverse .navbar-nav  {
-	> li {
-		> a{
-			&:hover, &:focus {
-				color: #F0F1EB;
-				background-color: transparent;
-				// border-bottom: 2px solid rgba(222, 222, 0, 0.9);
-			}
-		}
-	}
-	> .active {
-		a {
-			&, &:hover, &:focus {
-				color: #F0F1EB;
-				background-color: transparent;
-				background-image: none;
-				box-shadow: none;
-				// border-bottom: 2px solid rgba(222, 222, 0, 0.9);
-			}
-		}
-	}
-}
-// -------------------------------------------

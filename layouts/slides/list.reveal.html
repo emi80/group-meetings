@@ -1,0 +1,13 @@
+{{ define "main" }}
+  <section>
+    <h1>{{ .Page.Title }}</h1>
+    <h3 style="margin-top: 1.2em;">Lab Meeting</h3>
+    <p style="font-size: 0.7em;">
+        {{ .Site.Params.Author }}
+        <br>
+        {{ .Page.Date.Format "January 2, 2006" }}
+    </p>
+  </section>
+  {{ partial "reveal-hugo/slides" (slice .Page) }}
+  {{ partial "reveal-hugo/slides" (where .Pages "Kind" "page") }}
+{{ end }}

@@ -1,6 +1,37 @@
 baseURL = "https://public-docs.crg.es/rguigo/Data/epalumbo/group-meetings/"
 languageCode = "en-us"
 title = "Group Meetings"
+theme = "reveal-hugo"
 
 [params]
 author = "Emilio Palumbo"
+styles = [
+    "navbar.scss",
+    "style.scss"
+]
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[outputFormats.Reveal]
+baseName = "index"
+mediaType = "text/html"
+isHTML = true
+
+[params.reveal_hugo]
+controls = false
+progress = false
+history = true
+center = true
+slide_number = "c"
+embedded = false
+preview_links = false
+transition = "none"
+background_transition = "none"
+margin = 0
+highlight_theme = "zenburn"
+custom_theme = "rg.scss"
+custom_theme_compile = true
+
+[markup.highlight]
+codeFences = false
