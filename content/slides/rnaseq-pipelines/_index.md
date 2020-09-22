@@ -2,16 +2,21 @@
 title: "RNAseq Pipelines"
 date: "2014-06-25"
 aliases: "/1"
-layout: reveal
+outputs: ["Reveal"]
 ---
+
+{{% section %}}
 
 # Blueprint pipeline
 
+---
 
 ## Blueprint pipeline
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> RNAseq pipeline written in Bash</div>
-<!-- .element: style="margin-bottom: 2em;"-->
+
+{{< panel >}}
+  RNAseq pipeline written in Bash
+{{< /panel >}}
+
 
 - mapping (GEMtools)
 - bigwig
@@ -20,20 +25,20 @@ layout: reveal
 - BAM statistics (RSeQC)
 
 
+---
+
 ## Bash
-<!-- .element: class="green"-->
 
 ```bash
 #!/bin/bash
 ```
 
 - widely supported on any Linux platform
-<!-- .element: style="margin-top: 2em"-->
 - most bioinformaticians are used to it
 
+---
 
 ## SGE options
-<!-- .element: class="green" style="margin-bottom: 0.6em;"-->
 
 ```bash
 # Force bash shell
@@ -49,14 +54,14 @@ layout: reveal
 #$ -o $JOB_NAME.out
 #$ -e $JOB_NAME.err
 ```
-<!-- .element: style="margin-top: 3em"-->
+
 <div class="panel panel-default">
 Queue, memory and time **must** be specified when submitting the job.
 </div>
 
+---
 
 ## Modular execution
-<!-- .element: class="green" style="margin-bottom: 0.6em;"-->
 
 ```
 # getting pipeline steps to be executed
@@ -85,25 +90,23 @@ done
 ```
 
 Run specific steps:
-<!-- .element: style="margin-top: 1em; text-align: left; margin-left: 1.5em;"-->
 ```bash
 blueprint.pipeline.sh ... -- contig flux
 ```
 
+---
 
 ## Monolitic pipeline
-<!-- .element: class="red" style="margin-bottom: 0.6em;"-->
 
 - pipeline steps are executed sequencially
 - one cluster node per run is used <span class="red"> <i class="fa fa-arrow-right"></i> weak parallelization</span>
 - bad resource management - not all steps use the same amount of cpus/memory
 
+---
 
 ## Batch execution
-<!-- .element: class="red" style="margin-bottom: 0.6em;"-->
 
 Some extra code required:
-<!-- .element: style="text-align: left; margin-left: 1.5em"-->
 
 ```bash
 #!/bin/bash
@@ -139,71 +142,81 @@ while read lab id path strand sex; do
 done
 ```
 
+---
 
 ## Data management
-<!-- .element: class="red" style="margin-bottom: 0.6em;"-->
 
 User has to keep metadata and file information:
-<!-- .element: style="margin-bottom: 1em;"-->
 
 - tsv/csv files
 - Google spreadsheets
 - Index files
 
-------
+{{% /section %}}
+
+---
+
+{{% section %}}
 
 # Idxtools
 <a href="//github.com/emi80/idxtools"><h3><i class="fa fa-github-square"> github.com/emi80/idxtools</i></h3></a>
 
+---
 
 ## Index files
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Plain text database files to store metadata information for files and their content</div>
 
+{{< panel >}}
+  Plain text database files to store metadata information for files and their content
+{{< /panel >}}
+
+---
 
 ## Format
-<!-- .element: style="margin-bottom: 1em;"-->
 
 ```markdown
 <filepath>TAB<attributes_list>
 ```
 
-<!-- .element: style="margin-bottom: 1em; margin-top: 3em;"-->
 with `attribute_list` as a semicolon separated list of `key=value` strings:
 
 ```markdown
 /path/to/file    size=100; id=1; class=MyClass; type=MyType
 ```
 
+---
 
 ## Idxtools
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Python API and commandline tool to **create**, **query** and **modify** index files</div>
 
+{{< panel >}}
+  Python API and commandline tool to **create**, **query** and **modify** index files
+{{< /panel >}}
+
+---
 
 ## Dataset
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i><span class="blue"> Dataset</span> is the main data object</div>
-<!-- .element: style="margin-bottom: 1em;"-->
+
+{{< panel >}}
+<span class="blue"> Dataset</span> is the main data object
+{{< /panel >}}
 
 Metadata:
-<!-- .element: style="margin-top: 1em; text-align: left; margin-left: 1.5em;"-->
 ```markdown
 .   id=test1; quality=33; sex=female;
 ```
 
 Files:
-<!-- .element: style="margin-top: 1em; text-align: left; margin-left: 1.5em;"-->
 ```markdown
 /data/test1_1.fastq.gz id=test1; quality=33; sex=female; type=fastq; view=FqRd1;
 /data/test1.bam id=test1; quality=33; sex=female; type=bam; view=Alignments;
 ```
 
+---
 
 ## Format.json
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Specifies syntax and vocabulary of an index file</div>
-<!-- .element: style="margin-bottom: 1em;"-->
+
+{{< panel >}}
+  Specifies syntax and vocabulary of an index file
+{{< /panel >}}
 
 ```json
 {
@@ -222,12 +235,11 @@ Files:
 }
 ```
 
+---
 
 ## Mapping attribute keys
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 Useful when importing from csv/tsv:
-<!-- .element: style="margin-bottom: 1em; text-align: left; margin-left: 1.5em"-->
 
 ```json
 {
@@ -292,11 +304,13 @@ Useful when importing from csv/tsv:
 }
 ```
 
+---
 
 ## Specifying input files
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Index and format files can be specified as <span class="blue">command line options</span> or as <span class="blue">environment variables</span></div>
-<!-- .element: style="margin-bottom: 1.4em;"-->
+
+{{< panel >}}
+  Index and format files can be specified as <span class="blue">command line options</span> or as <span class="blue">environment variables</span>
+{{< /panel >}}
 
 ```bash
 # command line
@@ -308,12 +322,14 @@ export IDX_FORMAT=/path/to/format.json
 
 $ idxtools show
 ```
-<div class="panel panel-default">Using absolute paths to make the index available from any folder</div>
-<!-- .element: style="margin-top: 1em;"-->
 
+{{< panel type=plain >}}
+  Using absolute paths to make the index available from any folder
+{{< /panel >}}
+
+---
 
 ## Importing TSV/CSV
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 A CSV file, `test.csv`:
 
@@ -326,7 +342,6 @@ path,labExpId,quality,sex,type,view
 /data/test2.bam,test2,64,male,bam,Alignments
 ```
 
-<!-- .element: style="margin-top: 1em; text-align: left; margin-left:1.5em;"-->
 ```bash
 # import csv and show
 $ export IDX_FORMAT=$PWD/format.json
@@ -342,9 +357,9 @@ $ idxtools -i test.csv -f format.json show -o index.txt
 $ export IDX_FILE=$PWD/index.txt
 ```
 
+---
 
 ## Querying the index
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```bash
 # query by attributes
@@ -361,9 +376,9 @@ $ idxtools show type=bam
 ./data/test2.bam    labExpId=test2; type=bam; view=Alignments; quality=64; sex=male;
 ```
 
+---
 
 ## Querying the index
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```bash
 # queries use regular expressions
@@ -388,12 +403,13 @@ $ idxtools show quality="<40"
 /data/test1_2.fastq.gz labExpId=test1; type=fastq; view=FqRd2; quality=33; sex=female;
 ```
 
+---
 
 ## Query output
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> The default output format for queries is the <span class="blue">index file format</span> but it can be changed to TSV with the `-t` option </div>
 
-<!-- .element: style="margin-bottom: 1em;"-->
+{{< panel >}}
+  The default output format for queries is the <span class="blue">index file format</span> but it can be changed to TSV with the `-t` option
+{{< /panel >}}
 
 ```bash
 # TSV output - single attribute
@@ -413,14 +429,18 @@ test1   ./data/test1_1.fastq.gz
 test2   ./data/test2_1.fastq.gz
 ```
 
-<!-- .element: style="margin-top: 1em;"-->
-<div class="panel panel-default">attribute names <i class="fa fa-arrow-right"></i> comma separated list with <strong>NO</strong> space</div>
+{{< panel type=plain >}}
+  attribute names <i class="fa fa-arrow-right"></i> comma separated list with <strong>NO</strong> space
+{{< /panel >}}
 
+
+---
 
 ## Adding files
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Files can be easily added to the index</div>
-<!-- .element: style="margin-bottom: 1em;"-->
+
+{{< panel >}}
+  Files can be easily added to the index
+{{< /panel >}}
 
 ```bash
 # add /data/test1.bam
@@ -433,11 +453,13 @@ $ idxtools show type=bam
 
 ```
 
+---
 
 ## Removing files
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Files can be easily removed from the index</div>
-<!-- .element: style="margin-bottom: 1em;"-->
+
+{{< panel >}}
+  Files can be easily removed from the index
+{{< /panel >}}
 
 ```bash
 # remove /data/test1.bam
@@ -449,11 +471,13 @@ $ idxtools show type=bam
 
 ```
 
+---
 
 ## Removing datasets
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Datasets can also be removed from the index</div>
-<!-- .element: style="margin-bottom: 1em;"-->
+
+{{< panel >}}
+  Datasets can also be removed from the index
+{{< /panel >}}
 
 ```bash
 # remove test2
@@ -464,40 +488,50 @@ $ idxtools show
 ./data/test1_1.fastq.gz labExpId=test1; type=fastq; view=FqRd1; quality=33; sex=female;
 ./data/test1_2.fastq.gz labExpId=test1; type=fastq; view=FqRd2; quality=33; sex=female;
 ```
-------
+
+{{% /section %}}
+
+---
+
+{{% section %}}
 
 # JIP
-<a href="//pyjip.readthedocs.org"><h3><i class="fa fa-external-link-square"> pyjip.readthedocs.org</i></h3></a>
+<a href="//pyjip.readthedocs.org"><h3><i class="fa fa-external-link-square"></i> pyjip.readthedocs.org</h3></a>
 
+---
 
 ## JIP
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> A pipeline system that helps to manage large numbers of jobs on a compute cluster</div>
-<!-- .element: style="margin-bottom: 2em;"-->
+
+{{< panel >}}
+  A pipeline system that helps to manage large numbers of jobs on a compute cluster
+{{< /panel >}}
 
 - dependency support
 - automatic expansions
 - simplified management of jobs and resources
 - SQlite database for Jobs data
 
+---
 
 ## Tools
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> The smallest unit of execution in JIP is a `tool`. </div>
-<!-- .element: style="margin-bottom: 2em;"-->
+
+{{< panel >}}
+The smallest unit of execution in JIP is a `tool`.
+{{< /panel >}}
 
 Tools can be implemented in various ways:
 
 - JIP scritps
 - Python APIs
 
-<div class="panel panel-default" style="margin-top: 2em;">
+{{< panel type=plain >}}
 Tools can be combined to pipelines to build bigger workflows.
-</div>
+{{< /panel >}}
 
+---
 
 ## Configuration
-<!-- .element: style="margin-bottom: 0.6em;"-->
+
 ```json
 {
     "cluster": "jip.cluster.SGE",
@@ -526,9 +560,9 @@ Tools can be combined to pipelines to build bigger workflows.
 
 ```
 
+---
 
 ## Run or submit commands
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 The `jip bash` command:
 
@@ -539,7 +573,6 @@ $ jip bash -c hostname
 # submit
 $ jip bash -s -c hostname
 ```
-<!-- .element: style="margin-bottom: 3em;"-->
 
 Check jobs with `jip jobs`:
 
@@ -548,12 +581,11 @@ Check jobs with `jip jobs`:
 $ jip jobs
 ```
 
+---
 
 ## Scripts
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 JIP scripts are extended Bash scripts:
-<!-- .element: style="text-align: left; margin-left: 1.5em;"-->
 
 ```bash
     #!/usr/bin/env jip
@@ -563,11 +595,9 @@ JIP scripts are extended Bash scripts:
 
     echo "Hello ${name}"
 ```
-<!-- .element: style="margin-bottom: 3em;"-->
 
 Make the file executable and you can use the JIP interpreter to run it or
 submit it:
-<!-- .element: style="text-align: left; margin-left: 1.5em;"-->
 
 ```bash
     $ chmod +x hello.jip
@@ -579,12 +609,14 @@ submit it:
     $ ./hello.jip Joe -- submit
 ```
 
+---
 
 ## Tools path
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i>
-Scripts can be found automatically in your **current folder** or by **setting** the `JIP_PATH` environment variable. Use the `jip tools` command to list all the detected tools.</div>
-<!-- .element: style="margin-bottom: 2em;"-->
+
+{{< panel >}}
+  Scripts can be found automatically in your **current folder** or by **setting** the `JIP_PATH` environment variable. Use the `jip tools` command to list all the detected tools.
+{{< /panel >}}
+
 
 ```bash
     $> export JIP_PATH=$PWD
@@ -596,9 +628,9 @@ Scripts can be found automatically in your **current folder** or by **setting** 
     ...
 ```
 
+---
 
 ## Example tool
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```bash
 #!/bin/env jip
@@ -617,9 +649,9 @@ Scripts can be found automatically in your **current folder** or by **setting** 
 ${input|arg("cat ")|suf(" | ")}paste - - - - | sort -k1,1 | tr '\t' '\n' ${output|arg(">")}
 ```
 
+---
 
 ## Example tool with logic
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```bash
 #!/bin/env jip
@@ -655,9 +687,9 @@ pigz -p ${JIP_THREADS} ${stdout|arg} ${decompress|arg} ${input|arg("")} ${output
 
 ```
 
+---
 
 ## Example pipeline
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```bash
 #!/bin/env jip
@@ -683,12 +715,13 @@ run('pigz', input=sorted_fastq, output=output)
 #%end
 ```
 
+---
 
 ## Multiplexing
 
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i>
-Automatic expansion of wildcard for multiple input files. The tool/pipeline will be replicated across all input files.</div>
-<!-- .element: style="margin-bottom: 0.5em;"-->
+{{< panel >}}
+  Automatic expansion of wildcard for multiple input files. The tool/pipeline will be replicated across all input files.
+{{< /panel >}}
 
 ```bash
 $ ./sort_fastq.jip -i *_1.fastq -- --dry --show
@@ -720,13 +753,14 @@ cat /home/epalumbo/testB_1.fastq | paste - - - - | sort -k1,1 | tr '\t' '\n' >/h
 
 ```
 
+---
 
 ## Complex pipelines
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default" style="margin-bottom: 1em;">
+
+{{< panel type=plain >}}
 SOLiD RNAseq pipeline
 <span class="green">(shrimp + rsem + flux-capacitor) * 96:</span>
-</div>
+{{< /panel >}}
 
 - index the genome
 - make the transcriptome and index it
@@ -736,41 +770,53 @@ SOLiD RNAseq pipeline
 - isoform quantifications
 - gene quantifications
 
-<div class="panel panel-default" style="margin-top: 1em;"><i class="fa fa-arrow-circle-right blue"></i>
-concurrency problems submitting the jobs: <strong>SQlite db limitation</strong>
-</div>
+{{< panel >}}
+  concurrency problems submitting the jobs: <strong>SQlite db limitation</strong>
+{{< /panel >}}
 
-------
+{{% /section %}}
+
+---
+
+{{% section %}}
 
 # Nextflow
-#### Data-driven computational pipelines
-<a href="//www.nextflow.io"><h3><i class="fa fa-external-link-square"> www.nextflow.io</i></h3></a>
 
+#### Data-driven computational pipelines
+<a href="//www.nextflow.io"><h3><i class="fa fa-external-link-square"></i> www.nextflow.io</h3></a>
+
+---
 
 ## Nexflow
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> A fluent DSL modelled around the UNIX pipe concept, that simplifies writing parallel and scalable pipelines in a portable manner.</div>
-<!-- .element: style="margin-bottom: 2em;"-->
+
+{{< panel >}}
+  A fluent DSL modelled around the UNIX pipe concept, that simplifies writing parallel and scalable pipelines in a portable manner.
+{{< /panel >}}
 
 - unified parallelism
 - continuous checkpoints
 - fast prototyping
 - reproducibility
 
+---
 
 ## Processes and channels
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> A Nextflow pipeline script is made by different isolated processes joined by asynchronous FIFO queues, called `channels`.</div>
 
-<div class="panel panel-default">The pipeline execution flow is implicitly defined by the input and output channels declarations.</div>
-<!-- .element: style="margin-top: 2em;"-->
+{{< panel >}}
+  A Nextflow pipeline script is made by different isolated processes joined by asynchronous FIFO queues, called `channels`.
+{{< /panel >}}
 
+{{< panel type=plain >}}
+  The pipeline execution flow is implicitly defined by the input and output channels declarations.
+{{< /panel >}}
+
+---
 
 ## Configuration
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i>
-Pipeline configuration properties are defined in a file named `nextflow.config` in the pipeline execution directory. </div>
-<!-- .element: style="margin-bottom: 2em;"-->
+
+{{< panel >}}
+  Pipeline configuration properties are defined in a file named `nextflow.config` in the pipeline execution directory.
+{{< /panel >}}
 
 ```java
 // sample configuration
@@ -784,12 +830,11 @@ env {
 }
 ```
 
+---
 
 ## Scripts
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 Nextflow scripts are extended Groovy scripts:
-<!-- .element: style="text-align: left; margin-left: 1.5em;"-->
 
 ```java
 #!/usr/bin/env nextflow
@@ -812,9 +857,9 @@ process printHello {
 result.subscribe { print it }
 ```
 
+---
 
 ## Run a script
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```bash
 $ chmod +x hello.nf
@@ -831,9 +876,9 @@ ciao
 hello
 ```
 
+---
 
 ## Example pipeline
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```java
 #!/usr/bin/env nextflow
@@ -878,17 +923,24 @@ sequences
     .collectFile(name: params.out)
     .subscribe { println "Result saved at file: $it" }
 ```
-------
+
+{{% /section %}}
+
+---
+
+{{% section %}}
 
 # Modules
 #### Software environment managment
-<a href="//modules.sourceforge.net"><h3><i class="fa fa-external-link-square"> modules.sourceforge.net</i></h3></a>
+<a href="//modules.sourceforge.net"><h3><i class="fa fa-external-link-square"></i> modules.sourceforge.net</h3></a>
 
+---
 
 ## Modules
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Package for the dynamic modification of a user's environment via modulefiles.</div>
-<!-- .element: style="margin-bottom: 2em;"-->
+
+{{< panel >}}
+  Package for the dynamic modification of a user's environment via modulefiles.
+{{< /panel >}}
 
 - **loaded** and **unloaded** dynamically and atomically
 - all popular shells supported
@@ -896,33 +948,38 @@ sequences
 - managing different versions of applications
 - complete suites (metamodules)
 
+---
 
 ## Modules path
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i> Paths of directories containing modulefiles are specified by setting the MODULEPATH environment variable.</div>
-<!-- .element: style="margin-bottom: 1em;"-->
 
-<pre><code class="bash">$ echo $MODULEPATH
+{{< panel >}}
+  Paths of directories containing modulefiles are specified by setting the MODULEPATH environment variable.
+{{< /panel >}}
+
+```bash
+$ echo $MODULEPATH
 /software/rg/el6.3/modulefiles:/usr/share/Modules/modulefiles:/etc/modulefiles
 
 # modulefile folder structure
 $ tree /software/rg/el6.3/modulefiles
 /software/rg/el6.3/modulefiles/
-&#9500;&#9472;&#9472; aspera
-&#9474;   &#9500;&#9472;&#9472; 3.0.1
-&#9474;   &#9492;&#9472;&#9472; 3.3.3
-&#9500;&#9472;&#9472; bedtools
-&#9474;   &#9500;&#9472;&#9472; 2.17.0
-&#9474;   &#9492;&#9472;&#9472; 2.19.1
+├── aspera
+│   ├── 3.0.1
+│   └── 3.3.3
+├── bedtools
+│   ├── 2.17.0
+│   └── 2.19.1
 ...
-</code></pre>
+```
 
+---
 
 ## Modulefiles
-<!-- .element: style="margin-bottom: 0.6em;"-->
-<div class="panel panel-default"><i class="fa fa-arrow-circle-right blue"></i>  Contains the information needed to configure the shell for an application.</div>
 
-<!-- .element: style="margin-top: 1em;"-->
+{{< panel >}}
+  Contains the information needed to configure the shell for an application.
+{{< /panel >}}
+
 ```
 #%Module1.0
 ########################################################
@@ -962,48 +1019,49 @@ prepend-path      LD_LIBRARY_PATH      $PROG_HOME/lib
 prepend-path      C_INCLUDE_PATH       $PROG_HOME/include
 ```
 
+---
 
 ## Available modules
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
-<!-- .element: style="margin-top: 1em;"-->
-    $ module avail
-    ------------------------ /software/rg/el6.3/modulefiles ------------------------
-    aspera/3.0.1(default)              htslib/0.2.0-rc8(default)
-    aspera/3.3.3                       ipsa/1.0(default)
-    bedtools/2.17.0(default)           ipsa/1.1
-    bedtools/2.19.1                    jip-tools/1.0(default)
-    bowtie/1.0.1(default)              picard/1.81(default)
-    cufflinks/2.0.2                    pigz/2.2.5(default)
-    cufflinks/2.1.1                    pigz/2.3.1
-    cufflinks/2.2.1(default)           plink/1.07(default)
-    edirect/1.50(default)              python/2.7/2.7.3
-    emboss/6.6.0(default)              python/2.7/2.7.5
-    fastqc/0.10.1(default)             python/2.7/2.7.6(default)
-    flux/1.2.3                         python/2.7/2.7.6-sqlite
-    flux/1.2.4(default)                python/3/3.3.4
-    flux/1.2.4-SNAPSHOT                python-modules/2.6(default)
-    flux/1.3                           rsem/1.1.17
-    flux/1.4                           rsem/1.2.12(default)
-    flux/1.5.1                         samtools/0.1.18
-    flux/1.6                           samtools/0.1.19(default)
-    flux/1.6.1                         shrimp/2.2.3(default)
-    gemtools/1.6.1-i3                  sickle/1.210(default)
-    gemtools/1.6.2-i3(default)         sratoolkit/2.3.5(default)
-    gemtools/1.7.1-i3                  sublime-text/3-build-3059(default)
-    gemtools/1.7-i3                    texlive/2012(default)
-    glimmps                            ucsc/2013.02(default)
-    htop/1.0.2(default)                vcftools/0.2.12a(default)
+```
+$ module avail
+------------------------ /software/rg/el6.3/modulefiles ------------------------
+aspera/3.0.1(default)              htslib/0.2.0-rc8(default)
+aspera/3.3.3                       ipsa/1.0(default)
+bedtools/2.17.0(default)           ipsa/1.1
+bedtools/2.19.1                    jip-tools/1.0(default)
+bowtie/1.0.1(default)              picard/1.81(default)
+cufflinks/2.0.2                    pigz/2.2.5(default)
+cufflinks/2.1.1                    pigz/2.3.1
+cufflinks/2.2.1(default)           plink/1.07(default)
+edirect/1.50(default)              python/2.7/2.7.3
+emboss/6.6.0(default)              python/2.7/2.7.5
+fastqc/0.10.1(default)             python/2.7/2.7.6(default)
+flux/1.2.3                         python/2.7/2.7.6-sqlite
+flux/1.2.4(default)                python/3/3.3.4
+flux/1.2.4-SNAPSHOT                python-modules/2.6(default)
+flux/1.3                           rsem/1.1.17
+flux/1.4                           rsem/1.2.12(default)
+flux/1.5.1                         samtools/0.1.18
+flux/1.6                           samtools/0.1.19(default)
+flux/1.6.1                         shrimp/2.2.3(default)
+gemtools/1.6.1-i3                  sickle/1.210(default)
+gemtools/1.6.2-i3(default)         sratoolkit/2.3.5(default)
+gemtools/1.7.1-i3                  sublime-text/3-build-3059(default)
+gemtools/1.7-i3                    texlive/2012(default)
+glimmps                            ucsc/2013.02(default)
+htop/1.0.2(default)                vcftools/0.2.12a(default)
 
-    ------------------------ /usr/share/Modules/modulefiles ------------------------
-    dot         module-cvs  module-info modules     null        use.own
+------------------------ /usr/share/Modules/modulefiles ------------------------
+dot         module-cvs  module-info modules     null        use.own
 
-    ------------------------------- /etc/modulefiles -------------------------------
-    compat-openmpi-x86_64 openmpi-x86_64
+------------------------------- /etc/modulefiles -------------------------------
+compat-openmpi-x86_64 openmpi-x86_64
+```
 
+---
 
 ## Load/unload modules
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```bash
 # load default module version
@@ -1026,9 +1084,9 @@ $ which samtools
 /software/rg/el6.3/samtools-0.1.19/bin/samtools
 ```
 
+---
 
 ## Unload modules
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```bash
 # unload module
@@ -1042,9 +1100,9 @@ remove samtools/0.1.19 (PATH, MANPATH, LD_LIBRARY_PATH, C_INCLUDE_PATH)
 remove bedtools/2.17.0 (PATH)
 ```
 
+---
 
 ## List loaded modules
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 ```bash
 # list loaded modules
@@ -1052,14 +1110,19 @@ $ module list
 Currently Loaded Modulefiles:
   1) samtools/0.1.19   2) bedtools/2.17.0
 ```
-------
+
+{{% /section %}}
+
+---
+
+{{% section %}}
 
 # Grape 2
-<a href="//grape-pipeline.readthedocs.org"><h3><i class="fa fa-external-link-square"> grape-pipeline.readthedocs.org</i></h3></a>
+<a href="//grape-pipeline.readthedocs.org"><h3><i class="fa fa-external-link-square"></i> grape-pipeline.readthedocs.org</h3></a>
 
+---
 
 ## Current status
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 - Beta version released
 - [Idxtools](#/2) data management
@@ -1070,13 +1133,16 @@ Currently Loaded Modulefiles:
     - transcript quantifications
 
 
+---
+
 ## Work in progress
-<!-- .element: style="margin-bottom: 0.6em;"-->
 
 - [Nextflow](#/4) execution engine
 - [Modules](#/5)/Docker software management
 - modularity (e.g. start from BAM file)
 
-<!-- ------
+{{% /section %}}
 
-# SOLiD pipeline -->
+---
+
+# Thanks!

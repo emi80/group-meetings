@@ -1,0 +1,7 @@
+{{ $icon := default "fa-arrow-circle-right" (.Get "icon") }}
+{{ $color := default "blue" (.Get "icon-color") }}
+{{ $type := default "icon" (.Get "type") }}
+<div class="panel panel-default">
+    {{- if eq $type "icon" }}<i class="fa {{ $icon }} {{ $color }}"></i>{{ end }}
+    {{ .Inner | markdownify }}
+</div>

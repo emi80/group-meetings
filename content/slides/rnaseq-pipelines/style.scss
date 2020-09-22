@@ -1,0 +1,12 @@
+.reveal {
+    a {
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    pre {
+        width: 100%;
+        padding: 0;
+    }
+}
