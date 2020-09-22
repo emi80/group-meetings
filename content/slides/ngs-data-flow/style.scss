@@ -1,0 +1,21 @@
+.reveal {
+  a {
+      &:hover {
+          text-decoration: none;
+      }
+  }
+
+  pre {
+      width: 100%;
+      padding: 0;
+  }
+
+  p > img {
+    box-shadow: none;
+  }
+
+  p.mono {
+    font-family: monospace;
+    font-size: 1.5em;
+  }
+}

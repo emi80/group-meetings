@@ -2,10 +2,10 @@
 title: "NGS Data Flow"
 date: "2017-11-15"
 aliases: "/4"
-layout: reveal
+outputs: ["Reveal"]
 ---
 
-- Managing experiments, samples and assays data 
+- Managing experiments, samples and assays data
 
 - Managing metadata
 
@@ -13,14 +13,17 @@ layout: reveal
 
 - Organizing and publishing raw data and results
 
-------
+---
+
+{{% section %}}
 
 # Management
 
+---
 
 ## Experiment Data
-<!-- .element: style="font-size: 2.8em"-->
 
+---
 
 ## LIMS
 `Laboratory Information Management System`
@@ -32,17 +35,19 @@ software-based management system with features that support a modern laboratory'
 - data mining and analysis
 - enterprise resource planning
 
+---
 
+{{< slide state="no-nav-bar" background="#111111" >}}
 
-<!-- .slide: data-state="no-nav-bar" data-background="#111111" -->
-<!-- .element: class="big light" -->
-Do we need a LIMS?
+## Do we need a LIMS?
 
+---
 
 ## Maybe not...
-<!-- .element: style="margin-top: 0.5em;" -->
+
 <iframe class="stretch" data-src="sheet"></iframe>
 
+---
 
 ## Use Google Docs
 
@@ -53,6 +58,7 @@ Do we need a LIMS?
 - stored on Google servers<!-- .element: class="icon minus" -->
 - use Google authentication<!-- .element: class="icon tilde" -->
 
+---
 
 ## Programmatic access
 
@@ -62,15 +68,18 @@ Do we need a LIMS?
 - `curl` access
 - client libraries (e.g. `Python`, `Java`, `Go`)
 
+---
 
 ## Other documents
 
 use a shared resource (Dropbox, remote folder) to store all documents related to libraries, sequences and data in general<!-- panel --> <i class="fa fa-question fa-lg blue"></i><i class="fa fa-question fa-lg red"></i>
 
+---
 
 ## Metadata
 <!-- .element: style="font-size: 2.8em"-->
 
+---
 
 ## Controlled Vocabulary
 
@@ -80,6 +89,7 @@ use a shared resource (Dropbox, remote folder) to store all documents related to
 - sometimes too complex <!-- .element: class="icon minus" -->
 - sometimes lacking property(ies) <!-- .element: class="icon minus" -->
 
+---
 
 ## Metadata Attributes
 
@@ -89,10 +99,16 @@ choose a common set of attributes which best describes the project, experiments 
 1. description fields - check verbosity
 1. internal vs public attributes
 1. map to standard metadata models (e.g. [IHEC](https://github.com/IHEC/ihec-metadata), [GA4GH](https://github.com/ga4gh/metadata-team))
-------
+
+{{% /section %}}
+
+---
+
+{{% section %}}
 
 # Analysis
 
+---
 
 ## Primary Analysis
 
@@ -101,6 +117,7 @@ choose a common set of attributes which best describes the project, experiments 
 - data provenance
 - [metadata](#/2/8) management
 
+---
 
 ## RG pipelines
 
@@ -110,6 +127,7 @@ choose a common set of attributes which best describes the project, experiments 
 
 ![Nextflow](nextflow2014_no-bg.png)<!-- .element: style="height: 50px; "-->
 
+---
 
 ## Containers
 
@@ -122,6 +140,7 @@ lightweight, stand-alone, executable packages of a piece of software that includ
 - container image preparation (software install, configuration)<!-- .element: class="icon minus" -->
 - setup complexity/security<!-- .element: class="icon minus" -->
 
+---
 
 ## Data Provenance
 
@@ -133,12 +152,13 @@ records of the inputs, entities, systems, and processes that influence data of i
 - software version
 - container image hash
 
+---
 
 ## Other Analyses
 
 - avoid (big) input data replication (e.g. `scRNA-seq` quantification matrix)
 - use
-    - readme files or similar (e.g. specific `bash history` per analysis folder) 
+    - readme files or similar (e.g. specific `bash history` per analysis folder)
     -  version control ([git](https://git-scm.com)<!-- .element: class="extern" --> recommended)
 ```bash
 $ tree
@@ -155,12 +175,17 @@ $ tree
 ```
     - [containerized processing](#/3/3)
     - [data provenance](#/3/4)
-- publish script source on online resources like [GitHub](https://github.com)<!-- .element: class="extern" --> 
+- publish script source on online resources like [GitHub](https://github.com)<!-- .element: class="extern" -->
 
-------
+{{% /section %}}
+
+---
+
+{{% section %}}
 
 # Storage
 
+---
 
 ## Organize
 
@@ -168,6 +193,7 @@ $ tree
 - store metadata information for easy retrieval (e.g. `database`, `index-file`)
 - keep a global index of lab projects data (`internal` and `external`)
 
+---
 
 ## Access
 
@@ -175,6 +201,7 @@ generally using `grep`/`awk` to match text on metadata files
 
 define common policies, operations and use cases in order to optimize storage, retrieval and manipulation<!-- panel->(blue) --> <i class="fa fa-question fa-lg blue"></i><i class="fa fa-question fa-lg red"></i>
 
+---
 
 ## Publish
 
@@ -185,24 +212,31 @@ define common policies, operations and use cases in order to optimize storage, r
     - [EBI ArrayExpress](https://www.ebi.ac.uk/arrayexpress/)<!-- .element: class="extern" -->
 - hybrid (in-house + public)
 
+---
 
 <iframe class="stretch" data-src="http://rnaseq.crg.eu/project/ENCODE/"></iframe>
 
 [Old Grape RNAseq @ CRG](http://rnaseq.crg.eu)
 
+---
 
 <iframe class="stretch" data-src="http://rnamaps.crg.eu"></iframe>
 
 [RNAmaps @ CRG](http://rnamaps.crg.eu)
 
-------
+{{% /section %}}
+
+---
+
+{{% section %}}
 
 # Development
 
+---
 
 ## Tools
-<!-- .element: style="font-size: 2.8em"-->
 
+---
 
 ## Data
 build a set of tools for data and metadata management and access <!-- panel->(green) -->
@@ -214,6 +248,7 @@ build a set of tools for data and metadata management and access <!-- panel->(gr
 - cross-project access
 - metadata query
 
+---
 
 ## Config
 
@@ -271,6 +306,7 @@ attributes = [
 ]
 ```
 
+---
 
 ## Operations
 
@@ -281,12 +317,13 @@ attributes = [
 | `update` | add/update data and metadata |
 | `link  ` | create links to data files using metadata information |
 
-...<!-- .element: style="font-family: 'monospace'; font-size: 1.5em;"-->
+<p class="mono">...</p>
 
+---
 
 ## Pipelines
-<!-- .element: style="font-size: 2.8em"-->
 
+---
 
 ## grape-nf
 
@@ -295,6 +332,7 @@ attributes = [
 - read duplicates <i class="fa fa-question fa-lg blue"></i><i class="fa fa-question fa-lg red"></i>
 - test and release `Riboprofiling` processing
 
+---
 
 ## grape-nf @ IHEC
 
@@ -309,6 +347,7 @@ attributes = [
     - `%` duplicate
 - optional output folder structure (e.g. by experiment) <i class="fa fa-question fa-lg blue"></i><i class="fa fa-question fa-lg red"></i>
 
+---
 
 ## chip-nf @ IHEC
 
@@ -318,6 +357,9 @@ attributes = [
 	- reads metrics (original, aligned, duplicated, final after dedup and `MAPQ>5`)
 	- Jensen-Shannon distance (`JSD`) and `CHANCE` divergence [<i class="fa fa-external-link"></i>](http://deeptools.readthedocs.io/en/latest/content/feature/plotFingerprint_QC_metrics.html?highlight=jensen%20CHANCE)<!-- .element: class="extern"-->
 	- `FRiP` scores
-------
 
-<!-- .slide: data-background-image="thank-you.png" data-background-size="50%" data-background-color="#fff"> -->
+{{% /section %}}
+
+---
+
+{{< slide background-image="thank-you.png" background-size="50%" background-color="#fff" >}}

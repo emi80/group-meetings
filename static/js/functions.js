@@ -90,7 +90,11 @@ function setSlideIds(element) {
 }
 
 function updateSlide(show) {
-    if (!noNavBar && $(Reveal.getCurrentSlide()).attr("data-state")!="no-nav-bar") {
+    var noNavState = $(Reveal.getCurrentSlide()).attr("data-state") == "no-nav-bar";
+    if ( noNavState ) {
+        show = false;
+    }
+    if (!noNavBar) {
         $(".navbar-fixed-top").css("display", show ? 'block' : "none");
         $('.slide-number').css("visibility", show ? "visible" : "hidden");
     }
@@ -117,7 +121,7 @@ function updateSlide(show) {
 }
 
 Reveal.addEventListener( 'slidechanged', function( event ) {
-    updateSlide(true)
+    updateSlide(true);
     $("a[id*='nav-']").parent().removeClass("active");
     $("#nav-" + event.indexh).parent().addClass("active");
     $("a[id*='nav-']").each(function() {
@@ -127,7 +131,7 @@ Reveal.addEventListener( 'slidechanged', function( event ) {
 });
 
 Reveal.addEventListener( 'ready', function( event ) {
-    updateSlide(true)
+    updateSlide(true);
     $('a.extern').attr('target', '_blank');
     $('.rst-other-versions a').attr('target', '');
     document.title = $(Reveal.getSlide(0)).find('h1').text();
